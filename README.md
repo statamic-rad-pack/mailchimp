@@ -8,6 +8,7 @@ A Statamic V2 add-on for Mailchimp that subscribes a user to a specific mailing 
 2. Do the same to the files inside the `settings` directory;
 3. Configure the "mailchimp.yaml" file with your custom values:
   * mailchimp_key - from your list - Settings - List name and defaults
+4. Run `php please addons:refresh` to load the addon's dependencies.
 
 ## Usage
 
