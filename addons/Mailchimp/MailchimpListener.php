@@ -22,7 +22,7 @@ class MailchimpListener extends Listener
 
     public function init()
     {
-        $this->mailchimp = new MailChimp($this->getConfig('mailchimp_key'));
+        $this->mailchimp = new MailChimp($this->getConfig('key'));
     }
 
     /**
@@ -32,7 +32,7 @@ class MailchimpListener extends Listener
      */
     public function subscribe($user)
     {
-        $list = $this->getConfig('mailchimp_list');
+        $list = $this->getConfig('list_id');
         $this->mailchimp->post('lists/' . $list . '/members', [
             'email_address' => $user->get('email'),
             'status'        => 'subscribed',
