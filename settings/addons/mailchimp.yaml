@@ -1,1 +1,2 @@
-mailchimp_key: your-key-here
+key: your-api-key-here
+list_id: your-list-id-here
