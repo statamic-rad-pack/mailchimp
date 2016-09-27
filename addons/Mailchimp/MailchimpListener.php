@@ -17,24 +17,45 @@ class MailchimpListener extends Listener
      * @var array
      */
     public $events = [
-        'user.registered' => 'subscribe'
+        'user.registered' => 'userRegistration',
+        'Form.submission.created' => 'formSubmission'
     ];
 
     public function init()
     {
-        $this->mailchimp = new MailChimp($this->getConfig('key'));
+        $this->mailchimp = new MailChimp($this->getConfig('mailchimp_key'));
     }
 
     /**
-     * @param $user \Statamic\Contracts\Data\Users\User
+     * @param $user \Statamic\Data\Users\User
+     */
+    public function userRegistration($user)
+    {
+        $this->subscribe($user->get('email'));
+    }
+
+    /**
+     * @param $submission \Statamic\Forms\Submission
+     */
+    public function formSubmission($submission)
+    {
+        // only do something if we're on the right formset
+        if ($submission->formset()->name() === $this->getConfig('formset'))
+        {
+            $this->subscribe($submission->get('email'));
+        }
+    }
+
+    /**
+     * @param $email string
      *
      * @throws \Exception
      */
-    public function subscribe($user)
+    private function subscribe($email)
     {
-        $list = $this->getConfig('list_id');
+        $list = $this->getConfig('mailchimp_list_id');
         $this->mailchimp->post('lists/' . $list . '/members', [
-            'email_address' => $user->get('email'),
+            'email_address' => $email,
             'status'        => 'subscribed',
         ]);
 
