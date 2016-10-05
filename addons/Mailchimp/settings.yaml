@@ -1,0 +1,10 @@
+fields:
+  mailchimp_key:
+    type: text
+    validate: required
+  mailchimp_list_id:
+    type: text
+    validate: required
+  formsets:
+    type: list
+    validate: required
