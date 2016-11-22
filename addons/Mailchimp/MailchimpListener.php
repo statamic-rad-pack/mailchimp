@@ -64,7 +64,7 @@ class MailchimpListener extends Listener
 
         $mailchimp->post('lists/' . $list . '/members', [
             'email_address' => $email,
-            'status'        => 'subscribed',
+            'status'        => $this->getConfigBool('double_opt_in', true) ? 'pending' : 'subscribed',
         ]);
 
         if (!$mailchimp->success()) {
