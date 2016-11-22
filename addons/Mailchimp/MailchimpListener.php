@@ -34,8 +34,10 @@ class MailchimpListener extends Listener
      */
     public function formSubmission($submission)
     {
+        $formsets = collect($this->getConfig('formsets'));
+        
         // only do something if we're on the right formset
-        if (Helper::ensureArray(array_has($this->getConfig('formsets'), $submission->formset()->name())))
+        if ($formsets->contains($submission->formset()->name()))
         {
             try
             {
