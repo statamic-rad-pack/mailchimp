@@ -34,8 +34,10 @@ class MailchimpListener extends Listener
      */
     public function formSubmission($submission)
     {
+        $formsets = collect($this->getConfig('formsets'));
+        
         // only do something if we're on the right formset
-        if (Helper::ensureArray(array_has($this->getConfig('formsets'), $submission->formset()->name())))
+        if ($formsets->contains($submission->formset()->name()))
         {
             try
             {
@@ -62,7 +64,7 @@ class MailchimpListener extends Listener
 
         $mailchimp->post('lists/' . $list . '/members', [
             'email_address' => $email,
-            'status'        => 'subscribed',
+            'status'        => $this->getConfigBool('double_opt_in', true) ? 'pending' : 'subscribed',
         ]);
 
         if (!$mailchimp->success()) {
