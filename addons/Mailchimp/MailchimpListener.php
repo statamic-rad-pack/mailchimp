@@ -34,13 +34,14 @@ class MailchimpListener extends Listener
      */
     public function formSubmission($submission)
     {
-        // only do something if we're on the right form and either we don't need to check permission
-        // or we need to check permission and the permission field is truthy
-        if ($this->allowed($submission))
+        $formsets = collect($this->getConfig('formsets'));
+        
+        // only do something if we're on the right formset
+        if ($formsets->contains($submission->formset()->name()))
         {
             try
             {
-                $this->subscribe($submission);
+                $this->subscribe($submission->get('email'));
             }
             catch (\Exception $e)
             {
@@ -51,47 +52,19 @@ class MailchimpListener extends Listener
     }
 
     /**
-     * @param $submission \Statamic\Forms\Submission
-     *
-     * @return boolean
-     */
-    private function allowed($submission)
-    {
-        // only do something if we're on the right form and either we don't need to check permission
-        // or we need to check permission and the permission field is truthy
-        return collect($this->getConfig('forms'))->contains(function($ignore, $value) use ($submission)
-        {
-            $right_form = $submission->formset()->name() == array_get($value, 'form_and_field.form');
-            $check_permission = array_get($value, 'form_and_field:check_permission');
-            $permission_field = array_get($value, 'form_and_field:permission_field');
-            $have_permission = filter_var($submission->get($permission_field), FILTER_VALIDATE_BOOLEAN);
-
-            return $right_form && (!$check_permission || ($check_permission && $have_permission));
-        });
-    }
-
-    private function getFormData($submission)
-    {
-        return collect($this->getConfig('forms'))->first(function($ignored, $data) use ($submission) {
-            return $submission->formset()->name() == array_get($data, 'form_and_field.form');
-        });
-    }
-
-    /**
-     * @param $submission \Statamic\Forms\Submission
+     * @param $email string
      *
      * @throws \Exception
      */
-    private function subscribe($submission)
+    private function subscribe($email)
     {
+        $list = $this->getConfig('mailchimp_list_id');
+
         $mailchimp = new MailChimp($this->getConfig('mailchimp_key'));
 
-        $form_data = $this->getFormData($submission);
-
-
-        $mailchimp->post('lists/' . $form_data['mailchimp_list_id'] . '/members', [
-            'email_address' => $submission->get('email'),
-            'status'        => array_get($form_data, 'disable_opt_in', false) ? 'subscribed' : 'pending',
+        $mailchimp->post('lists/' . $list . '/members', [
+            'email_address' => $email,
+            'status'        => $this->getConfigBool('double_opt_in', true) ? 'pending' : 'subscribed',
         ]);
 
         if (!$mailchimp->success()) {
