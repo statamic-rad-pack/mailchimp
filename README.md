@@ -6,9 +6,18 @@ A Statamic V2 add-on for Mailchimp that subscribes a user to a specific mailing 
 ## Installing
 1. Copy the "addons" folder contents to your Statamic `site` directory;
 2. Configure the addon by visiting CP > Addons > Mailchimp and add:
-  * Mailchimp list id - from your list - Settings - List name and defaults
   * Mailchimp key - from Account - Extras - API Keys
-  * Formsets - formsets to watch for if you're using a standard form instead of user registration
+  * If you're going to add folks when they register, turn on Add New Users
+  * Not recommended, but you can disable the Double Opt In
+  * Whether or not you want to check permission before add them to a list (this is the first opt in)
+  * If so, which user field is the check? The value must be truthy (true, on) when selected
+  * Mailchimp list id - from your list - Settings - List name and defaults
+  * A row for each form submission you'd like to add to a list
+	* Mailchimp list id - from your list - Settings - List name and defaults
+	* Not recommended, but you can disable the Double Opt In
+  	* Form - formsets to watch for if you're using a standard form instead of user registration
+  	* Whether or not you want to check permission before add them to a list (this is the first opt in)
+  	* If so, which form field is the check? The value must be truthy (true, on) when selected
 3. Run `php please addons:refresh` to load the addon's dependencies.
 
 ## Usage

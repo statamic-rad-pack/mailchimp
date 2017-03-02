@@ -2,9 +2,53 @@ fields:
   mailchimp_key:
     type: text
     validate: required
-  mailchimp_list_id:
+  user_section:
+    type: section
+    display: Users
+  add_new_users:
+    type: toggle
+    display: Add New Users?
+    width: 33
+  user_disable_opt_in:
+    type: toggle
+    display: Disable Opt In?
+    width: 33
+  user_check_permission:
+    type: toggle
+    display: Check Permission?
+    width: 33
+  user_mailchimp_list_id:
     type: text
-    validate: required
-  formsets:
-    type: list
-    validate: required
+    display: 'Mailchimp List ID'
+    validate: required_if:add_new_users,true
+    width: 50
+  user_permission_field:
+    type: text
+    display: Permission Field
+    validate: required_if:user_check_permission,true
+    width: 50
+  forms_section:
+    type: section
+    display: Forms
+  forms:
+    type: grid
+    display: ' '
+    fields:
+      mailchimp_list_id:
+        type: text
+        display: 'Mailchimp List ID'
+        validate: required
+        width: 20
+      disable_opt_in:
+        type: toggle
+        display: Disable Opt In?
+        width: 20
+      form_and_field:
+        type: mailchimp
+        display: 'Form & Permission Field'
+        instructions: null
+        validate: required
+        width: 60
+    mode: table
+    min_rows: "1"
+    add_row: Add Form
