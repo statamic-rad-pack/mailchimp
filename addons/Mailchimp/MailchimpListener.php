@@ -89,7 +89,7 @@ class MailchimpListener extends Listener
     {
         $check_permission = array_get($permissions, 'check_permission', false);
         $permission_field = array_get($permissions, 'permission_field');
-        $have_permission = filter_var($submitted_data[$permission_field], FILTER_VALIDATE_BOOLEAN);
+        $have_permission = isset($submitted_data[$permission_field]) ? filter_var($submitted_data[$permission_field], FILTER_VALIDATE_BOOLEAN) : false;
 
         // if we don't need to check permission we can add OR
         // if we do need to check permission AND we have permission
