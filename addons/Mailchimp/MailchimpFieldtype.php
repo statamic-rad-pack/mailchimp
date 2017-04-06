@@ -13,7 +13,11 @@ class MailchimpFieldtype extends Fieldtype
      */
     public function blank()
     {
-        return null;
+        return [
+            'form' => null,
+            'check_permission' => false,
+            'permission_field' => null
+        ];
     }
 
     /**
@@ -43,7 +47,9 @@ class MailchimpFieldtype extends Fieldtype
         // As the data comes from a selectize field, it's in an array.
         // We only have one of everything so get rid of all the arrays
         $data['form'] = isset($data['form']) ? reset($data['form']): '';
-        $data['permission_field'] = isset($data['permission_field']) ? reset($data['permission_field']) : '';
+        $data['permission_field'] = isset($data['permission_field']) && ! empty($data['permission_field'])
+                                  ? $data['permission_field'][0]
+                                  : '';
 
         return $data;
     }
