@@ -67,7 +67,7 @@ Vue.component('mailchimp-fieldtype', {
             this.getFields();
         },
         'data.check_permission': function() {
-            this.resetFields();
+            this.data.permission_field = null;
         }
     },
 
