@@ -10,7 +10,7 @@ Vue.component('mailchimp-fieldtype', {
                 <div v-if="data.form" class="col-xs-4">
                     Check Permission: <toggle-fieldtype :data.sync="data.check_permission"></toggle-fieldtype>
                 </div>
-                <div v-if="data.check_permission && ! repopulatingFields" class="col-xs-4">
+                <div v-if="data.check_permission && !repopulatingFields" class="col-xs-4">
                     Permission Field: <suggest-fieldtype :data.sync="data.permission_field" :config="config" :suggestions-prop="fields"></suggest-fieldtype>
                 </div>
         </div>
@@ -39,14 +39,14 @@ Vue.component('mailchimp-fieldtype', {
                 this.getFields();
             });
         },
-        getFields: function(formName) {
-            var formName = this.data.form ? this.data.form[0] : null;
+        getFields: function() {
+            let formName = this.data.form ? this.data.form[0] : null;
 
             if (formName) {
                 this.repopulatingFields = true;
                 
                 this.$nextTick(function() {
-                    var selectedForm = this.forms.filter(function(form) {
+                    let selectedForm = this.forms.filter(function(form) {
                         return form.value == formName;
                     })[0];
 

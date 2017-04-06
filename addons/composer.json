@@ -1,0 +1,6 @@
+{
+    "name": "erin-dalzell/mailchimp",
+    "require": {
+        "drewm/mailchimp-api": "2.*"
+    }
+}
