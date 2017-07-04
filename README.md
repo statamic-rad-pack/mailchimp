@@ -29,3 +29,8 @@ When a form is submitted (that is in `formsets`), the `email` field will be used
 ## LICENSE
 
 [MIT License](http://emd.mit-license.org)
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/edalzell/mailchimp/badge.svg?style=beer-square)](https://beerpay.io/edalzell/mailchimp)  [![Beerpay](https://beerpay.io/edalzell/mailchimp/make-wish.svg?style=flat-square)](https://beerpay.io/edalzell/mailchimp?focus=wish)
