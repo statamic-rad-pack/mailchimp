@@ -1,6 +1,6 @@
 name: Mailchimp
-version: 1.2
+version: 1.3
 description: Subscribes a registering user to a Mailchimp list
-url: silentzconsulting.com
+url: https://github.com/edalzell/mailchimp
 developer: Erin Dalzell
-developer_url: silentzconsulting.com
+developer_url: https://silentzconsulting.com

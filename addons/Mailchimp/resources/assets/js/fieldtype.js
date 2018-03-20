@@ -1,77 +1,86 @@
 Vue.component('mailchimp-fieldtype', {
     template: `
         <div>
-            <div v-if="loading" class="loading loading-basic">
-                <span class="icon icon-circular-graph animation-spin"></span> {{ translate('cp.loading') }}
+            <div v-if="check_permission">
+                <div v-if="repopulatingFields" class="loading loading-basic">
+                    <span class="icon icon-circular-graph animation-spin"></span> {{ translate('cp.loading') }}
+                </div>
+                <div v-else>
+                    <label class="block" style="font-weight:500">Permission Field</label>
+                    <suggest-fieldtype :data.sync="data" :config="suggest_config" :suggestions-prop="fields"></suggest-fieldtype>
+                </div>
             </div>
-
-            <div v-else class="row">
-                <div class="col-xs-4">Form: <suggest-fieldtype :data.sync="data.form" :config="config" :suggestions-prop="forms"></suggest-fieldtype></div> 
-                <div v-if="data.form" class="col-xs-4">
-                    Check Permission: <toggle-fieldtype :data.sync="data.check_permission"></toggle-fieldtype>
-                </div>
-                <div v-if="data.check_permission && !repopulatingFields" class="col-xs-4">
-                    Permission Field: <suggest-fieldtype :data.sync="data.permission_field" :config="config" :suggestions-prop="fields"></suggest-fieldtype>
-                </div>
         </div>
     `,
 
-    props: ['data'],
+    mixins: [Fieldtype],
 
     data: function() {
         return {
-            loading: true,
             repopulatingFields: false,
-            forms: [],
+            index: -1,
+            form: null,
             fields: [],
-            config: {
+            suggest_config: {
                 type: 'suggest',
                 max_items: 1
             },
+            check_permission: false,
+            autoBindChangeWatcher: false // Disable the automagic binding
         }
     },
 
     methods: {
-        getForms: function() {
-            this.$http.get('/!/Mailchimp/forms', function(data) {
-                this.forms = data;
-                this.loading = false;
-                this.getFields();
-            });
+        loadData: function () {
+            this.index = this.name.split('.')[1];
+            this.form = this.$parent.data[this.index].form;
+            this.check_permission = this.$parent.data[this.index].check_permission;
         },
-        getFields: function() {
-            let formName = this.data.form ? this.data.form[0] : null;
+        loadFormFields: function () {
+            let formName = this.form;
 
-            if (formName) {
+            if (formName && formName !== '') {
                 this.repopulatingFields = true;
-                
-                this.$nextTick(function() {
-                    let selectedForm = this.forms.filter(function(form) {
-                        return form.value == formName;
-                    })[0];
 
-                    this.fields = selectedForm.fields;
-                    this.repopulatingFields = false;
+                this.$nextTick(function () {
+                    this.$http.get('/!/Mailchimp/fields?form=' + formName, function (data) {
+                        this.fields = data;
+                        this.repopulatingFields = false;
+                    });
                 });
             }
         },
-        resetFields: function() {
+        resetFormFields: function () {
             this.fields = [];
-            this.data.permission_field = null;
+            this.data = null;
         },
-    },
-
-    watch: {
-        'data.form': function() {
-            this.resetFields();
-            this.getFields();
-        },
-        'data.check_permission': function() {
-            this.data.permission_field = null;
+        bindParentWatcher: function (index) {
+            let self = this;
+            this.$parent.$watch('data', function (rowData) {
+                // check_permissions is on?
+                self.check_permission = rowData[self.index].check_permission;
+                if (self.form !== rowData[self.index].form) {
+                    self.form = rowData[self.index].form;
+                    self.loadFields();
+                }
+            }, {deep: true});
         }
     },
 
-    ready: function() {
-        this.getForms();
+    watch: {
+        'check_permission': function (doCheck) {
+            if (doCheck) {
+                this.loadFormFields();
+            } else {
+                this.resetFormFields();
+            }
+        }
+    },
+
+    ready: function () {
+        this.loadData();
+        this.loadFormFields();
+        this.bindParentWatcher();
+        this.bindChangeWatcher(); // Bind manually once you're ready.
     }
 });

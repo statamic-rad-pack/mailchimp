@@ -13,26 +13,48 @@ fields:
     type: toggle
     display: Disable Opt In?
     width: 33
+    show_when:
+      add_new_users: true
   user_check_permission:
     type: toggle
     display: Check Permission?
     width: 33
+    show_when:
+      add_new_users: true
   user_mailchimp_list_id:
     type: text
     display: 'Mailchimp List ID'
     validate: required_if:add_new_users,true
     width: 50
+    show_when:
+      add_new_users: true
   user_permission_field:
-    type: text
+    type: suggest
+    mode: mailchimp.user_fields
     display: Permission Field
+    max_items: 1
     validate: required_if:user_check_permission,true
     width: 50
+    show_when:
+      user_check_permission: true
+  user_merge_fields:
+    type: grid
+    display: ' '
+    fields:
+      tag:
+        type: text
+      field_name:
+        type: text
+        display: Field Name
+    add_row: Add Merge Field
+    show_when:
+      add_new_users: true
   forms_section:
     type: section
     display: Forms
   forms:
     type: grid
-    display: ' '
+    display: 'Please save each row as you go. I.e. add a form, save it, add another.'
     fields:
       mailchimp_list_id:
         type: text
@@ -43,12 +65,32 @@ fields:
         type: toggle
         display: Disable Opt In?
         width: 20
-      form_and_field:
+      form:
+        type: form
+        max_items: 1
+        width: 20
+      check_permission:
+        type: toggle
+        display: Check Permission?
+        width: 20
+      permission_field:
         type: mailchimp
-        display: 'Form & Permission Field'
+        display: ' '
         instructions: null
         validate: required
-        width: 60
-    mode: table
+        width: 20
+        show_when:
+          check_permission: true
+      merge_fields:
+        type: grid
+        display: ' '
+        fields:
+          tag:
+            type: text
+          field_name:
+            type: text
+            display: Field Name
+        add_row: Add Merge Field
+    mode: stacked
     min_rows: "1"
     add_row: Add Form
