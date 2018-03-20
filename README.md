@@ -1,8 +1,3 @@
-Mailchimp
-=================
-
-A Statamic V2 add-on for Mailchimp that subscribes a user to a specific mailing list when they register.
-
 ## Installing
 1. Copy the "addons" folder contents to your Statamic `site` directory;
 2. Configure the addon by visiting CP > Addons > Mailchimp and add:
