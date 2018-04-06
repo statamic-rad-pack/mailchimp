@@ -100,18 +100,23 @@ class MailchimpListener extends Listener
         $mailchimp = new MailChimp($this->getConfig('mailchimp_key'));
 
         $mailchimp_list_id = array_get($config, 'mailchimp_list_id');
+
         $disable_opt_in = array_get($config, 'disable_opt_in', false);
 
-        $mailchimp->post('lists/' . $mailchimp_list_id . '/members', [
+        $data = [
             'email_address' => $email,
-            'status' => $disable_opt_in ? 'subscribed' : 'pending',
-            'merge_fields' => collect(array_get($config, 'merge_fields', []))->map(function ($item, $key) use ($merge_data) {
-                return [$item['tag'] => $merge_data->get($item['field_name'])];
-            })->collapse()->all()
-        ]);
+            'status' => $disable_opt_in ? 'subscribed' : 'pending'
+        ];
 
-        if (!$mailchimp->success())
-        {
+        if ($merge_fields = array_get($config, 'merge_fields')) {
+            $data['merge_fields'] = collect($merge_fields)->map(function ($item, $key) use ($merge_data) {
+                return [$item['tag'] => $merge_data->get($item['field_name'])];
+            })->collapse()->all();
+        }
+
+        $mailchimp->post("lists/{$mailchimp_list_id}/members", $data);
+
+        if (!$mailchimp->success()) {
             \Log::error($mailchimp->getLastError());
         }
     }
