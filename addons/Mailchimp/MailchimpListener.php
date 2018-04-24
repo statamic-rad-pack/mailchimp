@@ -102,6 +102,8 @@ class MailchimpListener extends Listener
         $mailchimp_list_id = array_get($config, 'mailchimp_list_id');
 
         $disable_opt_in = array_get($config, 'disable_opt_in', false);
+        
+        $subscriber_hash = $mailchimp->subscriberHash($email);
 
         $data = [
             'email_address' => $email,
@@ -113,8 +115,8 @@ class MailchimpListener extends Listener
                 return [$item['tag'] => $merge_data->get($item['field_name'])];
             })->collapse()->all();
         }
-
-        $mailchimp->post("lists/{$mailchimp_list_id}/members", $data);
+        
+        $mailchimp->put("lists/{$mailchimp_list_id}/members/{$subscriber_hash}", $data);
 
         if (!$mailchimp->success()) {
             \Log::error($mailchimp->getLastError());
