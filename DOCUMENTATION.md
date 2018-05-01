@@ -1,5 +1,5 @@
 ## Installing
-1. Copy the "addons" folder contents to your Statamic `site` directory;
+1. Copy the "addons" folder contents to your Statamic `sit/addonse` directory;
 2. Configure the addon by visiting CP > Addons > Mailchimp and add:
   * Mailchimp key - from Account - Extras - API Keys
   * If you're going to add folks when they register, turn on Add New Users
@@ -13,7 +13,7 @@
     * Form - formsets to watch for if you're using a standard form instead of user registration
     * Whether or not you want to check permission before add them to a list (this is the first opt in)
     * If so, which form field is the check? The value must be truthy (true, on) when selected
-3. Run `php please addons:refresh` to load the addon's dependencies.
+3. Run `php please update:addons` to load the addon's dependencies.
 
 ## Usage
 
