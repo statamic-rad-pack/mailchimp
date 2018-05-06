@@ -61,7 +61,7 @@ Vue.component('mailchimp-fieldtype', {
                 self.check_permission = rowData[self.index].check_permission;
                 if (self.form !== rowData[self.index].form) {
                     self.form = rowData[self.index].form;
-                    self.loadFields();
+                    self.loadFormFields();
                 }
             }, {deep: true});
         }
