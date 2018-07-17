@@ -29,9 +29,10 @@ When a form is submitted (that is in `formsets`), the `email` field will be used
 ### Merge Fields
 
 For example if I want the form's 'name' & 'number' sent to Mailchimp, I need to map the tags & fields like so:
-  * ![merge fields](images/merge-fields.png "Mailchimp tags")
-  * ![form fields](images/form-fields.png "Form fields")
-  * ![tags & fields mappings](images/tag-field-mapping.png "Tag & Field Mapping")
+
+![merge fields](images/merge-fields.png "Mailchimp tags")
+![form fields](images/form-fields.png "Form fields")
+![tags & fields mappings](images/tag-field-mapping.png "Tag & Field Mapping")
 
 ## License
 
