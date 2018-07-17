@@ -14,7 +14,7 @@ For both user registration & form submissions:
   * Mailchimp list id from ![list id settings screenshot](images/list-id-1.png "Settings - List name and defaults") & ![list id screenshot](images/list-id-2.png "the ID")
   * You can disable the Double Opt In. This is **NOT** recommended and means that they **WILL NOT** get the opt in email. **NOTE**: This may violate privacy laws and may get your banned from Mailchimp
   * Whether or not you want to check permission before add them to a list (this is the first opt in)
-    * If so, which user field is the check? The value must be truthy (true, on) when selected
+    * If so, which user field is the check? The value must be truthy (true, on) when selected otherwise that email willl **NOT** be added to Mailchimp
   * If you want to pass some form information into Mailchimp, use the Merge tags & mapp them to the form field
     * **NOTE**: Mailchimp merge tags are uppercase
 
