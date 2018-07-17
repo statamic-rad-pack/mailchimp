@@ -1,6 +1,6 @@
 name: Mailchimp
-version: 1.3.3
-description: Subscribes a registering user to a Mailchimp list
-url: https://github.com/edalzell/mailchimp
+version: 1.3.4
+description: Subscribes a registering user or contact form to a Mailchimp list
+url: https://github.com/edalzell/statamic-mailchimp
 developer: Erin Dalzell
 developer_url: https://silentzconsulting.com
