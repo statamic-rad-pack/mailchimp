@@ -36,16 +36,22 @@ fields:
     validate: required_if:user_check_permission,true
     width: 50
     show_when:
+      add_new_users: true
       user_check_permission: true
   user_merge_fields:
     type: grid
-    display: ' '
+    display: 'Merge & Form Field Mapping'
     fields:
       tag:
         type: text
+        display: Mailchimp Merge Tag
+        instructions: **Case Matters**! Upper case only please.
+        width: 50
       field_name:
         type: text
         display: Field Name
+        instructions: '&nbsp;'
+        width: 50
     add_row: Add Merge Field
     show_when:
       add_new_users: true
@@ -54,7 +60,7 @@ fields:
     display: Forms
   forms:
     type: grid
-    display: 'Please save each row as you go. I.e. add a form, save it, add another.'
+    display: 'Please save each row as you go. i.e. add a form, save it, add another.'
     fields:
       mailchimp_list_id:
         type: text
@@ -76,7 +82,6 @@ fields:
       permission_field:
         type: mailchimp
         display: ' '
-        instructions: null
         validate: required
         width: 20
         show_when:
@@ -87,6 +92,8 @@ fields:
         fields:
           tag:
             type: text
+            display: Mailchimp Merge Tag
+            instructions: **Case Matters**! Upper case only please.
           field_name:
             type: text
             display: Field Name
