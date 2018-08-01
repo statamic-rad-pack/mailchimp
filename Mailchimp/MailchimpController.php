@@ -30,12 +30,8 @@ class MailchimpController extends Controller
 
         $merge_fields = array_get($config, 'merge_fields', []);
 
-
-        $foo = collect($merge_fields)->map(function ($item, $key) {
+        return collect($merge_fields)->map(function ($item, $key) {
             return [$item['tag'] => 'Erin'];
         })->collapse()->all();
-
-        dd($foo);
-
     }
 }
