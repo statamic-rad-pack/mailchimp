@@ -26,6 +26,7 @@ class MailchimpListener extends Listener
         if ($this->getConfigBool('add_new_users', false))
         {
             $config = [];
+            $config['mailchimp_list_id'] = $this->getConfig('user_mailchimp_list_id');
             $config['check_permission'] = $this->getConfigBool('user_check_permission', false);
             $config['permission_field'] = $this->getConfig('user_permission_field');
             $config['merge_fields'] = $this->getConfig('user_merge_fields');
