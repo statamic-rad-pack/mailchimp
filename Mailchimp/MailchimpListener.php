@@ -29,6 +29,7 @@ class MailchimpListener extends Listener
             $config['mailchimp_list_id'] = $this->getConfig('user_mailchimp_list_id');
             $config['check_permission'] = $this->getConfigBool('user_check_permission', false);
             $config['permission_field'] = $this->getConfig('user_permission_field');
+            $config['disable_opt_in'] = $this->getConfig('user_disable_opt_in');
             $config['merge_fields'] = $this->getConfig('user_merge_fields');
 
             if ($this->hasPermission($config, $user->data()))
