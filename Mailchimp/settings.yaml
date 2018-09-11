@@ -45,7 +45,7 @@ fields:
       tag:
         type: text
         display: Mailchimp Merge Tag
-        instructions: **Case Matters**! Upper case only please.
+        instructions: "**Case Matters**! Upper case only please."
         width: 50
       field_name:
         type: text
@@ -93,7 +93,7 @@ fields:
           tag:
             type: text
             display: Mailchimp Merge Tag
-            instructions: **Case Matters**! Upper case only please.
+            instructions: "**Case Matters**! Upper case only please."
           field_name:
             type: text
             display: Field Name
