@@ -11,7 +11,7 @@ Configure the addon by visiting CP > Addons > Mailchimp and add:
   
 For both user registration & form submissions:
   * Add a Form for each specific form you'd like added to Mailchimp
-  * Mailchimp list id from ![list id settings screenshot](images/list-id-1.png "Settings - List name and defaults") & ![list id screenshot](images/list-id-2.png "the ID")
+  * Mailchimp list id from ![list id settings screenshot](https://github.com/edalzell/statamic-mailchimp/raw/master/images/list-id-1.png "Settings - List name and defaults") & ![list id screenshot](https://github.com/edalzell/statamic-mailchimp/raw/master/images/list-id-2.png "the ID")
   * You can disable the Double Opt In. This is **NOT** recommended and means that they **WILL NOT** get the opt in email. **NOTE**: This may violate privacy laws and may get your banned from Mailchimp
   * Whether or not you want to check permission before add them to a list (this is the first opt in)
     * If so, which user field is the check? The value must be truthy (true, on) when selected otherwise that email willl **NOT** be added to Mailchimp
@@ -30,11 +30,10 @@ When a form is submitted (that is in `formsets`), the `email` field will be used
 
 For example if I want the form's 'name' & 'number' sent to Mailchimp, I need to map the tags & fields like so:
 
-![merge fields](images/merge-fields.png "Mailchimp tags")
-![form fields](images/form-fields.png "Form fields")
-![tags & fields mappings](images/tag-field-mapping.png "Tag & Field Mapping")
+![merge fields](https://github.com/edalzell/statamic-mailchimp/raw/master/images/merge-fields.png "Mailchimp tags")
+![form fields](https://github.com/edalzell/statamic-mailchimp/raw/master/images/form-fields.png "Form fields")
+![tags & fields mappings](https://github.com/edalzell/statamic-mailchimp/raw/master/images/tag-field-mapping.png "Tag & Field Mapping")
 
 ## License
 
 [MIT License](http://emd.mit-license.org)
-
