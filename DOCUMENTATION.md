@@ -6,10 +6,12 @@
 ## Configuration
 
 Configure the addon by visiting CP > Addons > Mailchimp and add:
+
   * Mailchimp key - from Account - Extras - API Keys
   * If you're going to add folks when they register, turn on Add New Users
   
 For both user registration & form submissions:
+
   * Add a Form for each specific form you'd like added to Mailchimp
   * Mailchimp list id from ![list id settings screenshot](https://github.com/edalzell/statamic-mailchimp/raw/master/images/list-id-1.png "Settings - List name and defaults") & ![list id screenshot](https://github.com/edalzell/statamic-mailchimp/raw/master/images/list-id-2.png "the ID")
   * You can disable the Double Opt In. This is **NOT** recommended and means that they **WILL NOT** get the opt in email. **NOTE**: This may violate privacy laws and may get your banned from Mailchimp
