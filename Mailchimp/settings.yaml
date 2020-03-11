@@ -83,7 +83,7 @@ fields:
         type: text
         display: Email Field
         default: email
-        instructions: 'Default's to `email`, but if you use any other field name to capture email, input that here'
+        instructions: 'Defaults to `email`, but if you use any other field name to capture email, input that here'
         width: 50
       permission_field:
         type: mailchimp

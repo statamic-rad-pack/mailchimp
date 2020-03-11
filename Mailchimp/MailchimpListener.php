@@ -47,6 +47,7 @@ class MailchimpListener extends Listener
         $form_config = $this->getFormConfig($formset_name);
 
         // should we process this form and do we have permission to add them to mailchimp?
+        // we'll also default to using email as the fieldname for the submission, if it's null subscribe() will attempt to use the primary_email_field set in the config for the formset.
         if ($this->shouldProcessForm($formset_name) &&
             $this->hasPermission($form_config, $submission->data())) {
             $this->subscribe($submission->get('email'), $submission, $form_config);
@@ -104,7 +105,7 @@ class MailchimpListener extends Listener
         $subscriber_hash = $mailchimp->subscriberHash($email);
 
         $data = [
-            'email_address' => $email,
+            'email_address' => $email ?? $merge_data->get(array_get($config, 'primary_email_field')),
             'status' => $disable_opt_in ? 'subscribed' : 'pending',
         ];
 
