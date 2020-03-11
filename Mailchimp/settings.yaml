@@ -66,24 +66,30 @@ fields:
         type: text
         display: 'Mailchimp List ID'
         validate: required
-        width: 20
+        width: 50
       disable_opt_in:
         type: toggle
         display: Disable Opt In?
-        width: 20
-      form:
-        type: form
-        max_items: 1
-        width: 20
+        width: 25
       check_permission:
         type: toggle
         display: Check Permission?
-        width: 20
+        width: 25
+      form:
+        type: form
+        max_items: 1
+        width: 50
+      primary_email_field:
+        type: text
+        display: Email Field
+        default: email
+        instructions: 'Default's to `email`, but if you use any other field name to capture email, input that here'
+        width: 50
       permission_field:
         type: mailchimp
         display: ' '
         validate: required
-        width: 20
+        width: 50
         show_when:
           check_permission: true
       merge_fields:
