@@ -2,6 +2,7 @@
 
 namespace Statamic\Addons\Mailchimp;
 
+use Statamic\API\Arr;
 use Statamic\Extend\Listener;
 use DrewM\MailChimp\MailChimp;
 
@@ -64,7 +65,7 @@ class MailchimpListener extends Listener
     private function shouldProcessForm($formset_name)
     {
         return collect($this->getConfig('forms'))->contains(function ($ignore, $value) use ($formset_name) {
-            return $formset_name == array_get($value, 'form');
+            return $formset_name == Arr::get($value, 'form');
         });
     }
 
@@ -78,8 +79,8 @@ class MailchimpListener extends Listener
      */
     private function hasPermission($permissions, $submitted_data)
     {
-        $check_permission = array_get($permissions, 'check_permission', false);
-        $permission_field = array_get($permissions, 'permission_field');
+        $check_permission = Arr::get($permissions, 'check_permission', false);
+        $permission_field = Arr::get($permissions, 'permission_field');
         $have_permission = request()->has($permission_field) ? filter_var(request($permission_field), FILTER_VALIDATE_BOOLEAN) : false;
 
         // if we don't need to check permission we can add OR
@@ -98,18 +99,18 @@ class MailchimpListener extends Listener
     {
         $mailchimp = new MailChimp($this->getConfig('mailchimp_key'));
 
-        $mailchimp_list_id = array_get($config, 'mailchimp_list_id');
+        $mailchimp_list_id = Arr::get($config, 'mailchimp_list_id');
 
-        $disable_opt_in = array_get($config, 'disable_opt_in', false);
+        $disable_opt_in = Arr::get($config, 'disable_opt_in', false);
 
         $subscriber_hash = $mailchimp->subscriberHash($email);
 
         $data = [
-            'email_address' => $email ?? $merge_data->get(array_get($config, 'primary_email_field')),
+            'email_address' => $email ?? $merge_data->get(Arr::get($config, 'primary_email_field')),
             'status' => $disable_opt_in ? 'subscribed' : 'pending',
         ];
 
-        if ($merge_fields = array_get($config, 'merge_fields')) {
+        if ($merge_fields = Arr::get($config, 'merge_fields')) {
             $data['merge_fields'] = collect($merge_fields)->map(function ($item, $key) use ($merge_data) {
                 // if there ain't nuthin' there, don't send nuthin'
                 if (is_null($fieldData = $merge_data->get($item['field_name']))) {
@@ -140,7 +141,7 @@ class MailchimpListener extends Listener
     private function getFormConfig($formset_name)
     {
         return collect($this->getConfig('forms'))->first(function ($ignored, $data) use ($formset_name) {
-            return $formset_name == array_get($data, 'form');
+            return $formset_name == Arr::get($data, 'form');
         });
     }
 }
