@@ -5,7 +5,6 @@ namespace Statamic\Addons\Mailchimp;
 use Statamic\Extend\Listener;
 use DrewM\MailChimp\MailChimp;
 
-
 class MailchimpListener extends Listener
 {
     /**
@@ -15,7 +14,7 @@ class MailchimpListener extends Listener
      */
     public $events = [
         'user.registered' => 'userRegistration',
-        'Form.submission.created' => 'formSubmission'
+        'Form.submission.created' => 'formSubmission',
     ];
 
     /**
@@ -23,8 +22,7 @@ class MailchimpListener extends Listener
      */
     public function userRegistration($user)
     {
-        if ($this->getConfigBool('add_new_users', false))
-        {
+        if ($this->getConfigBool('add_new_users', false)) {
             $config = [];
             $config['mailchimp_list_id'] = $this->getConfig('user_mailchimp_list_id');
             $config['check_permission'] = $this->getConfigBool('user_check_permission', false);
@@ -32,8 +30,7 @@ class MailchimpListener extends Listener
             $config['disable_opt_in'] = $this->getConfig('user_disable_opt_in');
             $config['merge_fields'] = $this->getConfig('user_merge_fields');
 
-            if ($this->hasPermission($config, $user->data()))
-            {
+            if ($this->hasPermission($config, $user->data())) {
                 $this->subscribe($user->email(), $user, $config);
             }
         }
@@ -50,10 +47,9 @@ class MailchimpListener extends Listener
         $form_config = $this->getFormConfig($formset_name);
 
         // should we process this form and do we have permission to add them to mailchimp?
-        // we'll also default to using email as the fieldname for the submission, if it's null subscribe() will attempt to use the primary_email_field set in the config for the formset.
         if ($this->shouldProcessForm($formset_name) &&
             $this->hasPermission($form_config, $submission->data())) {
-            $this->subscribe($submission->get('email'), $submission, $form_config );
+            $this->subscribe($submission->get('email'), $submission, $form_config);
         }
     }
 
@@ -66,8 +62,7 @@ class MailchimpListener extends Listener
      */
     private function shouldProcessForm($formset_name)
     {
-        return collect($this->getConfig('forms'))->contains(function($ignore, $value) use ($formset_name)
-        {
+        return collect($this->getConfig('forms'))->contains(function ($ignore, $value) use ($formset_name) {
             return $formset_name == array_get($value, 'form');
         });
     }
@@ -105,20 +100,28 @@ class MailchimpListener extends Listener
         $mailchimp_list_id = array_get($config, 'mailchimp_list_id');
 
         $disable_opt_in = array_get($config, 'disable_opt_in', false);
-        
+
         $subscriber_hash = $mailchimp->subscriberHash($email);
 
         $data = [
-            'email_address' => $email ?? $merge_data->get(array_get($config, 'primary_email_field')),
-            'status' => $disable_opt_in ? 'subscribed' : 'pending'
+            'email_address' => $email,
+            'status' => $disable_opt_in ? 'subscribed' : 'pending',
         ];
 
         if ($merge_fields = array_get($config, 'merge_fields')) {
             $data['merge_fields'] = collect($merge_fields)->map(function ($item, $key) use ($merge_data) {
-                return [$item['tag'] => $merge_data->get($item['field_name'])];
+                // if there ain't nuthin' there, don't send nuthin'
+                if (is_null($fieldData = $merge_data->get($item['field_name']))) {
+                    return [];
+                }
+
+                // convert arrays to strings...Mailchimp don't like no arrays
+                return [
+                    $item['tag'] => is_array($fieldData) ? implode('|', $fieldData) : $fieldData,
+                ];
             })->collapse()->all();
         }
-        
+
         $mailchimp->put("lists/{$mailchimp_list_id}/members/{$subscriber_hash}", $data);
 
         if (!$mailchimp->success()) {
@@ -135,7 +138,7 @@ class MailchimpListener extends Listener
      */
     private function getFormConfig($formset_name)
     {
-        return collect($this->getConfig('forms'))->first(function($ignored, $data) use ($formset_name) {
+        return collect($this->getConfig('forms'))->first(function ($ignored, $data) use ($formset_name) {
             return $formset_name == array_get($data, 'form');
         });
     }
