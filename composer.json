@@ -1,0 +1,20 @@
+{
+    "name": "edalzell/mailchimp",
+    "type": "statamic-addon",
+    "autoload": {
+        "psr-4": {
+            "Edalzell\\Mailchimp\\": "src"
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Mailchimp",
+            "description": "Mailchimp addon"
+        },
+        "laravel": {
+            "providers": [
+                "Edalzell\\Mailchimp\\ServiceProvider"
+            ]
+        }
+    }
+}
