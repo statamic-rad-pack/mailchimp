@@ -2,10 +2,7 @@
 
 namespace Edalzell\Mailchimp\Listeners;
 
-use DrewM\MailChimp\MailChimp;
 use Edalzell\Mailchimp\Subscriber;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Statamic\Forms\Submission;
 use Statamic\Support\Arr;
 

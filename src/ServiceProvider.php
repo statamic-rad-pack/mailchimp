@@ -11,7 +11,7 @@ class ServiceProvider extends AddonServiceProvider
         //     'Edalzell\Mailchimp\AddFromUser',
         // ],
         'Form.submission.created' => [
-            'Edalzell\Mailchimp\AddFromSubmission'
+            'Edalzell\Mailchimp\Listeners\AddFromSubmission'
         ]
     ];
 }
