@@ -12,6 +12,7 @@ use Statamic\Forms\Submission;
 class SubscriberTest extends TestCase
 {
     private Form $form;
+    private Submission $submission;
 
     public function setUp(): void
     {
@@ -27,18 +28,18 @@ class SubscriberTest extends TestCase
             ->honeypot('winnie');
 
         $this->form->save();
+
+        $this->submission = $this->form->createSubmission();
+        $this->submission
+            ->unguard()
+            ->data(['foo'=>'bar']);
     }
 
 
     /** @test */
     public function can_create_subscriber_from_submission()
     {
-        $submission = $this->form->createSubmission();
-        $submission
-            ->unguard()
-            ->data(['foo'=>'bar']);
-
-        $subscriber = Subscriber::createFromSubmission($submission);
+        $subscriber = Subscriber::createFromSubmission($this->submission);
 
         $this->assertInstanceOf(Subscriber::class, $subscriber);
     }

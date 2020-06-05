@@ -44,14 +44,7 @@ class Subscriber
         return Arr::get($this->data, $field, $default);
     }
 
-    /**
-     * @param $email string
-     * @param $merge_data \Statamic\Data\Users\User | \Statamic\Forms\Submission
-     * @param $config array
-     *
-     * @throws \Exception
-     */
-    private function subscribe()
+    public function subscribe()
     {
         $data = [
             'email_address' => $this->email(),
