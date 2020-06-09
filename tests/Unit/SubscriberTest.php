@@ -38,7 +38,7 @@ class SubscriberTest extends TestCase
     /** @test */
     public function can_create_subscriber_from_submission()
     {
-        $subscriber = Subscriber::createFromSubmission($this->submission, 'post');
+        $subscriber = new Subscriber($this->submission->data(), 'post');
 
         $this->assertInstanceOf(Subscriber::class, $subscriber);
     }

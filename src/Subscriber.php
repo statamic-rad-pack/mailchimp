@@ -4,8 +4,6 @@ namespace Edalzell\Mailchimp;
 
 use DrewM\MailChimp\MailChimp;
 use Illuminate\Support\Facades\Log;
-use Statamic\Auth\User;
-use Statamic\Forms\Submission;
 use Statamic\Support\Arr;
 
 class Subscriber
@@ -13,26 +11,13 @@ class Subscriber
     private array $data;
     private array $config;
 
-    public static function createFromUser(User $user)
-    {
-        return new self($user->toShallowAugmentedArray(), []);
-    }
-
-    public static function createFromSubmission(Submission $submission, string $formset)
-    {
-        return new self(
-            $submission->data(),
-            self::formConfig($formset)
-        );
-    }
-
     public function __construct(array $data, array $config)
     {
         $this->data = $data;
         $this->config = $config;
     }
 
-    public function email(): string
+    private function email(): string
     {
         return $this->get(Arr::get($this->config, 'primary_email_field', 'email'));
     }
@@ -50,7 +35,7 @@ class Subscriber
         return $this->get($field, false);
     }
 
-    public function get(string $field, $default = null)
+    private function get(string $field, $default = null)
     {
         return Arr::get($this->data, $field, $default);
     }
@@ -89,11 +74,5 @@ class Subscriber
         if (!$mailchimp->success()) {
             Log::error($mailchimp->getLastError());
         }
-    }
-
-    private static function formConfig(string $handle): array
-    {
-        return collect(config('mailchimp.forms'))
-            ->firstWhere('blueprint', $handle) ?? [];
     }
 }
