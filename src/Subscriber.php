@@ -10,42 +10,57 @@ use Statamic\Support\Arr;
 
 class Subscriber
 {
-    private $data;
-    private $config;
+    private array $data;
+    private array $config;
 
     public static function createFromUser(User $user)
     {
-        return new self($user->toShallowAugmentedArray());
+        return new self($user->toShallowAugmentedArray(), []);
     }
 
-    public static function createFromSubmission(Submission $submission)
+    public static function createFromSubmission(Submission $submission, string $formset)
     {
-        return new self($submission->data());
+        return new self(
+            $submission->data(),
+            self::formConfig($formset)
+        );
     }
 
-    public function __construct(array $data)
+    public function __construct(array $data, array $config)
     {
         $this->data = $data;
-        $this->config = config('mailchimp');
+        $this->config = $config;
     }
 
-    public function email()
+    public function email(): string
     {
         return $this->get(Arr::get($this->config, 'primary_email_field', 'email'));
     }
 
-    public function hasPermission($field)
+    public function hasPermission(): bool
     {
+        if (!Arr::get($this->config, 'check_permission', false)) {
+            return true;
+        }
+
+        if (! $field = Arr::get($this->config, 'permission_field', 'permission')) {
+            return false;
+        }
+
         return $this->get($field, false);
     }
 
-    public function get($field, $default = null)
+    public function get(string $field, $default = null)
     {
         return Arr::get($this->data, $field, $default);
     }
 
-    public function subscribe()
+    public function subscribe(): void
     {
+        if (!$this->hasPermission()) {
+            return;
+        }
+
         $data = [
             'email_address' => $this->email(),
             'status' => Arr::get($this->config, 'disable_opt_in', false) ? 'subscribed' : 'pending',
@@ -65,7 +80,7 @@ class Subscriber
             })->collapse()->all();
         }
 
-        $mailchimp = new MailChimp($this->config['mailchimp_key']);
+        $mailchimp = app(MailChimp::class);
         $listId = Arr::get($this->config, 'listId');
         $hash = $mailchimp->subscriberHash($this->email());
 
@@ -74,5 +89,11 @@ class Subscriber
         if (!$mailchimp->success()) {
             Log::error($mailchimp->getLastError());
         }
+    }
+
+    private static function formConfig(string $handle): array
+    {
+        return collect(config('mailchimp.forms'))
+            ->firstWhere('blueprint', $handle) ?? [];
     }
 }
