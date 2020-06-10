@@ -16,10 +16,19 @@ class ServiceProvider extends AddonServiceProvider
         ]
     ];
 
-    public function register()
+    public function boot()
     {
-        $this->app->bind(MailChimp::class, function () {
-            return new MailChimp(config('mailchimp.key'));
+        $this->app->booted(function () {
+            $this->addFormsToNewsletterConfig();
         });
+    }
+
+    private function addFormsToNewsletterConfig()
+    {
+        $lists = collect(config('mailchimp.forms'))->flatMap(function ($form) {
+            return [$form['blueprint'] => ['id'=> 'mailchimp_list_id']];
+        })->all();
+
+        config(['newsletter.lists' => $lists]);
     }
 }

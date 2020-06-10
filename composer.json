@@ -2,8 +2,8 @@
     "name": "edalzell/mailchimp",
     "type": "statamic-addon",
     "require": {
-        "drewm/mailchimp-api": "^2.5",
-        "daftspunk/laravel-config-writer": "^1.3"
+        "daftspunk/laravel-config-writer": "^1.3",
+        "spatie/laravel-newsletter": "^4.8"
     },
     "require-dev": {
         "statamic/cms": "3.0.*@beta",

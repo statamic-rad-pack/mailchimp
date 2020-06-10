@@ -2,8 +2,8 @@
 
 namespace Edalzell\Mailchimp;
 
-use DrewM\MailChimp\MailChimp;
 use Illuminate\Support\Facades\Log;
+use Spatie\Newsletter\NewsletterFacade as Newsletter;
 use Statamic\Support\Arr;
 
 class Subscriber
@@ -46,33 +46,27 @@ class Subscriber
             return;
         }
 
-        $data = [
-            'email_address' => $this->email(),
+        $options = [
             'status' => Arr::get($this->config, 'disable_opt_in', false) ? 'subscribed' : 'pending',
         ];
 
-        if ($merge_fields = Arr::get($this->config, 'merge_fields')) {
-            $data['merge_fields'] = collect($merge_fields)->map(function ($item, $key) {
-                // if there ain't nuthin' there, don't send nuthin'
-                if (is_null($fieldData = $this->get($item['field_name']))) {
-                    return [];
-                }
+        $merge_fields = Arr::get($this->config, 'merge_fields', []);
 
-                // convert arrays to strings...Mailchimp don't like no arrays
-                return [
+        $mergeData = collect($merge_fields)->map(function ($item, $key) {
+            // if there ain't nuthin' there, don't send nuthin'
+            if (is_null($fieldData = $this->get($item['field_name']))) {
+                return [];
+            }
+
+            // convert arrays to strings...Mailchimp don't like no arrays
+            return [
                     $item['tag'] => is_array($fieldData) ? implode('|', $fieldData) : $fieldData,
                 ];
-            })->collapse()->all();
-        }
+        })->collapse()->all();
 
-        $mailchimp = app(MailChimp::class);
-        $listId = Arr::get($this->config, 'listId');
-        $hash = $mailchimp->subscriberHash($this->email());
 
-        $mailchimp->put("lists/{$listId}/members/{$hash}", $data);
-
-        if (!$mailchimp->success()) {
-            Log::error($mailchimp->getLastError());
+        if (!Newsletter::subscribe($this->email(), $mergeData, $options)) {
+            Log::error(Newsletter::getLastError());
         }
     }
 }
