@@ -38,7 +38,11 @@ class SubscriberTest extends TestCase
     /** @test */
     public function can_create_subscriber_from_submission()
     {
-        $subscriber = new Subscriber($this->submission->data(), 'post');
+        $formConfig = [[
+            'blueprint' => 'post',
+            'check_permission' => true
+        ]];
+        $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
         $this->assertInstanceOf(Subscriber::class, $subscriber);
     }
@@ -46,7 +50,11 @@ class SubscriberTest extends TestCase
     /** @test */
     public function has_permission_by_default()
     {
-        $subscriber = Subscriber::createFromSubmission($this->submission, 'post');
+        $formConfig = [
+            'blueprint' => 'post',
+        ];
+
+        $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
         $permission = $subscriber->hasPermission();
 
@@ -56,15 +64,14 @@ class SubscriberTest extends TestCase
     /** @test */
     public function no_permission_when_no_permission_field()
     {
-        $formConfig = [[
+        $formConfig = [
             'blueprint' => 'post',
             'check_permission' => true
-        ]];
+        ];
 
         config(['mailchimp.forms' => $formConfig ]);
 
-        $subscriber = Subscriber::createFromSubmission($this->submission, 'post');
-
+        $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
         $permission = $subscriber->hasPermission();
 
@@ -74,16 +81,16 @@ class SubscriberTest extends TestCase
     /** @test */
     public function no_permission_when_permission_field_is_false()
     {
-        $formConfig = [[
+        $formConfig = [
             'blueprint' => 'post',
             'check_permission' => true
-        ]];
+        ];
 
         $this->submission->set('permission_field', false);
 
         config(['mailchimp.forms' => $formConfig ]);
 
-        $subscriber = Subscriber::createFromSubmission($this->submission, 'post');
+        $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
         $permission = $subscriber->hasPermission();
 
@@ -94,17 +101,15 @@ class SubscriberTest extends TestCase
     public function permission_when_default_permission_field_is_true()
     {
         $formConfig = [
-            [
-                'blueprint' => 'post',
-                'check_permission' => true
-            ]
+            'blueprint' => 'post',
+            'check_permission' => true
         ];
 
         $this->submission->set('permission', true);
 
         config(['mailchimp.forms' => $formConfig ]);
 
-        $subscriber = Subscriber::createFromSubmission($this->submission, 'post');
+        $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
         $permission = $subscriber->hasPermission();
 
@@ -114,19 +119,18 @@ class SubscriberTest extends TestCase
     /** @test */
     public function permission_when_configured_permission_field_is_true()
     {
-        $formConfig = [
+        $formConfig =
             [
                 'blueprint' => 'post',
                 'check_permission' => true,
                 'permission_field' => 'the-permission'
-            ]
-        ];
+            ];
 
         $this->submission->set('the-permission', true);
 
         config(['mailchimp.forms' => $formConfig ]);
 
-        $subscriber = Subscriber::createFromSubmission($this->submission, 'post');
+        $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
         $permission = $subscriber->hasPermission();
 
