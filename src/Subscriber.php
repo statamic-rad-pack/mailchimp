@@ -64,8 +64,7 @@ class Subscriber
                 ];
         })->collapse()->all();
 
-
-        if (!Newsletter::subscribe($this->email(), $mergeData, $options)) {
+        if (!Newsletter::subscribe($this->email(), $mergeData, $this->config['form'], $options)) {
             Log::error(Newsletter::getLastError());
         }
     }
