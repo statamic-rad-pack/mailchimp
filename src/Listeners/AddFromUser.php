@@ -4,7 +4,6 @@ namespace Edalzell\Mailchimp\Listeners;
 
 use DrewM\MailChimp\MailChimp;
 use Statamic\API\Arr;
-use Statamic\Extend\Listener;
 
 class AddFromUser
 {

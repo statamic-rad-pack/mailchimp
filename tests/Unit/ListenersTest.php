@@ -3,7 +3,6 @@
 namespace Edalzell\Mailchimp\Tests\Unit;
 
 use Edalzell\Mailchimp\Listeners\AddFromSubmission;
-use Edalzell\Mailchimp\Subscriber;
 use Edalzell\Mailchimp\Tests\TestCase;
 use Illuminate\Support\Facades\Event;
 use Statamic\Facades\Form as FormAPI;
@@ -36,7 +35,6 @@ class ListenersTest extends TestCase
             ->unguard()
             ->data(['foo'=>'bar']);
     }
-
 
     /** @test */
     public function does_respond_to_events()
