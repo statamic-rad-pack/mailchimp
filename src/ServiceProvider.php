@@ -48,7 +48,7 @@ class ServiceProvider extends AddonServiceProvider
     private function addFormsToNewsletterConfig()
     {
         $lists = collect(config('mailchimp.forms'))->flatMap(function ($form) {
-            return [$form['form'] => ['id'=> $form['mailchimp_list_id']]];
+            return [$form['form'] => ['id'=> $form['audience_id']]];
         })->all();
 
         config(['newsletter.lists' => $lists]);
