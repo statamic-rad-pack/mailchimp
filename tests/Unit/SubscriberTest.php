@@ -40,7 +40,7 @@ class SubscriberTest extends TestCase
     {
         $formConfig = [[
             'form' => 'post',
-            'check_consent' => true
+            'check_consent' => true,
         ]];
         $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
@@ -66,10 +66,10 @@ class SubscriberTest extends TestCase
     {
         $formConfig = [
             'form' => 'post',
-            'check_consent' => true
+            'check_consent' => true,
         ];
 
-        config(['mailchimp.forms' => $formConfig ]);
+        config(['mailchimp.forms' => $formConfig]);
 
         $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
@@ -83,12 +83,12 @@ class SubscriberTest extends TestCase
     {
         $formConfig = [
             'form' => 'post',
-            'check_consent' => true
+            'check_consent' => true,
         ];
 
         $this->submission->set('consent_field', false);
 
-        config(['mailchimp.forms' => $formConfig ]);
+        config(['mailchimp.forms' => $formConfig]);
 
         $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
@@ -102,12 +102,12 @@ class SubscriberTest extends TestCase
     {
         $formConfig = [
             'form' => 'post',
-            'check_consent' => true
+            'check_consent' => true,
         ];
 
         $this->submission->set('consent', true);
 
-        config(['mailchimp.forms' => $formConfig ]);
+        config(['mailchimp.forms' => $formConfig]);
 
         $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
@@ -123,12 +123,12 @@ class SubscriberTest extends TestCase
             [
                 'blueprint' => 'post',
                 'check_consent' => true,
-                'consent_field' => 'the-consent'
+                'consent_field' => 'the-consent',
             ];
 
         $this->submission->set('the-consent', true);
 
-        config(['mailchimp.forms' => $formConfig ]);
+        config(['mailchimp.forms' => $formConfig]);
 
         $subscriber = new Subscriber($this->submission->data(), $formConfig);
 

@@ -11,7 +11,7 @@ class ServiceProvider extends AddonServiceProvider
         // 'user.registered' => [
         //     'Edalzell\Mailchimp\AddFromUser',
         // ],
-        'Form.submission.created' => [AddFromSubmission::class]
+        'Form.submission.created' => [AddFromSubmission::class],
     ];
 
     public function boot()
@@ -43,7 +43,6 @@ class ServiceProvider extends AddonServiceProvider
             __DIR__.'/../config/mailchimp.php' => $this->app->configPath('mailchimp.php'),
         ]);
     }
-
 
     private function addFormsToNewsletterConfig()
     {

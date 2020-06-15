@@ -24,7 +24,7 @@ class Subscriber
 
     public function hasConsent(): bool
     {
-        if (!Arr::get($this->config, 'check_consent', false)) {
+        if (! Arr::get($this->config, 'check_consent', false)) {
             return true;
         }
 
@@ -42,7 +42,7 @@ class Subscriber
 
     public function subscribe(): void
     {
-        if (!$this->hasConsent()) {
+        if (! $this->hasConsent()) {
             return;
         }
 
@@ -60,11 +60,11 @@ class Subscriber
 
             // convert arrays to strings...Mailchimp don't like no arrays
             return [
-                    $item['tag'] => is_array($fieldData) ? implode('|', $fieldData) : $fieldData,
-                ];
+                $item['tag'] => is_array($fieldData) ? implode('|', $fieldData) : $fieldData,
+            ];
         })->collapse()->all();
 
-        if (!Newsletter::subscribe($this->email(), $mergeData, $this->config['form'], $options)) {
+        if (! Newsletter::subscribe($this->email(), $mergeData, $this->config['form'], $options)) {
             Log::error(Newsletter::getLastError());
         }
     }
