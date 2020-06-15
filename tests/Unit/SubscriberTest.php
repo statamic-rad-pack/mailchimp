@@ -39,8 +39,8 @@ class SubscriberTest extends TestCase
     public function can_create_subscriber_from_submission()
     {
         $formConfig = [[
-            'blueprint' => 'post',
-            'check_permission' => true
+            'form' => 'post',
+            'check_consent' => true
         ]];
         $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
@@ -48,92 +48,92 @@ class SubscriberTest extends TestCase
     }
 
     /** @test */
-    public function has_permission_by_default()
+    public function has_consent_by_default()
     {
         $formConfig = [
-            'blueprint' => 'post',
+            'form' => 'post',
         ];
 
         $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
-        $permission = $subscriber->hasPermission();
+        $consent = $subscriber->hasConsent();
 
-        $this->assertTrue($permission);
+        $this->assertTrue($consent);
     }
 
     /** @test */
-    public function no_permission_when_no_permission_field()
+    public function no_consent_when_no_consent_field()
     {
         $formConfig = [
-            'blueprint' => 'post',
-            'check_permission' => true
+            'form' => 'post',
+            'check_consent' => true
         ];
 
         config(['mailchimp.forms' => $formConfig ]);
 
         $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
-        $permission = $subscriber->hasPermission();
+        $consent = $subscriber->hasConsent();
 
-        $this->assertFalse($permission);
+        $this->assertFalse($consent);
     }
 
     /** @test */
-    public function no_permission_when_permission_field_is_false()
+    public function no_consent_when_consent_field_is_false()
     {
         $formConfig = [
-            'blueprint' => 'post',
-            'check_permission' => true
+            'form' => 'post',
+            'check_consent' => true
         ];
 
-        $this->submission->set('permission_field', false);
+        $this->submission->set('consent_field', false);
 
         config(['mailchimp.forms' => $formConfig ]);
 
         $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
-        $permission = $subscriber->hasPermission();
+        $consent = $subscriber->hasConsent();
 
-        $this->assertFalse($permission);
+        $this->assertFalse($consent);
     }
 
     /** @test */
-    public function permission_when_default_permission_field_is_true()
+    public function consent_when_default_consent_field_is_true()
     {
         $formConfig = [
-            'blueprint' => 'post',
-            'check_permission' => true
+            'form' => 'post',
+            'check_consent' => true
         ];
 
-        $this->submission->set('permission', true);
+        $this->submission->set('consent', true);
 
         config(['mailchimp.forms' => $formConfig ]);
 
         $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
-        $permission = $subscriber->hasPermission();
+        $consent = $subscriber->hasConsent();
 
-        $this->assertTrue($permission);
+        $this->assertTrue($consent);
     }
 
     /** @test */
-    public function permission_when_configured_permission_field_is_true()
+    public function consent_when_configured_consent_field_is_true()
     {
         $formConfig =
             [
                 'blueprint' => 'post',
-                'check_permission' => true,
-                'permission_field' => 'the-permission'
+                'check_consent' => true,
+                'consent_field' => 'the-consent'
             ];
 
-        $this->submission->set('the-permission', true);
+        $this->submission->set('the-consent', true);
 
         config(['mailchimp.forms' => $formConfig ]);
 
         $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
-        $permission = $subscriber->hasPermission();
+        $consent = $subscriber->hasConsent();
 
-        $this->assertTrue($permission);
+        $this->assertTrue($consent);
     }
 }

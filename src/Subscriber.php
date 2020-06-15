@@ -22,13 +22,13 @@ class Subscriber
         return $this->get(Arr::get($this->config, 'primary_email_field', 'email'));
     }
 
-    public function hasPermission(): bool
+    public function hasConsent(): bool
     {
-        if (!Arr::get($this->config, 'check_permission', false)) {
+        if (!Arr::get($this->config, 'check_consent', false)) {
             return true;
         }
 
-        if (! $field = Arr::get($this->config, 'permission_field', 'permission')) {
+        if (! $field = Arr::get($this->config, 'consent_field', 'consent')) {
             return false;
         }
 
@@ -42,7 +42,7 @@ class Subscriber
 
     public function subscribe(): void
     {
-        if (!$this->hasPermission()) {
+        if (!$this->hasConsent()) {
             return;
         }
 
