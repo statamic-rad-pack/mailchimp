@@ -4,6 +4,11 @@
 
 This package provides an easy way to integrate MailChimp with Statamic.
 
+## Requirements
+
+* PHP 7.4+
+* Statamic v3
+
 ## Installation
 
 You can install this package via composer using:
