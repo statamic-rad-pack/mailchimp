@@ -7,7 +7,6 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          processIsolation="false"
-         printerClass="NunoMaduro\Collision\Adapters\Phpunit\Printer"
          stopOnFailure="false"
          verbose="true">
     <testsuites>
@@ -26,15 +25,16 @@
             <directory suffix=".php">./app</directory>
         </whitelist>
     </filter>
+    <listeners>
+        <listener class="NunoMaduro\Collision\Adapters\Phpunit\Listener" />
+    </listeners>
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="APP_KEY" value="base64:xRIcDp1ReW8Y8rd9V9D7hOVV4TI7ThCF3FKxRg01Rm8="/>
-        <env name="APP_URL" value="http://addons.test"/>
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
         <env name="MAIL_DRIVER" value="array"/>
-        <env name="MAILCHIMP_KEY" value="3ba6d89f5d075d7e7a89aba2885fac1f-us8foo"/>
         <env name="MAILCHIMP_DRIVER" value="log"/>
     </php>
 </phpunit>
