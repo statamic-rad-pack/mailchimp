@@ -14,7 +14,7 @@ This package provides an easy way to integrate MailChimp with Statamic.
 You can install this package via composer using:
 
 ```bash
-composer require edalzell/statamic-mailchimp
+composer require edalzell/mailchimp
 ```
 
 The package will automatically register itself.
