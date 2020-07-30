@@ -3,13 +3,13 @@
 namespace Edalzell\Mailchimp\Listeners;
 
 use Edalzell\Mailchimp\Subscriber;
-use Statamic\Forms\Submission;
+use Statamic\Events\SubmissionCreated;
 
 class AddFromSubmission
 {
-    public function handle(Submission $submission)
+    public function handle(SubmissionCreated $event)
     {
-        $subscriber = new Subscriber($submission->data(), $this->formConfig($submission->form()->handle()));
+        $subscriber = new Subscriber($event->submission->data(), $this->formConfig($event->submission->form()->handle()));
         $subscriber->subscribe();
     }
 

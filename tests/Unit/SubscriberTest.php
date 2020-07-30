@@ -5,7 +5,6 @@ namespace Edalzell\Mailchimp\Tests\Unit;
 use Edalzell\Mailchimp\Subscriber;
 use Edalzell\Mailchimp\Tests\TestCase;
 use Statamic\Facades\Form as FormAPI;
-use Statamic\Fields\Blueprint;
 use Statamic\Forms\Form as Form;
 use Statamic\Forms\Submission;
 
@@ -20,18 +19,14 @@ class SubscriberTest extends TestCase
 
         FormAPI::all()->each->delete();
 
-        $blueprint = (new Blueprint)->setHandle('post')->save();
-
         $this->form = FormAPI::make('contact_us')
             ->title('Contact Us')
-            ->blueprint($blueprint)
             ->honeypot('winnie');
 
         $this->form->save();
 
-        $this->submission = $this->form->createSubmission();
+        $this->submission = $this->form->makeSubmission();
         $this->submission
-            ->unguard()
             ->data(['foo'=>'bar']);
     }
 
