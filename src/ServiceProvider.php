@@ -3,6 +3,7 @@
 namespace Edalzell\Mailchimp;
 
 use Edalzell\Mailchimp\Listeners\AddFromSubmission;
+use Statamic\Events\SubmissionCreated;
 use Statamic\Providers\AddonServiceProvider;
 
 class ServiceProvider extends AddonServiceProvider
@@ -11,7 +12,7 @@ class ServiceProvider extends AddonServiceProvider
         // 'user.registered' => [
         //     'Edalzell\Mailchimp\AddFromUser',
         // ],
-        'Form.submission.created' => [AddFromSubmission::class],
+        SubmissionCreated::class => [AddFromSubmission::class],
     ];
 
     public function boot()

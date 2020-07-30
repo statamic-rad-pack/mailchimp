@@ -5,6 +5,7 @@ namespace Edalzell\Mailchimp\Tests\Unit;
 use Edalzell\Mailchimp\Listeners\AddFromSubmission;
 use Edalzell\Mailchimp\Tests\TestCase;
 use Illuminate\Support\Facades\Event;
+use Statamic\Events\SubmissionCreated;
 use Statamic\Facades\Form as FormAPI;
 use Statamic\Fields\Blueprint;
 use Statamic\Forms\Form as Form;
@@ -43,6 +44,6 @@ class ListenersTest extends TestCase
             $mock->shouldReceive('handle')->once();
         });
 
-        Event::dispatch('Form.submission.created', $this->submission);
+        Event::dispatch(SubmissionCreated::class, $this->submission);
     }
 }
