@@ -46,6 +46,7 @@ return [
      * The form submissions to add to your Mailchimp Audiences
      */
     'forms' => [
+        [
 
         /*
          * A MailChimp audience id. Check the MailChimp docs if you don't know
@@ -92,6 +93,8 @@ return [
          * See: https://mailchimp.com/help/single-opt-in-vs-double-opt-in/ for details
          */
         'disable_opt_in' => false
+        
+        ]
     ]
 
 ```
