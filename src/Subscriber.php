@@ -42,7 +42,7 @@ class Subscriber
 
     public function subscribe(): void
     {
-        if (! $this->hasConsent()) {
+        if (! $this->hasConsent() || ! isset($config) ) {
             return;
         }
 
