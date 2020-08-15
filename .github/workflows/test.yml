@@ -6,7 +6,7 @@ on:
 
 jobs:
   php-tests:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         php: [7.4]
