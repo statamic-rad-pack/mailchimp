@@ -8,6 +8,8 @@ use Statamic\Providers\AddonServiceProvider;
 
 class ServiceProvider extends AddonServiceProvider
 {
+    protected $publishAfterInstall = false;
+
     protected $listen = [
         // 'user.registered' => [
         //     'Edalzell\Mailchimp\AddFromUser',
