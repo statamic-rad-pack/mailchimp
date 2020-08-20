@@ -15,6 +15,6 @@ class AddFromSubmission
 
     private function formConfig(string $handle): array
     {
-        return collect(config('mailchimp.forms'))->firstWhere('form', $handle) ?? [];
+        return collect(config('mailchimp.forms', []))->firstWhere('form', $handle) ?? [];
     }
 }
