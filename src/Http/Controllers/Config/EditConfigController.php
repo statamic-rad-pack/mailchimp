@@ -41,11 +41,11 @@ class EditConfigController extends Controller
             });
 
         return view('mailchimp::cp.config.edit', [
-                'blueprint' => $blueprint->toPublishArray(),
-                'lists' => $lists,
-                'meta' => $fields->meta(),
-                'values' => $fields->values(),
-            ]);
+            'blueprint' => $blueprint->toPublishArray(),
+            'lists' => $lists,
+            'meta' => $fields->meta(),
+            'values' => $fields->values(),
+        ]);
     }
 
     private function preProcess(): array
