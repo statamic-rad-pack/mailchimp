@@ -48,6 +48,7 @@ class Subscriber
 
         $options = [
             'status' => Arr::get($this->config, 'disable_opt_in', false) ? 'subscribed' : 'pending',
+            'tags' => Arr::wrap(Arr::get($this->config, 'tag')),
         ];
 
         $merge_fields = Arr::get($this->config, 'merge_fields', []);
