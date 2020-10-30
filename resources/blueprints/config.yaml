@@ -1,0 +1,45 @@
+api_key:
+  display: 'API Key'
+  type: text
+  read_only: true
+add_new_users:
+  display: Add New Users?
+  type: toggle
+forms:
+  fields:
+    -
+      handle: form
+      field:
+        display: Form
+        type: text
+        width: 33
+    -
+      handle: audience_id
+      field:
+        display: 'Audience ID'
+        type: mailchimp_audience
+        mode: select
+        max_items: 1
+        width: 33
+    -
+      handle: check_consent
+      field:
+        display: 'Check Consent?'
+        type: toggle
+        width: 33
+    -
+      handle: consent_field
+      field:
+        display: 'Consent Field'
+        type: text
+        width: 25
+        if:
+          check_consent: true
+    -
+      handle: tag
+      field:
+        display: 'Tag'
+        type: text
+        width: 25
+  display: Forms
+  type: grid
