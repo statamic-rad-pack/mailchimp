@@ -29,10 +29,10 @@ MAILCHIMP_APIKEY=your-key-here
 To publish the config file to `config/mailchimp.php` run:
 
 ```bash
-php artisan vendor:publish --provider="Silentz\Mailchimp\ServiceProvider"
+php artisan vendor:publish --tag="mailchimp-config"
 ```
 
-This will publish a file `mailchimp.php` in your config directory with the following contents:
+This will publish a file with the following contents:
 ```php
 return [
 
