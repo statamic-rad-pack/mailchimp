@@ -135,4 +135,4 @@ If you discover any security related issues, please email [addon-security@silent
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+Commercial license, no copying!
