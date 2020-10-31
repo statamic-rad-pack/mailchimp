@@ -36,12 +36,6 @@ jobs:
              composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" ${{ matrix.additional-deps }} --no-interaction --no-update
              composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
       - name: Execute tests
-        run: vendor/bin/phpunit -c phpunitL6.xml.dist
-        if: matrix.laravel == '6.*'
-        env:
-          MAILCHIMP_APIKEY: ${{ secrets.MailchimpApiKey }}
-      - name: Execute tests
         run: vendor/bin/phpunit -c phpunit.xml.dist
-        if: matrix.laravel == '7.*'
         env:
           MAILCHIMP_APIKEY: ${{ secrets.MailchimpApiKey }}
