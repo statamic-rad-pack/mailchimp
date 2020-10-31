@@ -100,12 +100,13 @@ return [
         ]
     ]
 
+```
+
 You can also configure Mailchimp in the Control Panel
 ![control panel](./images/config.png)
 ![seeing audience tags](./images/tag.png)
 ![merge fields](./images/merge-fields.png)
 
-```
 
 ## Usage
 
