@@ -29,7 +29,7 @@ MAILCHIMP_APIKEY=your-key-here
 To publish the config file to `config/mailchimp.php` run:
 
 ```bash
-php artisan vendor:publish --provider="Edalzell\Mailchimp\ServiceProvider"
+php artisan vendor:publish --provider="Silentz\Mailchimp\ServiceProvider"
 ```
 
 This will publish a file `mailchimp.php` in your config directory with the following contents:
@@ -103,9 +103,9 @@ return [
 ```
 
 You can also configure Mailchimp in the Control Panel
-![control panel](./images/config.png)
-![seeing audience tags](./images/tag.png)
-![merge fields](./images/merge-fields.png)
+![control panel](https://raw.githubusercontent.com/silentzco/statamic-mailchimp/main/images/config.png)
+![seeing audience tags](https://raw.githubusercontent.com/silentzco/statamic-mailchimp/main/images/tag.png)
+![merge fields](https://raw.githubusercontent.com/silentzco/statamic-mailchimp/main/images/merge-fields.png)
 
 
 ## Usage
