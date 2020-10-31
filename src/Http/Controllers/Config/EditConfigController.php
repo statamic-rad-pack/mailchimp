@@ -24,13 +24,13 @@ class EditConfigController extends Controller
 
         $lists = collect(Arr::get($mailchimp->get('lists'), 'lists'))
             ->map(fn ($list) => [
-                    'id' => $list['id'],
-                    'name' => $list['name'],
-                    'tags' => collect(Arr::get($mailchimp->get("lists/{$list['id']}/segments"), 'segments'))
-                        ->filter(fn ($segment) => $segment['type'] === 'static')
-                        ->map(fn ($segment) => Arr::only($segment, ['id', 'name']))
-                        ->all(),
-                ]);
+                'id' => $list['id'],
+                'name' => $list['name'],
+                'tags' => collect(Arr::get($mailchimp->get("lists/{$list['id']}/segments"), 'segments'))
+                    ->filter(fn ($segment) => $segment['type'] === 'static')
+                    ->map(fn ($segment) => Arr::only($segment, ['id', 'name']))
+                    ->all(),
+            ]);
 
         return view('mailchimp::cp.config.edit', [
             'blueprint' => $blueprint->toPublishArray(),
@@ -42,16 +42,6 @@ class EditConfigController extends Controller
 
     private function preProcess(): array
     {
-        $config = config('mailchimp');
-
-        return $config;
-        // return Arr::set(
-        //     $config,
-        //     'forms',
-        //     collect(Arr::get($config, 'forms'))
-        //         ->map(fn ($data, $key) => Arr::set($data, 'handle', $key))
-        //         ->values()
-        //         ->all()
-        // );
+        return config('mailchimp');
     }
 }
