@@ -2,6 +2,15 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## 2.2.0 - 2020-10-31
+
+- Add config panel
+- Add support for Mailchimp tags
+
+## 2.1.0 - 2020-10-12
+
+- Support for Laravel 8
+
 ## 2.0.0 - 2020-03-03
 
 - Support for Statamic v3
