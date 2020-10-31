@@ -135,4 +135,4 @@ If you discover any security related issues, please email [addon-security@silent
 
 ## License
 
-Commercial license, no copying!
+This is commercial software. You may use the package for your sites. Each site requires it's own license.
