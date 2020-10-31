@@ -1,6 +1,6 @@
 <?php
 
-namespace Edalzell\Mailchimp\Fieldtypes;
+namespace Silentz\Mailchimp\Fieldtypes;
 
 use DrewM\MailChimp\MailChimp;
 use Spatie\Newsletter\NewsletterFacade;

@@ -1,9 +1,9 @@
 <?php
 
-namespace Edalzell\Mailchimp\Http\Controllers\Config;
+namespace Silentz\Mailchimp\Http\Controllers\Config;
 
-use Edalzell\Mailchimp\Concerns\HasBlueprint;
 use Illuminate\Support\Arr;
+use Silentz\Mailchimp\Concerns\HasBlueprint;
 use Spatie\Newsletter\NewsletterFacade;
 use Statamic\Http\Controllers\Controller;
 

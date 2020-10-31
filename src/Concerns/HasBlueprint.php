@@ -1,6 +1,6 @@
 <?php
 
-namespace Edalzell\Mailchimp\Concerns;
+namespace Silentz\Mailchimp\Concerns;
 
 use Statamic\Facades\Blueprint as BlueprintAPI;
 use Statamic\Facades\Path;

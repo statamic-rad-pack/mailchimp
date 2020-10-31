@@ -1,5 +1,5 @@
 {
-    "name": "edalzell/mailchimp",
+    "name": "silentz/mailchimp",
     "type": "statamic-addon",
     "require": {
         "php": "^7.4",
@@ -26,12 +26,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "Edalzell\\Mailchimp\\": "src"
+            "Silentz\\Mailchimp\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Edalzell\\Mailchimp\\Tests\\": "tests"
+            "Silentz\\Mailchimp\\Tests\\": "tests"
         }
     },
     "extra": {
@@ -41,7 +41,7 @@
         },
         "laravel": {
             "providers": [
-                "Edalzell\\Mailchimp\\ServiceProvider"
+                "Silentz\\Mailchimp\\ServiceProvider"
             ]
         }
     }

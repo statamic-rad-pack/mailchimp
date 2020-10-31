@@ -1,6 +1,6 @@
 <?php
 
-namespace Edalzell\Mailchimp;
+namespace Silentz\Mailchimp;
 
 use Illuminate\Support\Facades\Log;
 use Spatie\Newsletter\NewsletterFacade as Newsletter;

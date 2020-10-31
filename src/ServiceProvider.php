@@ -1,9 +1,9 @@
 <?php
 
-namespace Edalzell\Mailchimp;
+namespace Silentz\Mailchimp;
 
-use Edalzell\Mailchimp\Fieldtypes\MailchimpAudience;
-use Edalzell\Mailchimp\Listeners\AddFromSubmission;
+use Silentz\Mailchimp\Fieldtypes\MailchimpAudience;
+use Silentz\Mailchimp\Listeners\AddFromSubmission;
 use Statamic\CP\Navigation\Nav;
 use Statamic\Events\SubmissionCreated;
 use Statamic\Facades\CP\Nav as NavAPI;

@@ -1,10 +1,9 @@
 <?php
 
-namespace Edalzell\Mailchimp\Http\Controllers\Config;
+namespace Silentz\Mailchimp\Http\Controllers\Config;
 
-use Edalzell\Mailchimp\Concerns\HasBlueprint;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
+use Silentz\Mailchimp\Concerns\HasBlueprint;
 use Statamic\Http\Controllers\Controller;
 use Stillat\Proteus\Support\Facades\ConfigWriter;
 

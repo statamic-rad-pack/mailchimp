@@ -1,8 +1,8 @@
 <?php
 
-use Edalzell\Mailchimp\Http\Controllers\Config\EditConfigController;
-use Edalzell\Mailchimp\Http\Controllers\Config\UpdateConfigController;
 use Illuminate\Support\Facades\Route;
+use Silentz\Mailchimp\Http\Controllers\Config\EditConfigController;
+use Silentz\Mailchimp\Http\Controllers\Config\UpdateConfigController;
 
 Route::name('mailchimp.')->prefix('mailchimp')->group(function () {
     Route::name('config.')->prefix('config')->group(function () {

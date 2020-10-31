@@ -1,6 +1,6 @@
 <?php
 
-namespace Edalzell\Mailchimp\Listeners;
+namespace Silentz\Mailchimp\Listeners;
 
 use DrewM\MailChimp\MailChimp;
 use Statamic\API\Arr;
