@@ -1,5 +1,6 @@
 {
     "name": "silentz/mailchimp",
+    "license": "Commercial",
     "type": "statamic-addon",
     "require": {
         "php": "^7.4",
