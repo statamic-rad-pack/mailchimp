@@ -23,22 +23,14 @@ class EditConfigController extends Controller
         $mailchimp = NewsletterFacade::getApi();
 
         $lists = collect(Arr::get($mailchimp->get('lists'), 'lists'))
-            ->map(function ($list) use ($mailchimp) {
-                $tags = collect(Arr::get($mailchimp->get("lists/{$list['id']}/segments"), 'segments'))
-                    ->filter(function ($segment) {
-                        return $segment['type'] === 'static';
-                    })
-                    ->map(function ($segment) {
-                        return Arr::only($segment, ['id', 'name']);
-                    })
-                    ->all();
-
-                return [
+            ->map(fn ($list) => [
                     'id' => $list['id'],
                     'name' => $list['name'],
-                    'tags' => $tags,
-                ];
-            });
+                    'tags' => collect(Arr::get($mailchimp->get("lists/{$list['id']}/segments"), 'segments'))
+                        ->filter(fn ($segment) => $segment['type'] === 'static')
+                        ->map(fn ($segment) => Arr::only($segment, ['id', 'name']))
+                        ->all(),
+                ]);
 
         return view('mailchimp::cp.config.edit', [
             'blueprint' => $blueprint->toPublishArray(),
