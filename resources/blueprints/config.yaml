@@ -11,7 +11,9 @@ forms:
       handle: form
       field:
         display: Form
-        type: text
+        type: form
+        max_items: 1
+        mode: select
         width: 33
     -
       handle: audience_id
@@ -22,24 +24,53 @@ forms:
         max_items: 1
         width: 33
     -
+      handle: tag
+      field:
+        display: 'Tag'
+        type: text
+        width: 33
+    -
       handle: check_consent
       field:
         display: 'Check Consent?'
         type: toggle
-        width: 33
+        width: 50
     -
       handle: consent_field
       field:
         display: 'Consent Field'
         type: text
-        width: 25
+        width: 50
         if:
           check_consent: true
     -
-      handle: tag
+      handle: merge_fields
       field:
-        display: 'Tag'
-        type: text
-        width: 25
+        fields:
+          -
+            handle: field_name
+            field:
+              input_type: text
+              display: Form Field
+              type: text
+              icon: text
+              listable: hidden
+          -
+            handle: tag
+            field:
+              input_type: text
+              display: 'Merge Field'
+              type: text
+              icon: text
+              listable: hidden
+        mode: table
+        reorderable: true
+        display: 'Merge Fields'
+        type: grid
+        icon: grid
+        add_row: 'Add Merge Field'
+        listable: hidden
   display: Forms
   type: grid
+  mode: stacked
+  add_row: 'Add Form'
