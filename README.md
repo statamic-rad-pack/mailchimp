@@ -1,5 +1,5 @@
 # Manage Mailchimp newsletters in Statamic
-[![Latest Version](https://img.shields.io/github/release/spatie/laravel-newsletter.svg?style=flat-square)](https://github.com/spatie/laravel-newsletter/releases)
+[![Latest Version](https://img.shields.io/github/release/silentzco/mailchimp.svg?style=flat-square)](https://github.com/silentzco/mailchimp/releases)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 
 This package provides an easy way to integrate MailChimp with Statamic.
@@ -66,6 +66,10 @@ return [
         'consent_field' => 'consent',
 
         /*
+         * if you'd like to apply a tag to each member when they submit a particular form
+         */
+        'tag' => 'Tag One'
+        /*
          * handle of the form to listen for
          */
         'form' => '',
@@ -93,9 +97,14 @@ return [
          * See: https://mailchimp.com/help/single-opt-in-vs-double-opt-in/ for details
          */
         'disable_opt_in' => false
-        
+
         ]
     ]
+
+You can also configure Mailchimp in the Control Panel
+![control panel](./images/config.png)
+![seeing audience tags](./images/tag.png)
+![merge fields](./images/merge-fields.png)
 
 ```
 
