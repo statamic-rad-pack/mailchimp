@@ -12,7 +12,8 @@
     ></publish-form>
     <div class="bg-white border-solid rounded shadow border-grey">
         <div class="p-3">
-            <h2>Here are the tags for each of your audiences</h2>
+            <h3>Tags for each of your audiences</h3>
+            <p>To add one, please copy it and put it in the "Tag" field.</p>
             <ul>
                 @foreach($lists as $list)
                     <li class="mt-1">
