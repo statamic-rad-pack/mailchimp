@@ -1,10 +1,10 @@
 <?php
 
-namespace Edalzell\Mailchimp\Tests;
+namespace Silentz\Mailchimp\Tests;
 
-use Edalzell\Mailchimp\ServiceProvider;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
+use Silentz\Mailchimp\ServiceProvider;
 use Statamic\Extend\Manifest;
 use Statamic\Providers\StatamicServiceProvider;
 use Statamic\Statamic;
@@ -35,9 +35,9 @@ class TestCase extends OrchestraTestCase
         parent::getEnvironmentSetUp($app);
 
         $app->make(Manifest::class)->manifest = [
-            'edalzell/mailchimp' => [
-                'id' => 'edalzell/mailchimp',
-                'namespace' => 'Edalzell\\Mailchimp\\',
+            'silentz/mailchimp' => [
+                'id' => 'silentz/mailchimp',
+                'namespace' => 'Silentz\\Mailchimp\\',
             ],
         ];
     }

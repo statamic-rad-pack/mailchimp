@@ -1,9 +1,9 @@
 <?php
 
-namespace Edalzell\Mailchimp\Tests\Unit;
+namespace Silentz\Mailchimp\Tests\Unit;
 
-use Edalzell\Mailchimp\Listeners\AddFromSubmission;
-use Edalzell\Mailchimp\Tests\TestCase;
+use Silentz\Mailchimp\Listeners\AddFromSubmission;
+use Silentz\Mailchimp\Tests\TestCase;
 use Illuminate\Support\Facades\Event;
 use Statamic\Events\SubmissionCreated;
 use Statamic\Facades\Form as FormAPI;

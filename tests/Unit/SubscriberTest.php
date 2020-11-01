@@ -1,9 +1,9 @@
 <?php
 
-namespace Edalzell\Mailchimp\Tests\Unit;
+namespace Silentz\Mailchimp\Tests\Unit;
 
-use Edalzell\Mailchimp\Subscriber;
-use Edalzell\Mailchimp\Tests\TestCase;
+use Silentz\Mailchimp\Subscriber;
+use Silentz\Mailchimp\Tests\TestCase;
 use Statamic\Facades\Form as FormAPI;
 use Statamic\Forms\Form as Form;
 use Statamic\Forms\Submission;
