@@ -27,10 +27,6 @@ class ServiceProvider extends AddonServiceProvider
         'cp' => __DIR__.'/../routes/cp.php',
     ];
 
-    protected $scripts = [
-        __DIR__.'/../dist/js/cp.js',
-    ];
-
     public function boot()
     {
         parent::boot();
