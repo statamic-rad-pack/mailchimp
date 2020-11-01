@@ -8,6 +8,7 @@ use Statamic\CP\Navigation\Nav;
 use Statamic\Events\SubmissionCreated;
 use Statamic\Facades\CP\Nav as NavAPI;
 use Statamic\Providers\AddonServiceProvider;
+use Statamic\Support\Arr;
 
 class ServiceProvider extends AddonServiceProvider
 {
@@ -51,7 +52,13 @@ class ServiceProvider extends AddonServiceProvider
     private function addFormsToNewsletterConfig()
     {
         $lists = collect(config('mailchimp.forms'))
-            ->flatMap(fn ($form) => [$form['form'] => ['id' => $form['audience_id']]])
+            ->flatMap(function ($form) {
+                if (! $handle = Arr::get($form, 'form')) {
+                    return [];
+                }
+
+                return [$handle => ['id' => Arr::get($form, 'audience_id')]];
+            })
             ->all();
 
         config(['newsletter.lists' => $lists]);

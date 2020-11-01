@@ -25,6 +25,10 @@ class MailchimpAudience extends Relationship
 
     protected function toItemArray($id)
     {
+        if (! $id) {
+            return [];
+        }
+
         $list = $this->mailchimp->get("lists/{$id}");
 
         return [
