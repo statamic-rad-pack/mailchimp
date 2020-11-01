@@ -8,6 +8,10 @@ This package provides an easy way to integrate MailChimp with Statamic.
 * PHP 7.4+
 * Statamic v3
 
+## Updating from < 2.2
+
+The package name changed, so to update please run `composer remove edalzell/mailchimp` then follow the instructions below.
+
 ## Installation
 
 You can install this package via composer using:
