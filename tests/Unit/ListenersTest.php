@@ -2,9 +2,9 @@
 
 namespace Silentz\Mailchimp\Tests\Unit;
 
+use Illuminate\Support\Facades\Event;
 use Silentz\Mailchimp\Listeners\AddFromSubmission;
 use Silentz\Mailchimp\Tests\TestCase;
-use Illuminate\Support\Facades\Event;
 use Statamic\Events\SubmissionCreated;
 use Statamic\Facades\Form as FormAPI;
 use Statamic\Forms\Form as Form;

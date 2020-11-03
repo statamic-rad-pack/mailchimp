@@ -53,7 +53,7 @@ class TestCase extends OrchestraTestCase
         }
     }
 
-    public function tearDown() : void
+    public function tearDown(): void
     {
 
         // destroy $app
