@@ -2,6 +2,23 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## 2.2.4 - 2020-10-31
+
+- Re-enable config panel
+
+## 2.2.3 - 2020-10-31
+
+- Temporarily remove config panel
+- Get tests working again
+
+## 2.2.2 - 2020-10-31
+
+- Handle missing config options better
+
+## 2.2.1 - 2020-10-31
+
+- Proper namespacing
+
 ## 2.2.0 - 2020-10-31
 
 - Add config panel

@@ -38,11 +38,11 @@ class ServiceProvider extends AddonServiceProvider
 
     private function bootNav()
     {
-        // NavAPI::extend(fn (Nav $nav) => $nav->content('Config')
-        //         ->section('Mailchimp')
-        //         ->route('mailchimp.config.edit')
-        //         ->icon('settings-horizontal')
-        // );
+        NavAPI::extend(fn (Nav $nav) => $nav->content('Config')
+                ->section('Mailchimp')
+                ->route('mailchimp.config.edit')
+                ->icon('settings-horizontal')
+        );
     }
 
     private function addFormsToNewsletterConfig()
