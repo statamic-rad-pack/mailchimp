@@ -106,11 +106,6 @@ return [
 
 ```
 
-You can also configure Mailchimp in the Control Panel
-![control panel](https://raw.githubusercontent.com/silentzco/statamic-mailchimp/main/images/config.png)
-![seeing audience tags](https://raw.githubusercontent.com/silentzco/statamic-mailchimp/main/images/tag.png)
-![merge fields](https://raw.githubusercontent.com/silentzco/statamic-mailchimp/main/images/merge-fields.png)
-
 
 ## Usage
 
