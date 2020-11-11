@@ -31,17 +31,24 @@ forms:
         max_items: 1
         width: 33
     -
+      handle: disable_opt_in
+      field:
+        display: 'Disable Opt In?'
+        type: toggle
+        width: 33
+        default: false
+    -
       handle: check_consent
       field:
         display: 'Check Consent?'
         type: toggle
-        width: 50
+        width: 33
     -
       handle: consent_field
       field:
         display: 'Consent Field'
         type: text
-        width: 50
+        width: 33
         if:
           check_consent: true
     -

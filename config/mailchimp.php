@@ -20,6 +20,12 @@ return [
             'audience_id' => '',
 
             /*
+            * This is NOT recommended and means that they WILL NOT get the opt in email.
+            * NOTE: This may violate privacy laws and may get your banned from Mailchimp
+            */
+            'disable_opt_in' => false,
+
+            /*
             * if you need consent before you can subscribe someone, set this to `true`
             */
             'check_consent' => true,
