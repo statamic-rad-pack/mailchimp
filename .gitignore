@@ -4,3 +4,4 @@
 /dist
 /mix-manifest.json
 /node_modules
+/yarn.lock
