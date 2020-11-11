@@ -4,10 +4,10 @@
     "type": "statamic-addon",
     "require": {
         "php": "^7.4",
+        "edalzell/forma": "^1.0",
         "laravel/framework": "^7.0 || ^8.0",
         "spatie/laravel-newsletter": "^4.8",
-        "statamic/cms": "^3.0",
-        "stillat/proteus": "^1.0"
+        "statamic/cms": "^3.0"
     },
     "require-dev": {
         "mockery/mockery": "^1.3.1",
