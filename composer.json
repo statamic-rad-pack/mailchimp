@@ -4,7 +4,7 @@
     "type": "statamic-addon",
     "require": {
         "php": "^7.4",
-        "edalzell/forma": "^1.0",
+        "edalzell/forma": "^0.6",
         "laravel/framework": "^7.0 || ^8.0",
         "spatie/laravel-newsletter": "^4.8",
         "statamic/cms": "^3.0"
