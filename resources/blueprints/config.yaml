@@ -27,7 +27,8 @@ forms:
       handle: tag
       field:
         display: 'Tag'
-        type: text
+        type: mailchimp_tag
+        max_items: 1
         width: 33
     -
       handle: check_consent
@@ -60,7 +61,8 @@ forms:
             field:
               input_type: text
               display: 'Merge Field'
-              type: text
+              type: mailchimp_merge_fields
+              max_items: 1
               icon: text
               listable: hidden
         mode: table
