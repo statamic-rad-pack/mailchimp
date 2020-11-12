@@ -36,6 +36,10 @@
         }
     },
     "extra": {
+        "download-dist": {
+            "url": "https://github.com/silentzco/statamic-mailchimp/releases/download/{$version}/dist.tar.gz",
+            "path": "dist"
+        },
         "statamic": {
             "name": "Mailchimp",
             "description": "Mailchimp addon"
