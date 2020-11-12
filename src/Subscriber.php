@@ -32,7 +32,10 @@ class Subscriber
             return false;
         }
 
-        return filter_var($this->get($field, false), FILTER_VALIDATE_BOOLEAN);
+        return filter_var(
+            Arr::get(Arr::wrap($this->get($field, false)), 0, false),
+            FILTER_VALIDATE_BOOLEAN
+        );
     }
 
     private function get(string $field, $default = null)
