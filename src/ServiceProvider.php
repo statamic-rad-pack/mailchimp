@@ -10,7 +10,6 @@ use Silentz\Mailchimp\Fieldtypes\MailchimpTag;
 use Silentz\Mailchimp\Listeners\AddFromSubmission;
 use Statamic\Events\SubmissionCreated;
 use Statamic\Providers\AddonServiceProvider;
-use Statamic\Statamic;
 use Statamic\Support\Arr;
 
 class ServiceProvider extends AddonServiceProvider
@@ -36,11 +35,11 @@ class ServiceProvider extends AddonServiceProvider
     public function boot()
     {
         parent::boot();
-        Statamic::booted(function () {
+
+        $this->app->booted(function () {
+            $this->addFormsToNewsletterConfig();
             Forma::registerAddon('silentz/mailchimp');
         });
-
-        $this->app->booted(fn () => $this->addFormsToNewsletterConfig());
     }
 
     private function addFormsToNewsletterConfig()
