@@ -2,7 +2,7 @@
 
 namespace Silentz\Mailchimp;
 
-use Edalzell\Forma\Forma;
+use Edalzell\Forma\HasConfig;
 use Silentz\Mailchimp\Fieldtypes\FormField;
 use Silentz\Mailchimp\Fieldtypes\MailchimpAudience;
 use Silentz\Mailchimp\Fieldtypes\MailchimpMergeFields;
@@ -14,6 +14,8 @@ use Statamic\Support\Arr;
 
 class ServiceProvider extends AddonServiceProvider
 {
+    use HasConfig;
+
     protected $fieldtypes = [
         MailchimpAudience::class,
         MailchimpTag::class,
@@ -37,8 +39,8 @@ class ServiceProvider extends AddonServiceProvider
         parent::boot();
 
         $this->app->booted(function () {
+            $this->addConfig('silentz/mailchimp');
             $this->addFormsToNewsletterConfig();
-            Forma::registerAddon('silentz/mailchimp');
         });
     }
 
