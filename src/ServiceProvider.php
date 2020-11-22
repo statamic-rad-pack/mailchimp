@@ -3,7 +3,6 @@
 namespace Silentz\Mailchimp;
 
 use Edalzell\Forma\Forma;
-use Silentz\Mailchimp\Fieldtypes\FormField;
 use Silentz\Mailchimp\Fieldtypes\MailchimpAudience;
 use Silentz\Mailchimp\Fieldtypes\MailchimpMergeFields;
 use Silentz\Mailchimp\Fieldtypes\MailchimpTag;
