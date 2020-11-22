@@ -2,7 +2,7 @@
 
 namespace Silentz\Mailchimp;
 
-use Edalzell\Forma\HasConfig;
+use Edalzell\Forma\Forma;
 use Silentz\Mailchimp\Fieldtypes\FormField;
 use Silentz\Mailchimp\Fieldtypes\MailchimpAudience;
 use Silentz\Mailchimp\Fieldtypes\MailchimpMergeFields;
@@ -10,13 +10,10 @@ use Silentz\Mailchimp\Fieldtypes\MailchimpTag;
 use Silentz\Mailchimp\Listeners\AddFromSubmission;
 use Statamic\Events\SubmissionCreated;
 use Statamic\Providers\AddonServiceProvider;
-use Statamic\Statamic;
 use Statamic\Support\Arr;
 
 class ServiceProvider extends AddonServiceProvider
 {
-    use HasConfig;
-
     protected $fieldtypes = [
         MailchimpAudience::class,
         MailchimpTag::class,
@@ -39,9 +36,7 @@ class ServiceProvider extends AddonServiceProvider
     {
         parent::boot();
 
-        Statamic::booted(function () {
-            $this->addConfig('silentz/mailchimp');
-        });
+        Forma::add('silentz/mailchimp');
 
         $this->app->booted(function () {
             $this->addFormsToNewsletterConfig();
