@@ -2,6 +2,14 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## 2.4 - 2020-11-26
+
+- Can now assign subscribers to Mailchimp Groups
+
+## 2.3 - 2020-11-11
+
+- Use Forma for settings
+
 ## 2.2.4 - 2020-10-31
 
 - Re-enable config panel
