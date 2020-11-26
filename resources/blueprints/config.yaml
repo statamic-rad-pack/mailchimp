@@ -14,7 +14,7 @@ forms:
         type: form
         max_items: 1
         mode: select
-        width: 33
+        width: 25
     -
       handle: audience_id
       field:
@@ -22,14 +22,20 @@ forms:
         type: mailchimp_audience
         mode: select
         max_items: 1
-        width: 33
+        width: 25
     -
       handle: tag
       field:
         display: 'Tag'
         type: mailchimp_tag
         max_items: 1
-        width: 33
+        width: 25
+    -
+      handle: interests_field
+      field:
+        display: 'Interests Field'
+        type: text
+        width: 25
     -
       handle: disable_opt_in
       field:

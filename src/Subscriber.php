@@ -43,6 +43,13 @@ class Subscriber
         return Arr::get($this->data, $field, $default);
     }
 
+    private function getInterests(): array
+    {
+        return collect($this->get(Arr::get($this->config, 'interests_field', 'interests'), []))
+            ->flatMap(fn ($id) => [$id => true])
+            ->all();
+    }
+
     public function subscribe(): void
     {
         if (! $this->hasConsent() || empty($this->config)) {
@@ -52,6 +59,7 @@ class Subscriber
         $options = [
             'status' => Arr::get($this->config, 'disable_opt_in', false) ? 'subscribed' : 'pending',
             'tags' => Arr::wrap(Arr::get($this->config, 'tag')),
+            'interests' => $this->getInterests(),
         ];
 
         $merge_fields = Arr::get($this->config, 'merge_fields', []);

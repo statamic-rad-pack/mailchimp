@@ -3,6 +3,8 @@
 namespace Silentz\Mailchimp;
 
 use Edalzell\Forma\Forma;
+use Silentz\Mailchimp\Commands\GetGroups;
+use Silentz\Mailchimp\Commands\GetInterests;
 use Silentz\Mailchimp\Fieldtypes\MailchimpAudience;
 use Silentz\Mailchimp\Fieldtypes\MailchimpMergeFields;
 use Silentz\Mailchimp\Fieldtypes\MailchimpTag;
@@ -13,6 +15,11 @@ use Statamic\Support\Arr;
 
 class ServiceProvider extends AddonServiceProvider
 {
+    protected $commands = [
+        GetGroups::class,
+        GetInterests::class,
+    ];
+
     protected $fieldtypes = [
         MailchimpAudience::class,
         MailchimpTag::class,

@@ -52,11 +52,26 @@ return [
         [
 
         /*
+         * handle of the form to listen for
+         */
+        'form' => '',
+
+        /*
          * A MailChimp audience id. Check the MailChimp docs if you don't know
          * how to get this value:
          * https://mailchimp.com/help/find-audience-id/.
          */
         'audience_id' => '',
+
+        /*
+         * if you'd like to apply a tag to each member when they submit a particular form
+         */
+        'tag' => 'Tag One'
+
+        /*
+         * if you'd like to add "interests" in a group, which field is collecting those ids? Defaults to `'interests'`
+         */
+        'interests_field' => 'Tag One'
 
         /*
          * if you need consent before you can subscribe someone, set this to `true`
@@ -67,15 +82,6 @@ return [
          * if you're checking for consent, which field is it? Defaults to `'consent'`
          */
         'consent_field' => 'consent',
-
-        /*
-         * if you'd like to apply a tag to each member when they submit a particular form
-         */
-        'tag' => 'Tag One'
-        /*
-         * handle of the form to listen for
-         */
-        'form' => '',
 
         /*
          * See https://mailchimp.com/help/manage-audience-signup-form-fields/ for details on
@@ -116,6 +122,18 @@ You can also configure Mailchimp in the Control Panel
 Create your Statamic [forms](https://statamic.dev/forms#content) as usual. Don't forget to add the consent
 field to your blueprint.
 
+*NOTE*: If you are using groups you will need to know the `id`s of the interests in order to add them to your form:
+
+``` html
+<div class="form-group">
+    <label>Interests</label>
+    <input type="checkbox" name="interests[]" value="4e4b2bc6ae" class="form-control"/>
+    <input type="checkbox" name="interests[]" value="3e1e51dbae" class="form-control"/>
+    <input type="checkbox" name="interests[]" value="f79652f791" class="form-control"/>
+</div>
+```
+
+To get those IDs, first run `php artisaon mailchimp:groups your_form_handle` to get the group ids. Then run `php artisan mailchimp:interests your_form_handle the_group_id` to get the list of interests and their ID. Use those ids in your template (example above).
 
 ## Testing
 
