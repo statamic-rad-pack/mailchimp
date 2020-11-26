@@ -20,7 +20,7 @@ class MailchimpTag extends Relationship
 
     public function getIndexItems($request)
     {
-        return collect(Arr::get($this->mailchimp->get("lists/{$request->input('list')}/segments"), 'segments'))
+        return collect(Arr::get($this->mailchimp->get("lists/{$request->input('list')}/segments", ['count' => 100]), 'segments'))
             ->filter(fn ($segment) => $segment['type'] === 'static')
             ->map(fn ($segment) => ['id' => $segment['name'], 'title' => $segment['name']])
             ->all();
