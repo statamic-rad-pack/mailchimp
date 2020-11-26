@@ -71,7 +71,7 @@ return [
         /*
          * if you'd like to add "interests" in a group, which field is collecting those ids? Defaults to `'interests'`
          */
-        'interests_field' => 'Tag One'
+        'interests_field' => 'interests'
 
         /*
          * if you need consent before you can subscribe someone, set this to `true`
@@ -114,7 +114,6 @@ return [
 
 You can also configure Mailchimp in the Control Panel
 ![control panel](https://raw.githubusercontent.com/silentzco/statamic-mailchimp/main/images/config.png)
-![seeing audience tags](https://raw.githubusercontent.com/silentzco/statamic-mailchimp/main/images/tag.png)
 ![merge fields](https://raw.githubusercontent.com/silentzco/statamic-mailchimp/main/images/merge-fields.png)
 
 ## Usage
@@ -122,7 +121,7 @@ You can also configure Mailchimp in the Control Panel
 Create your Statamic [forms](https://statamic.dev/forms#content) as usual. Don't forget to add the consent
 field to your blueprint.
 
-*NOTE*: If you are using groups you will need to know the `id`s of the interests in order to add them to your form:
+**NOTE**: If you are using groups you will need to know the `id`s of the interests in order to add them to your form:
 
 ``` html
 <div class="form-group">
