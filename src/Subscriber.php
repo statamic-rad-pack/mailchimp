@@ -38,8 +38,12 @@ class Subscriber
         );
     }
 
-    private function get(string $field, $default = null)
+    private function get(?string $field, $default = null)
     {
+        if (is_null($field)) {
+            return $default;
+        }
+
         return Arr::get($this->data, $field, $default);
     }
 
@@ -59,8 +63,11 @@ class Subscriber
         $options = [
             'status' => Arr::get($this->config, 'disable_opt_in', false) ? 'subscribed' : 'pending',
             'tags' => Arr::wrap(Arr::get($this->config, 'tag')),
-            'interests' => $this->getInterests(),
         ];
+
+        if ($interests = $this->getInterests()) {
+            $options = array_merge($options, ['interests' => $interests]);
+        }
 
         $merge_fields = Arr::get($this->config, 'merge_fields', []);
 
