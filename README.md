@@ -132,7 +132,20 @@ field to your blueprint.
 </div>
 ```
 
-To get those IDs, first run `php artisaon mailchimp:groups your_form_handle` to get the group ids. Then run `php artisan mailchimp:interests your_form_handle the_group_id` to get the list of interests and their ID. Use those ids in your template (example above).
+To get those IDs, first run `php artisan mailchimp:groups your_form_handle` to get the group ids. Then run `php artisan mailchimp:interests your_form_handle the_group_id` to get the list of interests and their ID. Use those ids in your template (example above).
+
+The interests field in your form blueprint should end up looking something like this (assuming you use the default `interests` as your fields' handle:
+
+``` yaml
+-
+  handle: interests
+  field:
+    options:
+      e25a8f41d6: 'Interest group 1'
+      cd1g2413a2: 'Interest group 2'
+      1b1a842842: 'Interest group 3'
+    type: checkboxes
+```
 
 ## Testing
 
