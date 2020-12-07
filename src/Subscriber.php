@@ -85,6 +85,7 @@ class Subscriber
 
         if (! Newsletter::subscribe($this->email(), $mergeData, $this->config['form'], $options)) {
             Log::error(Newsletter::getLastError());
+            Log::error(Newsletter::getApi()->getLastResponse());
         }
     }
 }
