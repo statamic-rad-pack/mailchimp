@@ -1,7 +1,7 @@
 # Manage Mailchimp newsletters in Statamic
 [![Latest Version](https://img.shields.io/github/release/silentzco/statamic-mailchimp.svg?style=flat-square)](https://github.com/silentzco/statamic-mailchimp/releases)
 
-This package provides an easy way to integrate MailChimp with Statamic.
+This package provides an easy way to integrate MailChimp with Statamic forms and user registrations.
 
 ## Requirements
 
