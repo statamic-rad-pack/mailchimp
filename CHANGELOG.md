@@ -2,6 +2,10 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## 2.5 - 2020-12-20
+
+- Can send new user registrations to Mailchimp
+
 ## 2.4 - 2020-11-26
 
 - Can now assign subscribers to Mailchimp Groups
