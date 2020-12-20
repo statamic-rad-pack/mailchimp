@@ -5,6 +5,88 @@ api_key:
 add_new_users:
   display: Add New Users?
   type: toggle
+  default: false
+users:
+  fields:
+    -
+      handle: audience_id
+      field:
+        display: 'Audience ID'
+        type: mailchimp_audience
+        mode: select
+        max_items: 1
+        width: 25
+    -
+      handle: tag
+      field:
+        display: 'Tag'
+        type: mailchimp_tag
+        max_items: 1
+        width: 25
+    -
+      handle: interests_field
+      field:
+        display: 'Interests Field'
+        type: text
+        width: 25
+    -
+      handle: disable_opt_in
+      field:
+        display: 'Disable Opt In?'
+        type: toggle
+        width: 33
+        default: false
+    -
+      handle: check_consent
+      field:
+        display: 'Check Consent?'
+        type: toggle
+        width: 33
+        default: false
+    -
+      handle: consent_field
+      field:
+        display: 'Consent Field'
+        type: text
+        width: 33
+        if:
+          check_consent: true
+    -
+      handle: merge_fields
+      field:
+        fields:
+          -
+            handle: field_name
+            field:
+              input_type: text
+              display: Form Field
+              type: text
+              icon: text
+              listable: hidden
+          -
+            handle: tag
+            field:
+              input_type: text
+              display: 'Merge Field'
+              type: mailchimp_merge_fields
+              max_items: 1
+              icon: text
+              listable: hidden
+        mode: table
+        reorderable: true
+        display: 'Merge Fields'
+        type: grid
+        icon: grid
+        add_row: 'Add Merge Field'
+        listable: hidden
+  display: User
+  type: grid
+  mode: stacked
+  max_rows: 1
+  min_rows: 1
+  reorderable: false
+  if:
+    add_new_users: 'equals true'
 forms:
   fields:
     -
@@ -49,6 +131,7 @@ forms:
         display: 'Check Consent?'
         type: toggle
         width: 33
+        default: false
     -
       handle: consent_field
       field:

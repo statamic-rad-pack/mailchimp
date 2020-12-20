@@ -8,8 +8,11 @@ use Silentz\Mailchimp\Commands\GetInterests;
 use Silentz\Mailchimp\Fieldtypes\MailchimpAudience;
 use Silentz\Mailchimp\Fieldtypes\MailchimpMergeFields;
 use Silentz\Mailchimp\Fieldtypes\MailchimpTag;
+use Silentz\Mailchimp\Http\Controllers\ConfigController;
 use Silentz\Mailchimp\Listeners\AddFromSubmission;
+use Silentz\Mailchimp\Listeners\AddFromUser;
 use Statamic\Events\SubmissionCreated;
+use Statamic\Events\UserRegistered;
 use Statamic\Providers\AddonServiceProvider;
 use Statamic\Support\Arr;
 
@@ -28,9 +31,7 @@ class ServiceProvider extends AddonServiceProvider
     ];
 
     protected $listen = [
-        // 'user.registered' => [
-        //     'Edalzell\Mailchimp\AddFromUser',
-        // ],
+        UserRegistered::class => [AddFromUser::class],
         SubmissionCreated::class => [AddFromSubmission::class],
     ];
 
@@ -42,7 +43,7 @@ class ServiceProvider extends AddonServiceProvider
     {
         parent::boot();
 
-        Forma::add('silentz/mailchimp');
+        Forma::add('silentz/mailchimp', ConfigController::class);
 
         $this->app->booted(function () {
             $this->addFormsToNewsletterConfig();
@@ -60,6 +61,8 @@ class ServiceProvider extends AddonServiceProvider
                 return [$handle => ['id' => Arr::get($form, 'audience_id')]];
             })
             ->all();
+
+        $lists['user'] = ['id' => config('mailchimp.users.audience_id')];
 
         config(['newsletter.lists' => $lists]);
     }

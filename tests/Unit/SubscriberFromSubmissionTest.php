@@ -8,7 +8,7 @@ use Statamic\Facades\Form as FormAPI;
 use Statamic\Forms\Form as Form;
 use Statamic\Forms\Submission;
 
-class SubscriberTest extends TestCase
+class SubscriberFromSubmissionTest extends TestCase
 {
     private Form $form;
     private Submission $submission;
