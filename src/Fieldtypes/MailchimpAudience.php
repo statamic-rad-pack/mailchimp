@@ -2,25 +2,14 @@
 
 namespace Silentz\Mailchimp\Fieldtypes;
 
-use DrewM\MailChimp\MailChimp;
-use Spatie\Newsletter\NewsletterFacade;
-use Statamic\Fieldtypes\Relationship;
 use Statamic\Support\Arr;
 
-class MailchimpAudience extends Relationship
+class MailchimpAudience extends MailchimpField
 {
-    private MailChimp $mailchimp;
-
-    public function __construct()
-    {
-        $this->mailchimp = NewsletterFacade::getApi();
-    }
-
     public function getIndexItems($request)
     {
-        $lists = collect(Arr::get($this->mailchimp->get('lists'), 'lists'));
-
-        return $lists->map(fn ($list) => ['id' => $list['id'], 'title' => $list['name']]);
+        return collect(Arr::get($this->callApi('lists'), 'lists', []))
+            ->map(fn ($list) => ['id' => $list['id'], 'title' => $list['name']]);
     }
 
     protected function toItemArray($id)
@@ -29,7 +18,9 @@ class MailchimpAudience extends Relationship
             return [];
         }
 
-        $list = $this->mailchimp->get("lists/{$id}");
+        if (! $list = $this->callApi("lists/{$id}")) {
+            return [];
+        }
 
         return [
             'id' => $list['id'],
