@@ -3,7 +3,7 @@
     "license": "proprietary",
     "type": "statamic-addon",
     "require": {
-        "php": "^7.4",
+        "php": "^7.4 || ^8.0",
         "edalzell/forma": "^0.8",
         "laravel/framework": "^7.0 || ^8.0",
         "pixelfear/composer-dist-plugin": "^0.1",
