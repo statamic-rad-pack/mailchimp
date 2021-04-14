@@ -43,9 +43,10 @@ class ServiceProvider extends AddonServiceProvider
     {
         parent::boot();
 
+        Forma::add('silentz/mailchimp', ConfigController::class);
+
         $this->app->booted(function () {
             $this->addFormsToNewsletterConfig();
-            Forma::add('silentz/mailchimp', ConfigController::class);
         });
     }
 
