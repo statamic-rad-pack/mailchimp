@@ -4,8 +4,8 @@
     "type": "statamic-addon",
     "require": {
         "php": "^7.4 || ^8.0",
-        "edalzell/forma": "^0.8",
-        "laravel/framework": "^7.30.3 || ^8.24",
+        "edalzell/forma": "^1.0",
+        "laravel/framework": "^7.30.3 || ^8.40",
         "pixelfear/composer-dist-plugin": "^0.1",
         "spatie/laravel-newsletter": "^4.8",
         "statamic/cms": "^3.0"
