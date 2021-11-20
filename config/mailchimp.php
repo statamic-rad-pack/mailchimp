@@ -86,9 +86,20 @@ return [
             'consent_field' => 'consent',
 
             /*
+            * To have single opt in only, which I don't recommend, set this to `true`.
+            * See: https://mailchimp.com/help/single-opt-in-vs-double-opt-in/ for details
+            */
+            'disable_opt_in' => false,
+
+            /*
             * handle of the form to listen for
             */
             'form' => null,
+
+            /*
+            * if you'd like to add "interests" in a group, which field is collecting those ids? Defaults to 'interests'
+            */
+            'interests_field' => 'interests',
 
             /*
             * See https://mailchimp.com/help/manage-audience-signup-form-fields/ for details on
@@ -109,10 +120,14 @@ return [
             ],
 
             /*
-            * To have single opt in only, which I don't recommend, set this to `true`.
-            * See: https://mailchimp.com/help/single-opt-in-vs-double-opt-in/ for details
+            * Define the handle for the email field to be used. Defaults to 'email'.
             */
-            'disable_opt_in' => false,
+            'primary_email_field' => 'email',
+
+            /*
+            * if you'd like to apply a tag to each member when they submit a particular form
+            */
+            'tag' => 'Tag One',
         ],
     ],
 ];
