@@ -17,5 +17,9 @@ class MailchimpMergeFields extends MailchimpField
 
     protected function toItemArray($id)
     {
+        return [
+            'id' => $id,
+            'title' => $id,
+        ];
     }
 }
