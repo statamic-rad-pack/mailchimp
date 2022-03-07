@@ -1,7 +1,8 @@
-/vendor
-/composer.lock
-/phpunit.xml
 /dist
-/mix-manifest.json
 /node_modules
-/yarn.lock
+/vendor
+composer.lock
+mix-manifest.json
+package-lock.json
+phpunit.xml
+yarn.lock
