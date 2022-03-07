@@ -4,10 +4,11 @@
 
         <v-select
             v-if="showFieldtype && list"
-            :value="value"
+            v-model="selected"
             :clearable="true"
-            :searchable="true"
             :options="fields"
+            :reduce="(option) => option.id"
+            :searchable="true"
             @input="$emit('input', $event)"
         />
     </div>
@@ -23,6 +24,7 @@ export default {
     data() {
         return {
             fields: [],
+            selected: null,
             showFieldtype: true,
         }
     },
@@ -50,14 +52,17 @@ export default {
     },
 
     mounted() {
+        this.selected = this.value;
         this.refreshFields();
     },
 
     methods: {
         refreshFields() {
-            this.$axios.get(cp_url(`/mailchimp/merge-fields/${this.list}`)).then(response => {
-                this.fields = response.data;
-            });
+            this.$axios
+                .get(cp_url(`/mailchimp/merge-fields/${this.list}`))
+                .then(response => {
+                    this.fields = response.data;
+                });
         }
     }
 };
