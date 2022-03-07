@@ -9,7 +9,7 @@ use Silentz\Mailchimp\Tests\TestCase;
 use Statamic\Events\SubmissionCreated;
 use Statamic\Events\UserRegistered;
 use Statamic\Facades\Form as FormAPI;
-use Statamic\Forms\Form as Form;
+use Statamic\Forms\Form;
 use Statamic\Forms\Submission;
 
 class ListenersTest extends TestCase
