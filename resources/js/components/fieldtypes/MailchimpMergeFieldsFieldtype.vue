@@ -45,8 +45,8 @@ export default {
             let match = regexpNames.exec(this.namePrefix);
             match.shift();
 
-
             let key = match.join('.') + '.audience_id.0';
+
             return data_get(this.$store.state.publish[this.storeName].values, key)
         },
     },
