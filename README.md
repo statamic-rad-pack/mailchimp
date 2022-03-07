@@ -6,7 +6,7 @@ This package provides an easy way to integrate MailChimp with Statamic forms and
 ## Requirements
 
 * PHP 7.4+
-* Statamic v3
+* Statamic v3.2.32
 
 ## Updating from < 2.2
 
