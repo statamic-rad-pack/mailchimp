@@ -15,7 +15,7 @@
         "nunomaduro/collision": "^4.1 || ^5.0",
         "phpunit/phpunit": "^8.0 || ^9.0",
         "orchestra/testbench": "^5.0 || ^6.0",
-        "jasonmccreary/laravel-test-assertions": "^1.0"
+        "jasonmccreary/laravel-test-assertions": "^2.0"
     },
     "description": "Subscribe registrations or contact forms to Mailchimp",
     "authors": [
@@ -49,6 +49,11 @@
             "providers": [
                 "Silentz\\Mailchimp\\ServiceProvider"
             ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pixelfear/composer-dist-plugin": true
         }
     }
 }
