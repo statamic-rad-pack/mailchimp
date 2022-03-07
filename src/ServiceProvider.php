@@ -2,6 +2,7 @@
 
 namespace Silentz\Mailchimp;
 
+use DrewM\MailChimp\MailChimp;
 use Edalzell\Forma\Forma;
 use Silentz\Mailchimp\Commands\GetGroups;
 use Silentz\Mailchimp\Commands\GetInterests;
@@ -11,6 +12,7 @@ use Silentz\Mailchimp\Fieldtypes\MailchimpTag;
 use Silentz\Mailchimp\Http\Controllers\ConfigController;
 use Silentz\Mailchimp\Listeners\AddFromSubmission;
 use Silentz\Mailchimp\Listeners\AddFromUser;
+use Spatie\Newsletter\NewsletterFacade;
 use Statamic\Events\SubmissionCreated;
 use Statamic\Events\UserRegistered;
 use Statamic\Providers\AddonServiceProvider;
@@ -35,6 +37,10 @@ class ServiceProvider extends AddonServiceProvider
         SubmissionCreated::class => [AddFromSubmission::class],
     ];
 
+    protected $routes = [
+        'cp' => __DIR__.'/../routes/cp.php',
+    ];
+
     protected $scripts = [
         __DIR__.'/../dist/js/cp.js',
     ];
@@ -48,6 +54,11 @@ class ServiceProvider extends AddonServiceProvider
         $this->app->booted(function () {
             $this->addFormsToNewsletterConfig();
         });
+    }
+
+    public function register()
+    {
+        $this->app->bind(MailChimp::class, fn ($app) => NewsletterFacade::getApi());
     }
 
     private function addFormsToNewsletterConfig()

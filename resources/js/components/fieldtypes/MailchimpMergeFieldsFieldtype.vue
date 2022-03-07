@@ -2,13 +2,13 @@
     <div class="mailchimp-merge-fields-fieldtype-wrapper">
         <small class="help-block text-grey-60" v-if="!list">{{ __('Select audience') }}</small>
 
-        <relationship-fieldtype
+        <v-select
             v-if="showFieldtype && list"
-            :handle="handle"
             :value="value"
-            :meta="relationshipMeta"
-            :config="{ mode: 'select', max_items: 1, type: 'mailchimp_merge_fields' }"
-            @input="update"
+            :clearable="true"
+            :searchable="true"
+            :options="fields"
+            @input="$emit('input', $event)"
         />
     </div>
 </template>
@@ -22,6 +22,7 @@ export default {
 
     data() {
         return {
+            fields: [],
             showFieldtype: true,
         }
     },
@@ -29,6 +30,9 @@ export default {
     watch: {
         list(list) {
             this.showFieldtype = false;
+
+            this.refreshFields();
+
             this.$nextTick(() => this.showFieldtype = true);
         }
     },
@@ -43,11 +47,17 @@ export default {
             let key = match.join('.') + '.audience_id.0';
             return data_get(this.$store.state.publish[this.storeName].values, key)
         },
+    },
 
-        relationshipMeta() {
-            return {...this.meta, ...{
-                getBaseSelectionsUrlParameters: { list: this.list }
-            }};
+    mounted() {
+        this.refreshFields();
+    },
+
+    methods: {
+        refreshFields() {
+            this.$axios.get(cp_url(`/mailchimp/merge-fields/${this.list}`)).then(response => {
+                this.fields = response.data;
+            });
         }
     }
 };
