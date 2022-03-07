@@ -19,48 +19,37 @@ class SubscriberFromUserTest extends TestCase
             ->password('password');
     }
 
-    // /** @test */
-    // public function can_create_subscriber_from_user()
-    // {
-    //     $formConfig = [[
-    //         'form' => 'post',
-    //         'check_consent' => true,
-    //     ]];
-    //     $subscriber = new Subscriber($this->user->data(), $formConfig);
+    /** @test */
+    public function can_create_subscriber_from_user()
+    {
+        $config = [[
+            'check_consent' => true,
+        ]];
 
-    //     $this->assertInstanceOf(Subscriber::class, $subscriber);
-    // }
+        $subscriber = new Subscriber($this->userData(), $config);
 
-    // /** @test */
-    // public function has_consent_by_default()
-    // {
-    //     $formConfig = [
-    //         'form' => 'post',
-    //     ];
+        $this->assertInstanceOf(Subscriber::class, $subscriber);
+    }
 
-    //     $subscriber = new Subscriber($this->submission->data(), $formConfig);
+    /** @test */
+    public function has_consent_by_default()
+    {
+        $subscriber = new Subscriber($this->userData(), []);
 
-    //     $consent = $subscriber->hasConsent();
+        $this->assertTrue($subscriber->hasConsent());
+    }
 
-    //     $this->assertTrue($consent);
-    // }
+    /** @test */
+    public function no_consent_when_no_consent_field()
+    {
+        $config = [
+            'check_consent' => true,
+        ];
 
-    // /** @test */
-    // public function no_consent_when_no_consent_field()
-    // {
-    //     $formConfig = [
-    //         'form' => 'post',
-    //         'check_consent' => true,
-    //     ];
+        $subscriber = new Subscriber($this->userData(), $config);
 
-    //     config(['mailchimp.forms' => $formConfig]);
-
-    //     $subscriber = new Subscriber($this->submission->data(), $formConfig);
-
-    //     $consent = $subscriber->hasConsent();
-
-    //     $this->assertFalse($consent);
-    // }
+        $this->assertFalse($subscriber->hasConsent());
+    }
 
     // /** @test */
     // public function no_consent_when_consent_field_is_false()
@@ -120,4 +109,9 @@ class SubscriberFromUserTest extends TestCase
 
     //     $this->assertTrue($consent);
     // }
+
+    private function userData(): array
+    {
+        return $this->user->data()->merge(['email' => $this->user->email()])->all();
+    }
 }

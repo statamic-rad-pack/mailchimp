@@ -37,9 +37,11 @@ class TestCase extends OrchestraTestCase
         $app->make(Manifest::class)->manifest = [
             'silentz/mailchimp' => [
                 'id' => 'silentz/mailchimp',
-                'namespace' => 'Silentz\\Mailchimp\\',
+                'namespace' => 'Silentz\\Mailchimp',
             ],
         ];
+
+        config(['statamic.users.repository' => 'file']);
     }
 
     protected function resolveApplicationConfiguration($app)
@@ -51,22 +53,5 @@ class TestCase extends OrchestraTestCase
         foreach ($configs as $config) {
             $app['config']->set("statamic.$config", require __DIR__."/../vendor/statamic/cms/config/{$config}.php");
         }
-    }
-
-    public function tearDown(): void
-    {
-
-        // destroy $app
-        if ($this->app) {
-            $this->callBeforeApplicationDestroyedCallbacks();
-
-            // this is the issue.
-            // $this->app->flush();
-
-            $this->app = null;
-        }
-
-        // call the parent teardown
-        parent::tearDown();
     }
 }

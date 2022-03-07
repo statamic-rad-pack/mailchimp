@@ -27,6 +27,6 @@ class AddFromUser
 
     private function getData(User $user): array
     {
-        return array_merge($user->data()->all(), ['email' => $user->email()]);
+        return $user->data()->merge(['email' => $user->email()])->all();
     }
 }

@@ -44,13 +44,13 @@ class ListenersTest extends TestCase
         Event::dispatch($event);
     }
 
-    /* @test */
-    // public function does_respond_to_user_registered_event()
-    // {
-    //     $event = new UserRegistered([]);
+    /** @test */
+    public function does_respond_to_user_registered_event()
+    {
+        $event = new UserRegistered([]);
 
-    //     $this->mock(AddFromUser::class)->shouldReceive('handle')->with($event)->once();
+        $this->mock(AddFromUser::class)->shouldReceive('handle')->with($event)->once();
 
-    //     Event::dispatch($event);
-    // }
+        Event::dispatch($event);
+    }
 }
