@@ -5,7 +5,7 @@
     "require": {
         "php": "^7.4 || ^8.0",
         "edalzell/forma": "^1.0",
-        "laravel/framework": "^8.40 || ^9.5",
+        "laravel/framework": "^8.74 || ^9.5",
         "pixelfear/composer-dist-plugin": "^0.1",
         "spatie/laravel-newsletter": "^4.8",
         "statamic/cms": "3.2.* || 3.3.*"
