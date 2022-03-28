@@ -2,6 +2,14 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## 2.7 - 2022-03-28
+
+- Support Laravel 9 & Statamic 3.3
+
+## 2.6 - 2022-03-06
+
+- Can now add or update a subscription
+
 ## 2.5 - 2020-12-20
 
 - Can send new user registrations to Mailchimp
