@@ -12,7 +12,10 @@ class Subscriber
     private Collection $data;
     private array $config;
 
-    public function __construct(array|Collection $data, array $config)
+    /**
+     * @param $data array|Collection
+     */
+    public function __construct($data, array $config)
     {
         $this->data = collect($data);
         $this->config = $config;
