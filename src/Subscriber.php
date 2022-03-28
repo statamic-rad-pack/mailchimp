@@ -2,18 +2,19 @@
 
 namespace Silentz\Mailchimp;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Spatie\Newsletter\NewsletterFacade as Newsletter;
 use Statamic\Support\Arr;
 
 class Subscriber
 {
-    private array $data;
+    private Collection $data;
     private array $config;
 
-    public function __construct(array $data, array $config)
+    public function __construct(array|Collection $data, array $config)
     {
-        $this->data = $data;
+        $this->data = collect($data);
         $this->config = $config;
     }
 
@@ -40,11 +41,7 @@ class Subscriber
 
     private function get(?string $field, $default = null)
     {
-        if (is_null($field)) {
-            return $default;
-        }
-
-        return Arr::get($this->data, $field, $default);
+        return $this->data->get($field, $default);
     }
 
     private function getInterests(): array
