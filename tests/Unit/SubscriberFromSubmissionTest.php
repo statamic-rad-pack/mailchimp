@@ -17,8 +17,6 @@ class SubscriberFromSubmissionTest extends TestCase
     {
         parent::setUp();
 
-        FormAPI::all()->each->delete();
-
         $this->form = FormAPI::make('contact_us')
             ->title('Contact Us')
             ->honeypot('winnie');
@@ -27,16 +25,21 @@ class SubscriberFromSubmissionTest extends TestCase
 
         $this->submission = $this->form->makeSubmission();
         $this->submission
-            ->data(['foo'=>'bar']);
+            ->data([
+                'email'=>'foo@bar.com',
+                'first_name' => 'Foo',
+                'last_name' => 'Bar',
+            ]);
     }
 
     /** @test */
     public function can_create_subscriber_from_submission()
     {
         $formConfig = [[
-            'form' => 'post',
+            'form' => 'contact_us',
             'check_consent' => true,
         ]];
+
         $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
         $this->assertInstanceOf(Subscriber::class, $subscriber);

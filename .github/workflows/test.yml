@@ -10,18 +10,18 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        php: [7.4, 8.0]
-        laravel: [7.*,8.*]
+        php: [7.4, 8.0, 8.1]
+        laravel: [8.*, 9.*]
         dependency-version: [prefer-lowest, prefer-stable]
         include:
-          - laravel: 7.*
-            testbench: 5.*
           - laravel: 8.*
             testbench: 6.*
+          - laravel: 9.*
+            testbench: 7.*
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: Cache dependencies
         uses: actions/cache@v2

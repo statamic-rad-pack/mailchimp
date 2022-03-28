@@ -1,0 +1,58 @@
+sections:
+  main:
+    display: Main
+    fields:
+      -
+        handle: email
+        field:
+          input_type: text
+          type: text
+          listable: hidden
+          display: Email
+          antlers: false
+          validate:
+            - required
+            - email
+      -
+        handle: first_name
+        field:
+          input_type: text
+          type: text
+          listable: hidden
+          display: 'First Name'
+      -
+        handle: last_name
+        field:
+          input_type: text
+          type: text
+          listable: hidden
+          display: 'Last Name'
+      -
+        handle: permission
+        field:
+          inline: false
+          options:
+            'true': Permission
+          type: checkboxes
+          listable: hidden
+          display: Permission
+      -
+        handle: message
+        field:
+          type: text
+          listable: hidden
+          display: Message
+      -
+        handle: interests
+        field:
+          inline: false
+          display: Interests
+          type: checkboxes
+          icon: checkboxes
+          listable: hidden
+      -
+        handle: winnie
+        field:
+          type: text
+          listable: hidden
+          display: Winnie
