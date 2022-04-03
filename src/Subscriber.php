@@ -10,7 +10,7 @@ use Statamic\Support\Arr;
 class Subscriber
 {
     private Collection $data;
-    private array $config;
+    private Collection $config;
 
     /**
      * @param $data array|Collection
@@ -18,21 +18,21 @@ class Subscriber
     public function __construct($data, array $config)
     {
         $this->data = collect($data);
-        $this->config = $config;
+        $this->config = collect($config);
     }
 
     private function email(): string
     {
-        return $this->get(Arr::get($this->config, 'primary_email_field', 'email'));
+        return $this->get($this->config->get('primary_email_field', 'email'));
     }
 
     public function hasConsent(): bool
     {
-        if (! Arr::get($this->config, 'check_consent', false)) {
+        if (! $this->config->get('check_consent', false)) {
             return true;
         }
 
-        if (! $field = Arr::get($this->config, 'consent_field', 'consent')) {
+        if (! $field = $this->config->get('consent_field', 'consent')) {
             return false;
         }
 
@@ -49,27 +49,27 @@ class Subscriber
 
     private function getInterests(): array
     {
-        return collect($this->get(Arr::get($this->config, 'interests_field', 'interests'), []))
+        return collect($this->get($this->config->get('interests_field', 'interests'), []))
             ->flatMap(fn ($id) => [$id => true])
             ->all();
     }
 
     public function subscribe(): void
     {
-        if (! $this->hasConsent() || empty($this->config)) {
+        if (! $this->hasConsent() || $this->config->isEmpty()) {
             return;
         }
 
         $options = [
-            'status' => Arr::get($this->config, 'disable_opt_in', false) ? 'subscribed' : 'pending',
-            'tags' => Arr::wrap(Arr::get($this->config, 'tag')),
+            'status' => $this->config->get('disable_opt_in', false) ? 'subscribed' : 'pending',
+            'tags' => Arr::wrap($this->config->get('tag')),
         ];
 
         if ($interests = $this->getInterests()) {
             $options = array_merge($options, ['interests' => $interests]);
         }
 
-        $merge_fields = Arr::get($this->config, 'merge_fields', []);
+        $merge_fields = $this->config->get('merge_fields', []);
 
         $mergeData = collect($merge_fields)->map(function ($item, $key) {
             // if there ain't nuthin' there, don't send nuthin'
@@ -83,7 +83,7 @@ class Subscriber
             ];
         })->collapse()->all();
 
-        if (! Newsletter::subscribeOrUpdate($this->email(), $mergeData, $this->config['form'], $options)) {
+        if (! Newsletter::subscribeOrUpdate($this->email(), $mergeData, $this->config->get('form'), $options)) {
             Log::error(Newsletter::getLastError());
             Log::error(Newsletter::getApi()->getLastResponse());
         }
