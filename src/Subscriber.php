@@ -62,7 +62,7 @@ class Subscriber
 
         $options = [
             'status' => $this->config->get('disable_opt_in', false) ? 'subscribed' : 'pending',
-            'tags' => Arr::wrap($this->config->get('tag')),
+            'tags' => Arr::wrap($this->tag()),
         ];
 
         if ($interests = $this->getInterests()) {
@@ -87,5 +87,14 @@ class Subscriber
             Log::error(Newsletter::getLastError());
             Log::error(Newsletter::getApi()->getLastResponse());
         }
+    }
+
+    public function tag(): string
+    {
+        if ($tagField = $this->config->get('tag_field')) {
+            return $this->data->get($tagField);
+        }
+
+        return $this->config->get('tag');
     }
 }
