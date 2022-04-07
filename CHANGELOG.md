@@ -2,6 +2,11 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## 2.8 - 2022-04-06
+
+- Set the Mailchimp Tag from a form field
+- Convert form fields to select boxes
+
 ## 2.7 - 2022-03-28
 
 - Support Laravel 9 & Statamic 3.3
