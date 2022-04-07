@@ -1,9 +1,9 @@
 <template>
-    <div class="mailchimp-merge-fields-fieldtype-wrapper">
-        <small class="help-block text-grey-60" v-if="!list">{{ __('Select audience') }}</small>
+    <div class="form-field-fieldtype-wrapper">
+        <small class="help-block text-grey-60" v-if="!form">{{ __('Select form') }}</small>
 
         <v-select
-            v-if="showFieldtype && list"
+            v-if="showFieldtype && form"
             v-model="selected"
             :clearable="true"
             :options="fields"
@@ -23,14 +23,14 @@ export default {
 
     data() {
         return {
-            fields: [],
             selected: null,
             showFieldtype: true,
+            fields: [],
         }
     },
 
     watch: {
-        list(list) {
+        form(form) {
             this.showFieldtype = false;
 
             this.refreshFields();
@@ -40,14 +40,17 @@ export default {
     },
 
     computed: {
-        key() {
-            let matches = this.namePrefix.match(/([a-z]*?)\[(.*?)\]/);
-            return matches[0].replace('[', '.').replace(']', '.') + 'audience_id.0';
+        form() {
+            let key = 'forms.' + this.row + '.form.0' ;
+
+            return data_get(this.$store.state.publish[this.storeName].values, key)
         },
 
-        list() {
-            return data_get(this.$store.state.publish[this.storeName].values, this.key)
-        },
+        row() {
+            let matches = this.namePrefix.match(/\[(.*?)\]/);
+
+            return matches[1];
+        }
     },
 
     mounted() {
@@ -55,10 +58,11 @@ export default {
         this.refreshFields();
     },
 
+
     methods: {
         refreshFields() {
             this.$axios
-                .get(cp_url(`/mailchimp/merge-fields/${this.list}`))
+                .get(cp_url(`/mailchimp/form-fields/${this.form}`))
                 .then(response => {
                     this.fields = response.data;
                 });

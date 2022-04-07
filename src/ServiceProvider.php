@@ -6,9 +6,11 @@ use DrewM\MailChimp\MailChimp;
 use Edalzell\Forma\Forma;
 use Silentz\Mailchimp\Commands\GetGroups;
 use Silentz\Mailchimp\Commands\GetInterests;
+use Silentz\Mailchimp\Fieldtypes\FormFields;
 use Silentz\Mailchimp\Fieldtypes\MailchimpAudience;
 use Silentz\Mailchimp\Fieldtypes\MailchimpMergeFields;
 use Silentz\Mailchimp\Fieldtypes\MailchimpTag;
+use Silentz\Mailchimp\Fieldtypes\UserFields;
 use Silentz\Mailchimp\Http\Controllers\ConfigController;
 use Silentz\Mailchimp\Listeners\AddFromSubmission;
 use Silentz\Mailchimp\Listeners\AddFromUser;
@@ -26,10 +28,11 @@ class ServiceProvider extends AddonServiceProvider
     ];
 
     protected $fieldtypes = [
+        FormFields::class,
         MailchimpAudience::class,
         MailchimpTag::class,
-        // FormField::class,
         MailchimpMergeFields::class,
+        UserFields::class,
     ];
 
     protected $listen = [

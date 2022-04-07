@@ -24,10 +24,17 @@ users:
         max_items: 1
         width: 25
     -
+      handle: tag_field
+      field:
+        display: 'Tag Field'
+        type: form_fields
+        max_items: 1
+        width: 25
+    -
       handle: interests_field
       field:
         display: 'Interests Field'
-        type: text
+        type: user_fields
         width: 25
     -
       handle: disable_opt_in
@@ -47,7 +54,7 @@ users:
       handle: consent_field
       field:
         display: 'Consent Field'
-        type: text
+        type: user_fields
         width: 33
         if:
           check_consent: true
@@ -59,8 +66,8 @@ users:
             handle: field_name
             field:
               input_type: text
-              display: Form Field
-              type: text
+              display: User Field
+              type: user_fields
               icon: text
               listable: hidden
           -
@@ -96,7 +103,21 @@ forms:
         type: form
         max_items: 1
         mode: select
-        width: 25
+        width: 33
+    -
+      handle: primary_email_field
+      field:
+        display: 'Email Field'
+        type: form_fields
+        max_items: 1
+        default: email
+        width: 33
+    -
+      handle: interests_field
+      field:
+        display: 'Interests Field'
+        type: form_fields
+        width: 33
     -
       handle: audience_id
       field:
@@ -104,20 +125,21 @@ forms:
         type: mailchimp_audience
         mode: select
         max_items: 1
-        width: 25
+        width: 33
     -
       handle: tag
       field:
         display: 'Tag'
         type: mailchimp_tag
         max_items: 1
-        width: 25
+        width: 33
     -
-      handle: interests_field
+      handle: tag_field
       field:
-        display: 'Interests Field'
-        type: text
-        width: 25
+        display: 'Tag Field'
+        type: form_fields
+        max_items: 1
+        width: 33
     -
       handle: disable_opt_in
       field:
@@ -136,7 +158,7 @@ forms:
       handle: consent_field
       field:
         display: 'Consent Field'
-        type: text
+        type: form_fields
         width: 33
         if:
           check_consent: true
@@ -149,7 +171,7 @@ forms:
             field:
               input_type: text
               display: Form Field
-              type: text
+              type: form_fields
               icon: text
               listable: hidden
           -
