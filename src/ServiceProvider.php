@@ -6,6 +6,7 @@ use DrewM\MailChimp\MailChimp;
 use Edalzell\Forma\Forma;
 use Silentz\Mailchimp\Commands\GetGroups;
 use Silentz\Mailchimp\Commands\GetInterests;
+use Silentz\Mailchimp\Fieldtypes\FormFields;
 use Silentz\Mailchimp\Fieldtypes\MailchimpAudience;
 use Silentz\Mailchimp\Fieldtypes\MailchimpMergeFields;
 use Silentz\Mailchimp\Fieldtypes\MailchimpTag;
@@ -27,9 +28,9 @@ class ServiceProvider extends AddonServiceProvider
     ];
 
     protected $fieldtypes = [
+        FormFields::class,
         MailchimpAudience::class,
         MailchimpTag::class,
-        // FormField::class,
         MailchimpMergeFields::class,
         UserFields::class,
     ];

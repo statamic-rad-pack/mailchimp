@@ -116,7 +116,7 @@ forms:
       handle: interests_field
       field:
         display: 'Interests Field'
-        type: text
+        type: form_fields
         width: 25
     -
       handle: disable_opt_in
@@ -136,7 +136,7 @@ forms:
       handle: consent_field
       field:
         display: 'Consent Field'
-        type: text
+        type: form_fields
         width: 33
         if:
           check_consent: true
@@ -149,7 +149,7 @@ forms:
             field:
               input_type: text
               display: Form Field
-              type: text
+              type: form_fields
               icon: text
               listable: hidden
           -
