@@ -40,14 +40,13 @@ export default {
     },
 
     computed: {
+        key() {
+            let matches = this.namePrefix.match(/([a-z]*?)\[(.*?)\]/);
+            return matches[0].replace('[', '.').replace(']', '.') + 'audience_id.0';
+        },
+
         list() {
-            let regexpNames =  /(forms)\[([\d])+\].+/mg;
-            let match = regexpNames.exec(this.namePrefix);
-            match.shift();
-
-            let key = match.join('.') + '.audience_id.0';
-
-            return data_get(this.$store.state.publish[this.storeName].values, key)
+            return data_get(this.$store.state.publish[this.storeName].values, this.key)
         },
     },
 
