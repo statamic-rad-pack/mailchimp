@@ -28,6 +28,13 @@ sections:
           listable: hidden
           display: 'Last Name'
       -
+        handle: tag
+        field:
+          input_type: text
+          type: text
+          listable: hidden
+          display: 'Tag Field'
+      -
         handle: permission
         field:
           inline: false

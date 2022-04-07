@@ -134,4 +134,41 @@ class SubscriberFromSubmissionTest extends TestCase
 
         $this->assertTrue($consent);
     }
+
+    /** @test */
+    public function uses_tag_config_when_present()
+    {
+        $formConfig =
+                [
+                    'blueprint' => 'post',
+                    'tag' => 'foo',
+                ];
+
+        $this->submission->set('tag', 'foo');
+
+        config(['mailchimp.forms' => $formConfig]);
+
+        $subscriber = new Subscriber($this->submission->data(), $formConfig);
+
+        $this->assertEquals('foo', $subscriber->tag());
+    }
+
+    /** @test */
+    public function uses_tag_field_when_present()
+    {
+        $formConfig =
+            [
+                'blueprint' => 'post',
+                'tag' => 'bar',
+                'tag_field' => 'tag',
+            ];
+
+        $this->submission->set('tag', 'foo');
+
+        config(['mailchimp.forms' => $formConfig]);
+
+        $subscriber = new Subscriber($this->submission->data(), $formConfig);
+
+        $this->assertEquals('foo', $subscriber->tag());
+    }
 }
