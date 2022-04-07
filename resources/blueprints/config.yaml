@@ -27,7 +27,7 @@ users:
       handle: interests_field
       field:
         display: 'Interests Field'
-        type: text
+        type: user_fields
         width: 25
     -
       handle: disable_opt_in
@@ -47,7 +47,7 @@ users:
       handle: consent_field
       field:
         display: 'Consent Field'
-        type: text
+        type: user_fields
         width: 33
         if:
           check_consent: true
@@ -59,8 +59,8 @@ users:
             handle: field_name
             field:
               input_type: text
-              display: Form Field
-              type: text
+              display: User Field
+              type: user_fields
               icon: text
               listable: hidden
           -

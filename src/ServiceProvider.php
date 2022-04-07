@@ -9,6 +9,7 @@ use Silentz\Mailchimp\Commands\GetInterests;
 use Silentz\Mailchimp\Fieldtypes\MailchimpAudience;
 use Silentz\Mailchimp\Fieldtypes\MailchimpMergeFields;
 use Silentz\Mailchimp\Fieldtypes\MailchimpTag;
+use Silentz\Mailchimp\Fieldtypes\UserFields;
 use Silentz\Mailchimp\Http\Controllers\ConfigController;
 use Silentz\Mailchimp\Listeners\AddFromSubmission;
 use Silentz\Mailchimp\Listeners\AddFromUser;
@@ -30,6 +31,7 @@ class ServiceProvider extends AddonServiceProvider
         MailchimpTag::class,
         // FormField::class,
         MailchimpMergeFields::class,
+        UserFields::class,
     ];
 
     protected $listen = [
