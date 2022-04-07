@@ -41,23 +41,16 @@ export default {
 
     computed: {
         form() {
-            let key = this.namePrefix.replace('[', '.').replace(']', '.') + 'form.0' ;
+            let key = 'forms.' + this.row + '.form.0' ;
+
             return data_get(this.$store.state.publish[this.storeName].values, key)
         },
 
-        form2() {
+        row() {
+            let matches = this.namePrefix.match(/\[(.*?)\]/);
 
-            const regex = RegExp(this.escapeRegex("(forms)\[([\d])+\].+"), 'g');
-            // const regex = RegExp('\(${this.config.parent_grid}\)[\(\[\d\]\)\+]\.\+`, 'mg');
-            let match = regex.exec(this.namePrefix);
-            match.shift();
-
-
-            let key = match.join('.') + `.${this.config.linked_field}.0`;
-
-            console.log(key);
-            // return data_get(this.$store.state.publish[this.storeName].values, key)
-        },
+            return matches[1];
+        }
     },
 
     mounted() {
@@ -67,9 +60,6 @@ export default {
 
 
     methods: {
-        // escapeRegex(value) {
-        //     return value.replace( /[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&" );
-        // }
         refreshFields() {
             this.$axios
                 .get(cp_url(`/mailchimp/form-fields/${this.form}`))
