@@ -17,7 +17,6 @@ return [
         */
         'audience_id' => null,
 
-
         /*
         * Mailchimp Tag to assign to the contact.
         *
