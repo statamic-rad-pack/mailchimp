@@ -5,6 +5,8 @@ namespace Silentz\Mailchimp;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Spatie\Newsletter\NewsletterFacade as Newsletter;
+use Statamic\Auth\User;
+use Statamic\Forms\Submission;
 use Statamic\Support\Arr;
 
 class Subscriber
@@ -12,10 +14,26 @@ class Subscriber
     private Collection $data;
     private Collection $config;
 
-    /**
-     * @param $data array|Collection
-     */
-    public function __construct($data, array $config)
+    public static function fromSubmission(Submission $submission): self
+    {
+        return new self(
+            $submission->data(),
+            Arr::first(
+                config('mailchimp.forms', []),
+                fn (array $formConfig) => $formConfig['form'] == $submission->form()->handle()
+            )
+        );
+    }
+
+    public static function fromUser(User $user): self
+    {
+        return new self(
+            $user->data()->merge(['email' => $user->email()])->all(),
+            array_merge(config('mailchimp.users', []), ['form' => 'user'])
+        );
+    }
+
+    public function __construct(array $data, array $config = null)
     {
         $this->data = collect($data);
         $this->config = collect($config);
