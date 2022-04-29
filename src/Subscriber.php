@@ -89,7 +89,7 @@ class Subscriber
         }
     }
 
-    public function tag(): string
+    public function tag(): ?string
     {
         if ($tagField = $this->config->get('tag_field')) {
             return $this->data->get($tagField);
