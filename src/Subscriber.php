@@ -74,7 +74,11 @@ class Subscriber
 
     public function subscribe(): void
     {
-        if (! $this->hasConsent() || $this->config->isEmpty()) {
+        if ($this->config->isEmpty()) {
+            return;
+        }
+
+        if (! $this->hasConsent()) {
             return;
         }
 
@@ -99,7 +103,8 @@ class Subscriber
             return [
                 $item['tag'] => is_array($fieldData) ? implode('|', $fieldData) : $fieldData,
             ];
-        })->collapse()->all();
+        })->collapse()
+        ->all();
 
         if (! Newsletter::subscribeOrUpdate($this->email(), $mergeData, $this->config->get('form'), $options)) {
             Log::error(Newsletter::getLastError());
