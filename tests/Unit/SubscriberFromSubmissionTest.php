@@ -171,4 +171,21 @@ class SubscriberFromSubmissionTest extends TestCase
 
         $this->assertEquals('foo', $subscriber->tag());
     }
+
+    /** @test */
+    public function skips_tag_field_when_not_present()
+    {
+        $formConfig =
+            [
+                'blueprint' => 'post',
+            ];
+
+        $this->submission->set('tag', 'foo');
+
+        config(['mailchimp.forms' => $formConfig]);
+
+        $subscriber = new Subscriber($this->submission->data(), $formConfig);
+
+        $this->assertNull($subscriber->tag());
+    }
 }
