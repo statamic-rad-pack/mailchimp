@@ -106,6 +106,9 @@ class Subscriber
         })->collapse()
         ->all();
 
+        // set gdpr marketing permissions
+        $this->setMarketingPermissions();
+
         if (! Newsletter::subscribeOrUpdate($this->email(), $mergeData, $this->config->get('form'), $options)) {
             Log::error(Newsletter::getLastError());
             Log::error(Newsletter::getApi()->getLastResponse());
@@ -119,5 +122,15 @@ class Subscriber
         }
 
         return $this->config->get('tag');
+    }
+
+    private function setMarketingPermissions()
+    {
+        $gdprField = $this->config->get('gdpr_field', 'gdpr');
+        collect($this->data->get($gdprField))->each(function ($permission) {
+            Newsletter::setMarketingPermission($this->email(), $permission, true, $this->config->get('form'));
+        });
+
+        dd('stop');
     }
 }
