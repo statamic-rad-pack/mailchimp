@@ -34,7 +34,7 @@ class Subscriber
     }
 
     /**
-     * @param array|Collection $data
+     * @param  array|Collection  $data
      */
     public function __construct($data, array $config = null)
     {
