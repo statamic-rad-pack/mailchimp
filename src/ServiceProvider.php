@@ -6,6 +6,7 @@ use DrewM\MailChimp\MailChimp;
 use Edalzell\Forma\Forma;
 use Silentz\Mailchimp\Commands\GetGroups;
 use Silentz\Mailchimp\Commands\GetInterests;
+use Silentz\Mailchimp\Commands\Permissions;
 use Silentz\Mailchimp\Fieldtypes\FormFields;
 use Silentz\Mailchimp\Fieldtypes\MailchimpAudience;
 use Silentz\Mailchimp\Fieldtypes\MailchimpMergeFields;
@@ -25,6 +26,7 @@ class ServiceProvider extends AddonServiceProvider
     protected $commands = [
         GetGroups::class,
         GetInterests::class,
+        Permissions::class,
     ];
 
     protected $fieldtypes = [
@@ -72,7 +74,14 @@ class ServiceProvider extends AddonServiceProvider
                     return [];
                 }
 
-                return [$handle => ['id' => Arr::get($form, 'audience_id')]];
+                return [
+                    $handle => Arr::removeNullValues([
+                        'id' => Arr::get($form, 'audience_id'),
+                        'marketing_permissions' => collect(Arr::get($form, 'marketing_permissions_field_ids'))
+                            ->flatMap(fn ($value) => [$value['field_name'] => $value['id']])
+                            ->all(),
+                    ]),
+                ];
             })
             ->all();
 
