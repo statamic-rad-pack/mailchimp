@@ -33,7 +33,10 @@ class Subscriber
         );
     }
 
-    public function __construct(array|Collection $data, array $config = null)
+    /**
+     * @param array|Collection $data
+     */
+    public function __construct($data, array $config = null)
     {
         $this->data = collect($data);
         $this->config = collect($config);
