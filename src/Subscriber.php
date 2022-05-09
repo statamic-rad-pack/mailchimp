@@ -33,7 +33,7 @@ class Subscriber
         );
     }
 
-    public function __construct(array $data, array $config = null)
+    public function __construct(array|Collection $data, array $config = null)
     {
         $this->data = collect($data);
         $this->config = collect($config);
@@ -126,11 +126,17 @@ class Subscriber
 
     private function setMarketingPermissions()
     {
-        $gdprField = $this->config->get('gdpr_field', 'gdpr');
-        collect($this->data->get($gdprField))->each(function ($permission) {
-            Newsletter::setMarketingPermission($this->email(), $permission, true, $this->config->get('form'));
-        });
+        $gdprField = $this->config->get('marketing_permissions_field', 'gdpr');
 
-        dd('stop');
+        collect($this->data->get($gdprField))->each(function ($permission, $field) {
+            $field = Arr::first($this->config->get('marketing_permissions_field_ids'), fn ($fieldId) => $fieldId['field_name'] == $field);
+
+            Newsletter::setMarketingPermission(
+                $this->email(),
+                Arr::get($field, 'field_name'),
+                true,
+                $this->config->get('form')
+            );
+        });
     }
 }
