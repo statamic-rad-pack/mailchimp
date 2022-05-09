@@ -5,6 +5,8 @@ namespace Silentz\Mailchimp;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Spatie\Newsletter\NewsletterFacade as Newsletter;
+use Statamic\Auth\User;
+use Statamic\Forms\Submission;
 use Statamic\Support\Arr;
 
 class Subscriber
@@ -12,10 +14,29 @@ class Subscriber
     private Collection $data;
     private Collection $config;
 
+    public static function fromSubmission(Submission $submission): self
+    {
+        return new self(
+            $submission->data(),
+            Arr::first(
+                config('mailchimp.forms', []),
+                fn (array $formConfig) => $formConfig['form'] == $submission->form()->handle()
+            )
+        );
+    }
+
+    public static function fromUser(User $user): self
+    {
+        return new self(
+            $user->data()->merge(['email' => $user->email()])->all(),
+            array_merge(config('mailchimp.users', []), ['form' => 'user'])
+        );
+    }
+
     /**
-     * @param $data array|Collection
+     * @param  array|Collection  $data
      */
-    public function __construct($data, array $config)
+    public function __construct($data, array $config = null)
     {
         $this->data = collect($data);
         $this->config = collect($config);
@@ -56,7 +77,11 @@ class Subscriber
 
     public function subscribe(): void
     {
-        if (! $this->hasConsent() || $this->config->isEmpty()) {
+        if ($this->config->isEmpty()) {
+            return;
+        }
+
+        if (! $this->hasConsent()) {
             return;
         }
 
@@ -81,7 +106,11 @@ class Subscriber
             return [
                 $item['tag'] => is_array($fieldData) ? implode('|', $fieldData) : $fieldData,
             ];
-        })->collapse()->all();
+        })->collapse()
+        ->all();
+
+        // set gdpr marketing permissions
+        $this->setMarketingPermissions();
 
         if (! Newsletter::subscribeOrUpdate($this->email(), $mergeData, $this->config->get('form'), $options)) {
             Log::error(Newsletter::getLastError());
@@ -96,5 +125,21 @@ class Subscriber
         }
 
         return $this->config->get('tag');
+    }
+
+    private function setMarketingPermissions()
+    {
+        $gdprField = $this->config->get('marketing_permissions_field', 'gdpr');
+
+        collect($this->data->get($gdprField))->each(function ($permission, $field) {
+            $field = Arr::first($this->config->get('marketing_permissions_field_ids'), fn ($fieldId) => $fieldId['field_name'] == $field);
+
+            Newsletter::setMarketingPermission(
+                $this->email(),
+                Arr::get($field, 'field_name'),
+                true,
+                $this->config->get('form')
+            );
+        });
     }
 }

@@ -30,170 +30,13 @@ Set your Mailchimp API Key in your `.env` file. You can get it from: https://us1
 MAILCHIMP_APIKEY=your-key-here
 ```
 
-To publish the config file to `config/mailchimp.php` run:
+Publish the config file to `config/mailchimp.php` run:
 
 ```bash
 php artisan vendor:publish --tag="mailchimp-config"
 ```
 
-This will publish a file with the following contents:
-```php
-return [
-
-    'api_key' => env('MAILCHIMP_APIKEY'),
-
-    /*
-     * If you want to add to your mailchimp audience when a user registers, set this to `true`
-     */
-    'add_new_users' => false,
-
-    'users' => [
-        /*
-        * A MailChimp audience id. Check the MailChimp docs if you don't know
-        * how to get this value:
-        * https://mailchimp.com/help/find-audience-id/.
-        */
-        'audience_id' => null,
-
-
-        /*
-        * Mailchimp Tag to assign to the contact.
-        *
-        * @see https://mailchimp.com/help/getting-started-tags/
-        */
-        'tag' => null,
-
-        /*
-        * Use this field in your user to indicate which Mailchimp Tag to use
-        *
-        * @see https://mailchimp.com/help/getting-started-tags/
-        */
-        'tag_field' => null,
-
-        /*
-        * This is NOT recommended and means that they WILL NOT get the opt in email.
-        * NOTE: This may violate privacy laws and may get your banned from Mailchimp
-        */
-        'disable_opt_in' => false,
-
-        /*
-        * if you need consent before you can subscribe someone, set this to `true`
-        */
-        'check_consent' => true,
-
-        /*
-        * if you're checking for consent, which field is it? Defaults to `'consent'`
-        */
-        'consent_field' => 'consent',
-
-        /*
-        * See https://mailchimp.com/help/manage-audience-signup-form-fields/ for details on
-        * Mailchimp merge fields
-        */
-        'merge_fields' => [
-            [
-                /*
-                * The Mailchimp merge field
-                */
-                'tag'=> null,
-
-                /*
-                * the blueprint field name to use for the merge field
-                */
-                'field_name' => null,
-            ],
-        ],
-
-    ],
-
-    /*
-     * The form submissions to add to your Mailchimp Audiences
-     */
-    'forms' => [
-        [
-            /*
-            * handle of the form to listen for
-            */
-            'form' => null,
-
-            /*
-            * Define the handle for the email field to be used. Defaults to 'email'.
-            */
-            'primary_email_field' => 'email',
-
-            /*
-            * if you'd like to add "interests" in a group, which field is collecting those ids? Defaults to 'interests'
-            */
-            'interests_field' => 'interests',
-
-            /*
-            * A MailChimp audience id. Check the MailChimp docs if you don't know
-            * how to get this value: https://mailchimp.com/help/find-audience-id/.
-            */
-            'audience_id' => null,
-
-            /*
-            * Mailchimp Tag to assign to the contact.
-            * NOTE: `tag_field` takes precendence over `tag`
-            *
-            * @see https://mailchimp.com/help/getting-started-tags/
-            */
-            'tag' => null,
-
-            /*
-            * Use this field in your user to indicate which Mailchimp Tag to use
-            *
-            * @see https://mailchimp.com/help/getting-started-tags/
-            */
-            'tag_field' => null,
-
-            /*
-            * This is NOT recommended and means that they WILL NOT get the opt in email.
-            * NOTE: This may violate privacy laws and may get you banned from Mailchimp
-            */
-            'disable_opt_in' => false,
-
-            /*
-            * if you need consent before you can subscribe someone, set this to `true`
-            */
-            'check_consent' => true,
-
-            /*
-            * if you're checking for consent, which field is it? Defaults to `'consent'`
-            */
-            'consent_field' => 'consent',
-
-            /*
-            * To have single opt in only, which I don't recommend, set this to `true`.
-            * See: https://mailchimp.com/help/single-opt-in-vs-double-opt-in/ for details
-            */
-            'disable_opt_in' => false,
-
-            /*
-            * See https://mailchimp.com/help/manage-audience-signup-form-fields/ for details on
-            * Mailchimp merge fields
-            */
-            'merge_fields' => [
-                [
-                    /*
-                    * The Mailchimp tag
-                    */
-                    'tag'=> null,
-
-                    /*
-                    * the blueprint field name to use for the merge field
-                    */
-                    'field_name' => null,
-                ],
-            ],
-        ],
-    ],
-];
-
-
-```
-
-You can also configure Mailchimp in the Control Panel
+Configure Mailchimp in the Control Panel
 ![control panel](https://raw.githubusercontent.com/silentzco/statamic-mailchimp/main/images/config.png)
 ![merge fields](https://raw.githubusercontent.com/silentzco/statamic-mailchimp/main/images/merge-fields.png)
 
@@ -201,7 +44,8 @@ You can also configure Mailchimp in the Control Panel
 
 Create your Statamic [forms](https://statamic.dev/forms#content) as usual. Don't forget to add the consent field to your blueprint.
 
-**NOTE**: If you are using groups you will need to know the `id`s of the interests in order to add them to your form:
+### Interests
+You will need to know the `id`s of the interests in order to add them to your form:
 
 ``` html
 <div class="form-group">
@@ -226,6 +70,40 @@ The interests field in your form blueprint should end up looking something like 
       1b1a842842: 'Interest group 3'
     type: checkboxes
 ```
+
+### Marketing Permissions
+
+To work with Mailchimp's [Marketing Permissions](https://mailchimp.com/help/collect-consent-with-gdpr-forms/) you need to do a few things:
+
+1. Get your permissions and ids by running `php artisan mailchimp:permissions {form-handle}` for each of the forms that are in Mailchimp. For example, mine look like:
+
+```
+❯ plz mailchimp:permissions contact_us
++-------------------------------+------------+
+| Marketing Permission          | ID         |
++-------------------------------+------------+
+| Email                         | 2d904xxxxx |
+| Customized Online Advertising | 3560exxxxx |
++-------------------------------+------------+
+```
+
+2. Add those Mailchimp's config
+3. Add the form field that will have those permissions
+
+![permissions](https://raw.githubusercontent.com/silentzco/statamic-mailchimp/main/images/marketing-permissions.png).
+
+Then in your form, have fields like this:
+```
+<div class="form-group">
+    <label>GDPR</label>
+    <label for=""email>Email</label>
+    <input type="checkbox" name="gdpr[email]" value="true" class="form-control"/>
+    <label for=""email>Online</label>
+    <input type="checkbox" name="gdpr[customized_online_advertising]" value="true" class="form-control"/>
+</div>
+```
+
+Don't forget to add the `gdpr` field to your form's blueprint.
 
 ## Testing
 

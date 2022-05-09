@@ -155,6 +155,39 @@ forms:
         width: 33
         default: false
     -
+      handle: marketing_permissions_field
+      field:
+        display: 'Marketing Permissions Field'
+        type: form_fields
+    -
+      handle: marketing_permissions_field_ids
+      field:
+        fields:
+          -
+            handle: field_name
+            field:
+              input_type: text
+              display: Form Field
+              type: text
+              icon: text
+              listable: hidden
+          -
+            handle: id
+            field:
+              input_type: text
+              display: 'ID'
+              type: text
+              max_items: 1
+              icon: text
+              listable: hidden
+        mode: table
+        reorderable: true
+        display: 'Marketing Permissions'
+        type: grid
+        icon: grid
+        add_row: 'Add Permission Field'
+        listable: hidden
+    -
       handle: consent_field
       field:
         display: 'Consent Field'
