@@ -2,6 +2,10 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## 2.9 - 2022-05-09
+
+- Support Mailchimp's Marketing Permissions
+
 ## 2.8 - 2022-04-06
 
 - Set the Mailchimp Tag from a form field
