@@ -78,6 +78,7 @@ class ServiceProvider extends AddonServiceProvider
                     $handle => Arr::removeNullValues([
                         'id' => Arr::get($form, 'audience_id'),
                         'marketing_permissions' => collect(Arr::get($form, 'marketing_permissions_field_ids'))
+                            ->filter()
                             ->flatMap(fn ($value) => [$value['field_name'] => $value['id']])
                             ->all(),
                     ]),
