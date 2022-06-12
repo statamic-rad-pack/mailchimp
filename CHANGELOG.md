@@ -2,6 +2,10 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## 2.9.1 - 2022-06-11
+
+- Fix error when marketing permissions are null
+
 ## 2.9 - 2022-05-09
 
 - Support Mailchimp's Marketing Permissions
