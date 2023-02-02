@@ -155,6 +155,14 @@ forms:
         width: 33
         default: false
     -
+      handle: consent_field
+      field:
+        display: 'Consent Field'
+        type: form_fields
+        width: 33
+        if:
+          check_consent: true
+    -
       handle: marketing_permissions_field
       field:
         display: 'Marketing Permissions Field'
@@ -187,14 +195,6 @@ forms:
         icon: grid
         add_row: 'Add Permission Field'
         listable: hidden
-    -
-      handle: consent_field
-      field:
-        display: 'Consent Field'
-        type: form_fields
-        width: 33
-        if:
-          check_consent: true
     -
       handle: merge_fields
       field:
