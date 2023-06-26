@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        php: [8.0, 8.1, 8.2]
+        php: [8.1, 8.2]
         laravel: [9.*, 10.*]
         dependency-version: [prefer-lowest, prefer-stable]
         include:
@@ -20,9 +20,6 @@ jobs:
           - laravel: 10.*
             framework: ^10.0
             testbench: 8.*
-        exclude:
-          - laravel: 10.*
-            php: 8.0
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ubuntu-latest
     steps:
       - name: Checkout code
