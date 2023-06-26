@@ -20,6 +20,9 @@ jobs:
           - laravel: 10.*
             framework: ^10.0
             testbench: 8.*
+        exclude:
+          - laravel: 10.*
+            php: 8.0
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ubuntu-latest
     steps:
       - name: Checkout code
