@@ -4,7 +4,7 @@ namespace Silentz\Mailchimp;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
-use Spatie\Newsletter\NewsletterFacade as Newsletter;
+use Spatie\Newsletter\Facades\Newsletter;
 use Statamic\Auth\User;
 use Statamic\Forms\Submission;
 use Statamic\Support\Arr;
@@ -12,6 +12,7 @@ use Statamic\Support\Arr;
 class Subscriber
 {
     private Collection $data;
+
     private Collection $config;
 
     public static function fromSubmission(Submission $submission): self
@@ -107,10 +108,10 @@ class Subscriber
                 $item['tag'] => is_array($fieldData) ? implode('|', $fieldData) : $fieldData,
             ];
         })->collapse()
-        ->all();
+            ->all();
 
         // set gdpr marketing permissions
-        $this->setMarketingPermissions();
+        // $this->setMarketingPermissions();
 
         if (! Newsletter::subscribeOrUpdate($this->email(), $mergeData, $this->config->get('form'), $options)) {
             Log::error(Newsletter::getLastError());

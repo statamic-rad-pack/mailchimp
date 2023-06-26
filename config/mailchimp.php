@@ -48,10 +48,10 @@ return [
         * Run `php please mailchimp:permissions <form-handle>` to get the ids.
         */
         'marketing_permissions_field_ids' => [
-            [
-                'field_name' => '',
-                'id' => '',
-            ],
+            // [
+            //     'field_name' => '',
+            //     'id' => '',
+            // ],
         ],
 
         /*
@@ -59,17 +59,17 @@ return [
         * Mailchimp merge fields
         */
         'merge_fields' => [
-            [
-                /*
-                * The Mailchimp tag
-                */
-                'tag'=> null,
+            // [
+            //     /*
+            //     * The Mailchimp tag
+            //     */
+            //     'tag'=> null,
 
-                /*
-                * the blueprint field name to use for the merge field
-                */
-                'field_name' => null,
-            ],
+            //     /*
+            //     * the blueprint field name to use for the merge field
+            //     */
+            //     'field_name' => null,
+            // ],
         ],
 
         /*
@@ -150,7 +150,7 @@ return [
                     /*
                     * The Mailchimp tag
                     */
-                    'tag'=> null,
+                    'tag' => null,
 
                     /*
                     * the blueprint field name to use for the merge field

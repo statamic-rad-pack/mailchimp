@@ -15,7 +15,7 @@ use Silentz\Mailchimp\Fieldtypes\UserFields;
 use Silentz\Mailchimp\Http\Controllers\ConfigController;
 use Silentz\Mailchimp\Listeners\AddFromSubmission;
 use Silentz\Mailchimp\Listeners\AddFromUser;
-use Spatie\Newsletter\NewsletterFacade;
+use Spatie\Newsletter\Facades\Newsletter;
 use Statamic\Events\SubmissionCreated;
 use Statamic\Events\UserRegistered;
 use Statamic\Providers\AddonServiceProvider;
@@ -60,12 +60,17 @@ class ServiceProvider extends AddonServiceProvider
 
         $this->app->booted(function () {
             $this->addFormsToNewsletterConfig();
+
+            config()->set('newsletter.driver', Driver::class);
+            config()->set('newsletter.driver_arguments', [
+                'api_key' => config('mailchimp.api_key'),
+            ]);
         });
     }
 
     public function register()
     {
-        $this->app->bind(MailChimp::class, fn ($app) => NewsletterFacade::getApi());
+        $this->app->bind(MailChimp::class, fn ($app) => Newsletter::getApi());
     }
 
     private function addFormsToNewsletterConfig()
