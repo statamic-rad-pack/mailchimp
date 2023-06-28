@@ -2,6 +2,13 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v3.0.1 - 2023-06-28
+
+### 🐛 Fixed
+
+- Remove unused action [@edalzell](https://github.com/edalzell) (#98)
+- Fix production asset build [@edalzell](https://github.com/edalzell) (#97)
+
 ## v3.0.0 - 2023-06-28
 
 #### 🚀 New
