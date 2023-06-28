@@ -2,6 +2,22 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v3.0.0 - 2023-06-28
+
+#### 🚀 New
+
+- Support Statamic v4 [@edalzell](https://github.com/edalzell) (#95)
+
+**Note**: The Marketing Permissions (used for GDPR) have been removed temporarily. Please stay on the previous version if need that.
+
+### 🐛 Fixed
+
+- Move up the consent field [@robdekort](https://github.com/robdekort) (#88)
+
+### 🔧 Improved
+
+- 🔄 synced file(s) with edalzell/.github [@edalzell](https://github.com/edalzell) (#96)
+
 ## 2.10 - 2023-01-27
 
 - Support Statamic 3.4
@@ -74,29 +90,38 @@ All notable changes to `statamic-mailchimp` will be documented in this file.
 - Added: can override the email field per formset
 
 ## 1.3.8 - 2019-09-06
+
 - Fixed: better handling of missing or malformed merge field data
 
 ## 1.3.7 - 2018-09-15
+
 - Fixed: fixed error when visiting settings page
 
 ## 1.3.6 - 2018-08-15
+
 - Fixed: opt in now works for user registration
 
 ## 1.3.5 - 2018-08-15
+
 - Fixed: List is now populated when user registers, sorry about that
 
 ## 1.3.4 - 2018-07-16
+
 - Added: Updated docs to better explain merge fields
 
 ## 1.3.3 - 2018-05-06
+
 - Fixed: fixed JS error when toggling check permissions
 
 ## 1.3.2 - 2018-04-24
+
 - Fixed: update member if they exist
 
 ## 1.3.1 - 2018-04-06
+
 - Fixed: Only send merge_fields if you have some to prevent the API from b0rking
 
 ## 1.3.0 - 2018-03-19
+
 - Fixed: Updated to match Statamic 2.8's yummy new addon goodness
 - Added: User merge fields supported
