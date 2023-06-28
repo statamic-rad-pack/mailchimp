@@ -3,7 +3,7 @@
 namespace Silentz\Mailchimp\Commands;
 
 use Illuminate\Console\Command;
-use Spatie\Newsletter\NewsletterFacade;
+use Spatie\Newsletter\Facades\Newsletter;
 
 class Permissions extends Command
 {
@@ -15,7 +15,7 @@ class Permissions extends Command
     {
         $this->table(
             ['Marketing Permission', 'ID'],
-            NewsletterFacade::getMarketingPermissions($this->argument('form'))
+            Newsletter::getMarketingPermissions($this->argument('form'))
         );
     }
 }

@@ -3,7 +3,7 @@
 namespace Silentz\Mailchimp\Commands;
 
 use Illuminate\Console\Command;
-use Spatie\Newsletter\NewsletterFacade;
+use Spatie\Newsletter\Facades\Newsletter;
 
 class GetGroups extends Command
 {
@@ -15,7 +15,7 @@ class GetGroups extends Command
     {
         $config = collect(config('mailchimp.forms', []))->firstWhere('form', $this->argument('form'));
 
-        $response = NewsletterFacade::getApi()->get("lists/{$config['audience_id']}/interest-categories");
+        $response = Newsletter::getApi()->get("lists/{$config['audience_id']}/interest-categories");
 
         $this->line('');
 
