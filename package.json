@@ -3,8 +3,9 @@
         "vue": "^2.6.11"
     },
     "scripts": {
-        "dev": "rm -rf resources/dist/build && vite",
-        "build": "vite build"
+        "dev": "vite",
+        "build": "vite build",
+        "production": "vite build"
     },
     "devDependencies": {
         "@vitejs/plugin-vue2": "^2.2.0",
