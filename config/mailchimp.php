@@ -5,46 +5,55 @@ return [
     'api_key' => env('MAILCHIMP_API_KEY'),
 
     /*
-     * If you want to add to your mailchimp audience when a user registers, set this to `true`
+     * Set to `true` to add new user registrations to a Mailchimp audience.
      */
     'add_new_users' => false,
 
     'users' => [
         /*
-        * A MailChimp audience id. Check the MailChimp docs if you don't know
-        * how to get this value: https://mailchimp.com/help/find-audience-id/.
+        * A Mailchimp Audience ID.
+        *
+        * @see https://mailchimp.com/help/find-audience-id/.
         */
         'audience_id' => null,
 
         /*
-        * if you need consent before you can subscribe someone, set this to `true`
+        * Set to `true` to require consent before subscribing someone
+        * Default: `true`
         */
         'check_consent' => true,
 
         /*
-        * if you're checking for consent, which field is it? Defaults to `'consent'`
+        * Field name used to check for consent.
+        * Default: 'consent'
         */
         'consent_field' => 'consent',
 
         /*
-        * To have single opt in only, which I don't recommend, set this to `true`.
-        * See: https://mailchimp.com/help/single-opt-in-vs-double-opt-in/ for details
+        * Disable Double Opt In. Not typically a best practice.
+        * Default: `false`
+        *
+        * @see https://mailchimp.com/help/single-opt-in-vs-double-opt-in/
         */
 
         'disable_opt_in' => false,
 
         /*
-        * if you'd like to add "interests" in a group, which field is collecting those ids? Defaults to 'interests'
+        * Field name used to collect ids of group "interests".
+        * Default: 'interests'
+        *
+        * @see https://mailchimp.com/help/how-to-use-groups-to-add-or-update-subscriber-preferences/
         */
         'interests_field' => 'interests',
 
         /*
-        * Which field are the marketing permissions in?
+        * Field name used to indicate marketing permissions.
+        * Default: `gdpr`
         */
         'marketing_permissions_field' => 'gdpr',
 
         /*
-        * Which fields are the Mailchimp permission ids stored in?
+        * Fields used to store marketing permission ids.
         * Run `php please mailchimp:permissions <form-handle>` to get the ids.
         */
         'marketing_permissions_field_ids' => [
@@ -55,8 +64,9 @@ return [
         ],
 
         /*
-        * See https://mailchimp.com/help/manage-audience-signup-form-fields/ for details on
-        * Mailchimp merge fields
+        * Store information about your contacts with marge fields.
+        *
+        * @see https://mailchimp.com/help/manage-audience-signup-form-fields/
         */
         'merge_fields' => [
             // [
@@ -66,27 +76,28 @@ return [
             //     'tag'=> null,
 
             //     /*
-            //     * the blueprint field name to use for the merge field
+            //     * Blueprint field name to use for the merge field
             //     */
             //     'field_name' => null,
             // ],
         ],
 
         /*
-        * Define the handle for the email field to be used. Defaults to 'email'.
+        * Field that contains the primary email address
+        * Default: 'email'
         */
         'primary_email_field' => 'email',
 
         /*
         * Mailchimp Tag to assign to the contact.
-        * NOTE: `tag_field` takes precendence over `tag`
+        * NOTE: `tag_field` takes precedence over `tag`
         *
         * @see https://mailchimp.com/help/getting-started-tags/
         */
         'tag' => null,
 
         /*
-        * Use this field in your user to indicate which Mailchimp Tag to use
+        * Field to indicate which Mailchimp Tag to use
         *
         * @see https://mailchimp.com/help/getting-started-tags/
         */
@@ -99,18 +110,20 @@ return [
     'forms' => [
         [
             /*
-            * handle of the form to listen for
+            * Handle of the form to listen for
             */
             'form' => null,
 
             /*
-            * A MailChimp audience id. Check the MailChimp docs if you don't know
-            * how to get this value: https://mailchimp.com/help/find-audience-id/.
+            * MailChimp audience id to subscribe users to
+            *
+            * @see https://mailchimp.com/help/find-audience-id/.
             */
             'audience_id' => null,
 
             /*
-            * if you need consent before you can subscribe someone, set this to `true`
+            * Field name used to check for consent.
+            * Default: 'consent'
             */
             'check_consent' => true,
 
@@ -120,7 +133,9 @@ return [
             'consent_field' => 'consent',
 
             /*
-            * To have single opt in only, which I don't recommend, set this to `true`.
+            * Disable Double Opt In. Not typically a best practice.
+            * Default: `false`
+            *
             * See: https://mailchimp.com/help/single-opt-in-vs-double-opt-in/ for details
             */
 
@@ -131,9 +146,16 @@ return [
             */
             'interests_field' => 'interests',
 
+            /*
+            * Field name used to indicate marketing permissions.
+            * Default: `gdpr`
+            */
             'marketing_permissions_field' => 'gdpr',
 
-            // Mailchimp permission ids here. Run `php please mailchimp:permissions <form-handle>` to get them.
+            /*
+            * Fields used to store marketing permission ids.
+            * Run `php please mailchimp:permissions <form-handle>` to get the ids.
+            */
             'marketing_permissions_field_ids' => [
                 [
                     'field_name' => '',
@@ -141,9 +163,10 @@ return [
                 ],
             ],
 
-            /*
-            * See https://mailchimp.com/help/manage-audience-signup-form-fields/ for details on
-            * Mailchimp merge fields
+             /*
+            * Store information about your contacts with marge fields.
+            *
+            * @see https://mailchimp.com/help/manage-audience-signup-form-fields/
             */
             'merge_fields' => [
                 [
@@ -153,32 +176,32 @@ return [
                     'tag' => null,
 
                     /*
-                    * the blueprint field name to use for the merge field
+                    * Blueprint field name to use for the merge field
                     */
                     'field_name' => null,
                 ],
             ],
 
-            /*
-            * Define the handle for the email field to be used. Defaults to 'email'.
+             /*
+            * Field that contains the primary email address
+            * Default: 'email'
             */
             'primary_email_field' => 'email',
 
             /*
             * Mailchimp Tag to assign to the contact.
-            * NOTE: `tag_field` takes precendence over `tag`
+            * NOTE: `tag_field` takes precedence over `tag`
             *
             * @see https://mailchimp.com/help/getting-started-tags/
             */
             'tag' => null,
 
             /*
-            * Use this field in your user to indicate which Mailchimp Tag to use
+            * Field to indicate which Mailchimp Tag to use
             *
             * @see https://mailchimp.com/help/getting-started-tags/
             */
             'tag_field' => null,
-
         ],
     ],
 ];
