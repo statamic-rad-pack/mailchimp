@@ -30,12 +30,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Silentz\\Mailchimp\\": "src"
+            "StatamicRadPack\\Mailchimp\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Silentz\\Mailchimp\\Tests\\": "tests"
+            "StatamicRadPack\\Mailchimp\\Tests\\": "tests"
         }
     },
     "config": {
