@@ -56,7 +56,7 @@ class ServiceProvider extends AddonServiceProvider
     {
         parent::boot();
 
-        Forma::add('silentz/mailchimp', ConfigController::class);
+        Forma::add('statamic-rad-pack/mailchimp', ConfigController::class);
 
         $this->app->booted(function () {
             $this->addFormsToNewsletterConfig();
