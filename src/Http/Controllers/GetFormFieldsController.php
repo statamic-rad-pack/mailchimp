@@ -1,6 +1,6 @@
 <?php
 
-namespace Silentz\Mailchimp\Http\Controllers;
+namespace StatamicRadPack\Mailchimp\Http\Controllers;
 
 use Statamic\Fields\Field;
 use Statamic\Forms\Form as FormsForm;

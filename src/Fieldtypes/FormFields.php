@@ -1,6 +1,6 @@
 <?php
 
-namespace Silentz\Mailchimp\Fieldtypes;
+namespace StatamicRadPack\Mailchimp\Fieldtypes;
 
 use Statamic\Fields\Fieldtype;
 

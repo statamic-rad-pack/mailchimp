@@ -1,6 +1,6 @@
 <?php
 
-namespace Silentz\Mailchimp;
+namespace StatamicRadPack\Mailchimp;
 
 class Driver extends \Spatie\Newsletter\Drivers\MailChimpDriver
 {

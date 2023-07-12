@@ -1,7 +1,7 @@
 {
-    "name": "silentz/mailchimp",
+    "name": "statamic-rad-pack/mailchimp",
     "description": "Subscribe registrations or contact forms to Mailchimp",
-    "license": "proprietary",
+    "license": "mit",
     "type": "statamic-addon",
     "authors": [
         {
@@ -46,11 +46,11 @@
     "extra": {
         "download-dist": {
             "path": "dist",
-            "url": "https://github.com/silentzco/statamic-mailchimp/releases/download/{$version}/dist.tar.gz"
+            "url": "https://github.com/statamic-rad-pack/mailchimp/releases/download/{$version}/dist.tar.gz"
         },
         "laravel": {
             "providers": [
-                "Silentz\\Mailchimp\\ServiceProvider"
+                "StatamicRadPack\\Mailchimp\\ServiceProvider"
             ]
         },
         "statamic": {

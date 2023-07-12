@@ -1,16 +1,17 @@
 <?php
 
-namespace Silentz\Mailchimp\Tests\Unit;
+namespace StatamicRadPack\Mailchimp\Tests\Unit;
 
-use Silentz\Mailchimp\Subscriber;
-use Silentz\Mailchimp\Tests\TestCase;
 use Statamic\Facades\Form as FormAPI;
 use Statamic\Forms\Form;
 use Statamic\Forms\Submission;
+use StatamicRadPack\Mailchimp\Subscriber;
+use StatamicRadPack\Mailchimp\Tests\TestCase;
 
 class SubscriberFromSubmissionTest extends TestCase
 {
     private Form $form;
+
     private Submission $submission;
 
     public function setUp(): void
@@ -26,7 +27,7 @@ class SubscriberFromSubmissionTest extends TestCase
         $this->submission = $this->form->makeSubmission();
         $this->submission
             ->data([
-                'email'=>'foo@bar.com',
+                'email' => 'foo@bar.com',
                 'first_name' => 'Foo',
                 'last_name' => 'Bar',
             ]);

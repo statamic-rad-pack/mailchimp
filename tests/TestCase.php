@@ -1,15 +1,15 @@
 <?php
 
-namespace Silentz\Mailchimp\Tests;
+namespace StatamicRadPack\Mailchimp\Tests;
 
 use JMac\Testing\Traits\AdditionalAssertions;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
-use Silentz\Mailchimp\ServiceProvider;
 use Statamic\Extend\Manifest;
 use Statamic\Facades\Blueprint as BlueprintFacade;
 use Statamic\Facades\YAML;
 use Statamic\Providers\StatamicServiceProvider;
 use Statamic\Statamic;
+use StatamicRadPack\Mailchimp\ServiceProvider;
 
 class TestCase extends OrchestraTestCase
 {
@@ -73,7 +73,7 @@ class TestCase extends OrchestraTestCase
         Statamic::booted(function () {
             $blueprintContents = YAML::parse(file_get_contents(__DIR__.'/__fixtures__/blueprints/contact_us.yaml'));
             $blueprintFields = collect($blueprintContents['sections']['main']['fields'])
-                ->keyBy(fn ($item) =>  $item['handle'])
+                ->keyBy(fn ($item) => $item['handle'])
                 ->map(fn ($item) => $item['field'])
                 ->all();
 

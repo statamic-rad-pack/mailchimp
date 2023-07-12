@@ -1,9 +1,9 @@
 <?php
 
-namespace Silentz\Mailchimp\Listeners;
+namespace StatamicRadPack\Mailchimp\Listeners;
 
-use Silentz\Mailchimp\Subscriber;
 use Statamic\Events\SubmissionCreated;
+use StatamicRadPack\Mailchimp\Subscriber;
 
 class AddFromSubmission
 {

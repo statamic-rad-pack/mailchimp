@@ -1,5 +1,5 @@
 # Manage Mailchimp newsletters in Statamic
-[![Latest Version](https://img.shields.io/github/release/silentzco/statamic-mailchimp.svg?style=flat-square)](https://github.com/silentzco/statamic-mailchimp/releases)
+[![Latest Version](https://img.shields.io/github/release/statamic-rad-pack/statamic-mailchimp.svg?style=flat-square)](https://github.com/statamic-rad-pack/mailchimp/releases)
 
 This package provides an easy way to integrate MailChimp with Statamic forms and user registrations.
 
@@ -122,8 +122,4 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security related issues, please email [addon-security@silentz.co](mailto:addon-security@silentz.co) instead of using the issue tracker.
-
-## License
-
-This is commercial software. You may use the package for your sites. Each site requires it's own license.
+Please see [SECURITY](SECURITY.md) for details.
