@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Silentz\Mailchimp\Http\Controllers\GetFormFieldsController;
-use Silentz\Mailchimp\Http\Controllers\GetMergeFieldsController;
-use Silentz\Mailchimp\Http\Controllers\GetTagsController;
-use Silentz\Mailchimp\Http\Controllers\GetUserFieldsController;
+use StatamicRadPack\Mailchimp\Http\Controllers\GetFormFieldsController;
+use StatamicRadPack\Mailchimp\Http\Controllers\GetMergeFieldsController;
+use StatamicRadPack\Mailchimp\Http\Controllers\GetTagsController;
+use StatamicRadPack\Mailchimp\Http\Controllers\GetUserFieldsController;
 
 Route::name('mailchimp.')->prefix('mailchimp')->group(function () {
     Route::get('form-fields/{form}', [GetFormFieldsController::class, '__invoke'])->name('form-fields');

@@ -1,10 +1,10 @@
 <?php
 
-namespace Silentz\Mailchimp\Tests\Unit;
+namespace StatamicRadPack\Mailchimp\Tests\Unit;
 
-use Silentz\Mailchimp\Subscriber;
-use Silentz\Mailchimp\Tests\TestCase;
 use Statamic\Facades\User;
+use StatamicRadPack\Mailchimp\Subscriber;
+use StatamicRadPack\Mailchimp\Tests\TestCase;
 
 class SubscriberFromUserTest extends TestCase
 {

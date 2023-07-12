@@ -1,6 +1,6 @@
 <?php
 
-namespace Silentz\Mailchimp\Http\Controllers;
+namespace StatamicRadPack\Mailchimp\Http\Controllers;
 
 use Statamic\Facades\User;
 use Statamic\Fields\Field;

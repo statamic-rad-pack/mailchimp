@@ -1,5 +1,5 @@
 # Manage Mailchimp newsletters in Statamic
-[![Latest Version](https://img.shields.io/github/release/silentzco/statamic-mailchimp.svg?style=flat-square)](https://github.com/silentzco/statamic-mailchimp/releases)
+[![Latest Version](https://img.shields.io/github/release/statamic-rad-pack/statamic-mailchimp.svg?style=flat-square)](https://github.com/statamic-rad-pack/mailchimp/releases)
 
 This package provides an easy way to integrate MailChimp with Statamic forms and user registrations.
 
@@ -17,7 +17,7 @@ The package name changed, so to update please run `composer remove edalzell/mail
 You can install this package via composer using:
 
 ```bash
-composer require silentz/mailchimp
+composer require statamic-rad-pack/mailchimp
 ```
 
 The package will automatically register itself.
@@ -27,7 +27,7 @@ The package will automatically register itself.
 Set your Mailchimp API Key in your `.env` file. You can get it from: https://us10.admin.mailchimp.com/account/api-key-popup/.
 
 ```yaml
-MAILCHIMP_APIKEY=your-key-here
+MAILCHIMP_API_KEY=your-key-here
 ```
 
 Publish the config file to `config/mailchimp.php` run:
@@ -37,8 +37,8 @@ php artisan vendor:publish --tag="mailchimp-config"
 ```
 
 Configure Mailchimp in the Control Panel
-![control panel](https://raw.githubusercontent.com/silentzco/statamic-mailchimp/main/images/config.png)
-![merge fields](https://raw.githubusercontent.com/silentzco/statamic-mailchimp/main/images/merge-fields.png)
+![control panel](https://raw.githubusercontent.com/statamic-rad-pack/mailchimp/main/images/config.png)
+![merge fields](https://raw.githubusercontent.com/statamic-rad-pack/mailchimp/main/images/merge-fields.png)
 
 ## Usage
 
@@ -122,8 +122,4 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security related issues, please email [addon-security@silentz.co](mailto:addon-security@silentz.co) instead of using the issue tracker.
-
-## License
-
-This is commercial software. You may use the package for your sites. Each site requires it's own license.
+Please see [SECURITY](SECURITY.md) for details.

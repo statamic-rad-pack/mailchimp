@@ -1,25 +1,25 @@
 <?php
 
-namespace Silentz\Mailchimp;
+namespace StatamicRadPack\Mailchimp;
 
 use DrewM\MailChimp\MailChimp;
 use Edalzell\Forma\Forma;
-use Silentz\Mailchimp\Commands\GetGroups;
-use Silentz\Mailchimp\Commands\GetInterests;
-use Silentz\Mailchimp\Commands\Permissions;
-use Silentz\Mailchimp\Fieldtypes\FormFields;
-use Silentz\Mailchimp\Fieldtypes\MailchimpAudience;
-use Silentz\Mailchimp\Fieldtypes\MailchimpMergeFields;
-use Silentz\Mailchimp\Fieldtypes\MailchimpTag;
-use Silentz\Mailchimp\Fieldtypes\UserFields;
-use Silentz\Mailchimp\Http\Controllers\ConfigController;
-use Silentz\Mailchimp\Listeners\AddFromSubmission;
-use Silentz\Mailchimp\Listeners\AddFromUser;
 use Spatie\Newsletter\Facades\Newsletter;
 use Statamic\Events\SubmissionCreated;
 use Statamic\Events\UserRegistered;
 use Statamic\Providers\AddonServiceProvider;
 use Statamic\Support\Arr;
+use StatamicRadPack\Mailchimp\Commands\GetGroups;
+use StatamicRadPack\Mailchimp\Commands\GetInterests;
+use StatamicRadPack\Mailchimp\Commands\Permissions;
+use StatamicRadPack\Mailchimp\Fieldtypes\FormFields;
+use StatamicRadPack\Mailchimp\Fieldtypes\MailchimpAudience;
+use StatamicRadPack\Mailchimp\Fieldtypes\MailchimpMergeFields;
+use StatamicRadPack\Mailchimp\Fieldtypes\MailchimpTag;
+use StatamicRadPack\Mailchimp\Fieldtypes\UserFields;
+use StatamicRadPack\Mailchimp\Http\Controllers\ConfigController;
+use StatamicRadPack\Mailchimp\Listeners\AddFromSubmission;
+use StatamicRadPack\Mailchimp\Listeners\AddFromUser;
 
 class ServiceProvider extends AddonServiceProvider
 {
@@ -56,7 +56,7 @@ class ServiceProvider extends AddonServiceProvider
     {
         parent::boot();
 
-        Forma::add('silentz/mailchimp', ConfigController::class);
+        Forma::add('statamic-rad-pack/mailchimp', ConfigController::class);
 
         $this->app->booted(function () {
             $this->addFormsToNewsletterConfig();

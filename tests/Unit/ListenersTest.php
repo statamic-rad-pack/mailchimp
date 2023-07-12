@@ -1,20 +1,21 @@
 <?php
 
-namespace Silentz\Mailchimp\Tests\Unit;
+namespace StatamicRadPack\Mailchimp\Tests\Unit;
 
 use Illuminate\Support\Facades\Event;
-use Silentz\Mailchimp\Listeners\AddFromSubmission;
-use Silentz\Mailchimp\Listeners\AddFromUser;
-use Silentz\Mailchimp\Tests\TestCase;
 use Statamic\Events\SubmissionCreated;
 use Statamic\Events\UserRegistered;
 use Statamic\Facades\Form as FormAPI;
 use Statamic\Forms\Form;
 use Statamic\Forms\Submission;
+use StatamicRadPack\Mailchimp\Listeners\AddFromSubmission;
+use StatamicRadPack\Mailchimp\Listeners\AddFromUser;
+use StatamicRadPack\Mailchimp\Tests\TestCase;
 
 class ListenersTest extends TestCase
 {
     private Form $form;
+
     private Submission $submission;
 
     public function setUp(): void
@@ -31,7 +32,7 @@ class ListenersTest extends TestCase
 
         $this->submission = $this->form->makeSubmission();
         $this->submission
-            ->data(['foo'=>'bar']);
+            ->data(['foo' => 'bar']);
     }
 
     /** @test */

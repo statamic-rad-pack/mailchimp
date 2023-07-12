@@ -1,6 +1,6 @@
 <?php
 
-namespace Silentz\Mailchimp\Tests;
+namespace StatamicRadPack\Mailchimp\Tests;
 
 use Statamic\Facades\Path;
 use Statamic\Facades\Stache;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Silentz\Mailchimp\Http\Controllers;
+namespace StatamicRadPack\Mailchimp\Http\Controllers;
 
 use Edalzell\Forma\ConfigController as BaseController;
 use Illuminate\Support\Arr;
