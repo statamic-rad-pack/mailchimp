@@ -2,7 +2,7 @@
 
 return [
 
-    'api_key' => env('MAILCHIMP_APIKEY'),
+    'api_key' => env('MAILCHIMP_API_KEY'),
 
     /*
      * If you want to add to your mailchimp audience when a user registers, set this to `true`
