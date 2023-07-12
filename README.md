@@ -37,8 +37,8 @@ php artisan vendor:publish --tag="mailchimp-config"
 ```
 
 Configure Mailchimp in the Control Panel
-![control panel](https://raw.githubusercontent.com/silentzco/statamic-mailchimp/main/images/config.png)
-![merge fields](https://raw.githubusercontent.com/silentzco/statamic-mailchimp/main/images/merge-fields.png)
+![control panel](https://raw.githubusercontent.com/statamic-rad-pack/mailchimp/main/images/config.png)
+![merge fields](https://raw.githubusercontent.com/statamic-rad-pack/mailchimp/main/images/merge-fields.png)
 
 ## Usage
 
