@@ -45,9 +45,9 @@ class TestCase extends OrchestraTestCase
         parent::getEnvironmentSetUp($app);
 
         $app->make(Manifest::class)->manifest = [
-            'silentz/mailchimp' => [
-                'id' => 'silentz/mailchimp',
-                'namespace' => 'Silentz\\Mailchimp',
+            'statamic-rad-pack/mailchimp' => [
+                'id' => 'statamic-rad-pack/mailchimp',
+                'namespace' => 'StatamicRadPack\\Mailchimp',
             ],
         ];
 
