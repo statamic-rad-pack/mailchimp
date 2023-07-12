@@ -17,7 +17,7 @@ The package name changed, so to update please run `composer remove edalzell/mail
 You can install this package via composer using:
 
 ```bash
-composer require silentz/mailchimp
+composer require statamic-rad-pack/mailchimp
 ```
 
 The package will automatically register itself.
