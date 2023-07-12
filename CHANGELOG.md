@@ -2,6 +2,12 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v3.0.2 - 2023-06-28
+
+### 🐛 Fixed
+
+- Asset path [@edalzell](https://github.com/edalzell) (#99)
+
 ## v3.0.1 - 2023-06-28
 
 ### 🐛 Fixed

@@ -27,7 +27,7 @@ The package will automatically register itself.
 Set your Mailchimp API Key in your `.env` file. You can get it from: https://us10.admin.mailchimp.com/account/api-key-popup/.
 
 ```yaml
-MAILCHIMP_APIKEY=your-key-here
+MAILCHIMP_API_KEY=your-key-here
 ```
 
 Publish the config file to `config/mailchimp.php` run:
