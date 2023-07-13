@@ -1,12 +1,12 @@
 # Manage Mailchimp newsletters in Statamic
-[![Latest Version](https://img.shields.io/github/release/statamic-rad-pack/statamic-mailchimp.svg?style=flat-square)](https://github.com/statamic-rad-pack/mailchimp/releases)
+[![Latest Version](https://img.shields.io/github/v/release/statamic-rad-pack/mailchimp)](https://github.com/statamic-rad-pack/mailchimp/releases)
 
 This package provides an easy way to integrate MailChimp with Statamic forms and user registrations.
 
 ## Requirements
 
-* PHP 7.4+
-* Statamic v3.2+
+* PHP 8.1+
+* Statamic v4
 
 ## Updating from < 2.2
 
