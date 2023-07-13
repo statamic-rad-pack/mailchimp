@@ -2,6 +2,12 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v4.0.1 - 2023-07-13
+
+### 🐛 Fixed
+
+- Fix license and versions [@edalzell](https://github.com/edalzell) (#103)
+
 ## v4.0.0 - 2023-07-12
 
 - Moving addon to Statamic's Rad Pack [@edalzell](https://github.com/edalzell) (#102)
