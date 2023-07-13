@@ -1,7 +1,7 @@
 {
     "name": "statamic-rad-pack/mailchimp",
     "description": "Subscribe registrations or contact forms to Mailchimp",
-    "license": "mit",
+    "license": "MIT",
     "type": "statamic-addon",
     "authors": [
         {
