@@ -1,229 +1,255 @@
-api_key:
-  display: 'API Key'
-  type: text
-  read_only: true
-add_new_users:
-  display: Add New Users?
-  type: toggle
-  default: false
-users:
-  fields:
-    -
-      handle: audience_id
-      field:
-        display: 'Audience ID'
-        type: mailchimp_audience
-        mode: select
-        max_items: 1
-        width: 25
-    -
-      handle: tag
-      field:
-        display: 'Tag'
-        type: mailchimp_tag
-        max_items: 1
-        width: 25
-    -
-      handle: tag_field
-      field:
-        display: 'Tag Field'
-        type: form_fields
-        max_items: 1
-        width: 25
-    -
-      handle: interests_field
-      field:
-        display: 'Interests Field'
-        type: user_fields
-        width: 25
-    -
-      handle: disable_opt_in
-      field:
-        display: 'Disable Opt In?'
-        type: toggle
-        width: 33
-        default: false
-    -
-      handle: check_consent
-      field:
-        display: 'Check Consent?'
-        type: toggle
-        width: 33
-        default: false
-    -
-      handle: consent_field
-      field:
-        display: 'Consent Field'
-        type: user_fields
-        width: 33
-        if:
-          check_consent: true
-    -
-      handle: merge_fields
-      field:
+tabs:
+  forms:
+    display: 'Forms'
+    sections:
+      -
+        fields:
+          - 
+            handle: forms
+            field:
+              fields:
+                -
+                  handle: form
+                  field:
+                    display: Form
+                    type: form
+                    max_items: 1
+                    mode: select
+                    width: 33
+                -
+                  handle: primary_email_field
+                  field:
+                    display: 'Email Field'
+                    type: form_fields
+                    max_items: 1
+                    default: email
+                    width: 33
+                -
+                  handle: interests_field
+                  field:
+                    display: 'Interests Field'
+                    type: form_fields
+                    width: 33
+                -
+                  handle: audience_id
+                  field:
+                    display: 'Audience ID'
+                    type: mailchimp_audience
+                    mode: select
+                    max_items: 1
+                    width: 33
+                -
+                  handle: tag
+                  field:
+                    display: 'Tag'
+                    type: mailchimp_tag
+                    max_items: 1
+                    width: 33
+                -
+                  handle: tag_field
+                  field:
+                    display: 'Tag Field'
+                    type: form_fields
+                    max_items: 1
+                    width: 33
+                -
+                  handle: disable_opt_in
+                  field:
+                    display: 'Disable Opt In?'
+                    type: toggle
+                    width: 33
+                    default: false
+                -
+                  handle: check_consent
+                  field:
+                    display: 'Check Consent?'
+                    type: toggle
+                    width: 33
+                    default: false
+                -
+                  handle: consent_field
+                  field:
+                    display: 'Consent Field'
+                    type: form_fields
+                    width: 33
+                    if:
+                      check_consent: true
+                -
+                  handle: marketing_permissions_field
+                  field:
+                    display: 'Marketing Permissions Field'
+                    type: form_fields
+                -
+                  handle: marketing_permissions_field_ids
+                  field:
+                    fields:
+                      -
+                        handle: field_name
+                        field:
+                          input_type: text
+                          display: Form Field
+                          type: text
+                          icon: text
+                          listable: hidden
+                      -
+                        handle: id
+                        field:
+                          input_type: text
+                          display: 'ID'
+                          type: text
+                          max_items: 1
+                          icon: text
+                          listable: hidden
+                    mode: table
+                    reorderable: true
+                    display: 'Marketing Permissions'
+                    type: grid
+                    icon: grid
+                    add_row: 'Add Permission Field'
+                    listable: hidden
+                -
+                  handle: merge_fields
+                  field:
+                    fields:
+                      -
+                        handle: field_name
+                        field:
+                          input_type: text
+                          display: Form Field
+                          type: form_fields
+                          icon: text
+                          listable: hidden
+                      -
+                        handle: tag
+                        field:
+                          input_type: text
+                          display: 'Merge Field'
+                          type: mailchimp_merge_fields
+                          max_items: 1
+                          icon: text
+                          listable: hidden
+                    mode: table
+                    reorderable: true
+                    display: 'Merge Fields'
+                    type: grid
+                    icon: grid
+                    add_row: 'Add Merge Field'
+                    listable: hidden
+              display: ' '
+              type: grid
+              mode: stacked
+              add_row: 'Add Form'
+              instructions: 'Add the forms you want to process Mailchimp submissions for.'
+  users:
+    display: 'Users'
+    sections: 
+      -
         fields:
           -
-            handle: field_name
-            field:
-              input_type: text
-              display: User Field
-              type: user_fields
-              icon: text
-              listable: hidden
+            handle: add_new_users
+            field: 
+              display: 'Add new users to a mailing list as they are created?'
+              type: toggle
+              default: false
           -
-            handle: tag
+            handle: users
             field:
-              input_type: text
-              display: 'Merge Field'
-              type: mailchimp_merge_fields
-              max_items: 1
-              icon: text
-              listable: hidden
-        mode: table
-        reorderable: true
-        display: 'Merge Fields'
-        type: grid
-        icon: grid
-        add_row: 'Add Merge Field'
-        listable: hidden
-  display: User
-  type: grid
-  mode: stacked
-  max_rows: 1
-  min_rows: 1
-  reorderable: false
-  if:
-    add_new_users: 'equals true'
-forms:
-  fields:
-    -
-      handle: form
-      field:
-        display: Form
-        type: form
-        max_items: 1
-        mode: select
-        width: 33
-    -
-      handle: primary_email_field
-      field:
-        display: 'Email Field'
-        type: form_fields
-        max_items: 1
-        default: email
-        width: 33
-    -
-      handle: interests_field
-      field:
-        display: 'Interests Field'
-        type: form_fields
-        width: 33
-    -
-      handle: audience_id
-      field:
-        display: 'Audience ID'
-        type: mailchimp_audience
-        mode: select
-        max_items: 1
-        width: 33
-    -
-      handle: tag
-      field:
-        display: 'Tag'
-        type: mailchimp_tag
-        max_items: 1
-        width: 33
-    -
-      handle: tag_field
-      field:
-        display: 'Tag Field'
-        type: form_fields
-        max_items: 1
-        width: 33
-    -
-      handle: disable_opt_in
-      field:
-        display: 'Disable Opt In?'
-        type: toggle
-        width: 33
-        default: false
-    -
-      handle: check_consent
-      field:
-        display: 'Check Consent?'
-        type: toggle
-        width: 33
-        default: false
-    -
-      handle: consent_field
-      field:
-        display: 'Consent Field'
-        type: form_fields
-        width: 33
-        if:
-          check_consent: true
-    -
-      handle: marketing_permissions_field
-      field:
-        display: 'Marketing Permissions Field'
-        type: form_fields
-    -
-      handle: marketing_permissions_field_ids
-      field:
+              fields:
+                -
+                  handle: audience_id
+                  field:
+                    display: 'Audience ID'
+                    type: mailchimp_audience
+                    mode: select
+                    max_items: 1
+                    width: 25
+                -
+                  handle: tag
+                  field:
+                    display: 'Tag'
+                    type: mailchimp_tag
+                    max_items: 1
+                    width: 25
+                -
+                  handle: tag_field
+                  field:
+                    display: 'Tag Field'
+                    type: form_fields
+                    max_items: 1
+                    width: 25
+                -
+                  handle: interests_field
+                  field:
+                    display: 'Interests Field'
+                    type: user_fields
+                    width: 25
+                -
+                  handle: disable_opt_in
+                  field:
+                    display: 'Disable Opt In?'
+                    type: toggle
+                    width: 33
+                    default: false
+                -
+                  handle: check_consent
+                  field:
+                    display: 'Check Consent?'
+                    type: toggle
+                    width: 33
+                    default: false
+                -
+                  handle: consent_field
+                  field:
+                    display: 'Consent Field'
+                    type: user_fields
+                    width: 33
+                    if:
+                      check_consent: true
+                -
+                  handle: merge_fields
+                  field:
+                    fields:
+                      -
+                        handle: field_name
+                        field:
+                          input_type: text
+                          display: User Field
+                          type: user_fields
+                          icon: text
+                          listable: hidden
+                      -
+                        handle: tag
+                        field:
+                          input_type: text
+                          display: 'Merge Field'
+                          type: mailchimp_merge_fields
+                          max_items: 1
+                          icon: text
+                          listable: hidden
+                    mode: table
+                    reorderable: true
+                    display: 'Merge Fields'
+                    type: grid
+                    icon: grid
+                    add_row: 'Add Merge Field'
+                    listable: hidden
+              display: ' '
+              instructions: 'Add the forms you want to process Mailchimp submissions for.'
+              type: grid
+              mode: stacked
+              max_rows: 1
+              min_rows: 1
+              reorderable: false
+              if:
+                add_new_users: 'equals true'
+  credentials:
+    display: 'Credentials'
+    sections:
+      -
         fields:
           -
-            handle: field_name
+            handle: api_key
             field:
-              input_type: text
-              display: Form Field
+              display: 'API Key'
               type: text
-              icon: text
-              listable: hidden
-          -
-            handle: id
-            field:
-              input_type: text
-              display: 'ID'
-              type: text
-              max_items: 1
-              icon: text
-              listable: hidden
-        mode: table
-        reorderable: true
-        display: 'Marketing Permissions'
-        type: grid
-        icon: grid
-        add_row: 'Add Permission Field'
-        listable: hidden
-    -
-      handle: merge_fields
-      field:
-        fields:
-          -
-            handle: field_name
-            field:
-              input_type: text
-              display: Form Field
-              type: form_fields
-              icon: text
-              listable: hidden
-          -
-            handle: tag
-            field:
-              input_type: text
-              display: 'Merge Field'
-              type: mailchimp_merge_fields
-              max_items: 1
-              icon: text
-              listable: hidden
-        mode: table
-        reorderable: true
-        display: 'Merge Fields'
-        type: grid
-        icon: grid
-        add_row: 'Add Merge Field'
-        listable: hidden
-  display: Forms
-  type: grid
-  mode: stacked
-  add_row: 'Add Form'
+              read_only: true
