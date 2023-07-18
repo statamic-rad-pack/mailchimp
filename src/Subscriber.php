@@ -4,7 +4,7 @@ namespace StatamicRadPack\Mailchimp;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
-use Spatie\Newsletter\Facades\Newsletter;
+use StatamicRadPack\Mailchimp\Facades\Newsletter;
 use Statamic\Auth\User;
 use Statamic\Forms\Submission;
 use Statamic\Support\Arr;
@@ -111,7 +111,7 @@ class Subscriber
             ->all();
 
         // set gdpr marketing permissions
-        // $this->setMarketingPermissions();
+        $this->setMarketingPermissions();
 
         if (! Newsletter::subscribeOrUpdate($this->email(), $mergeData, $this->config->get('form'), $options)) {
             Log::error(Newsletter::getLastError());

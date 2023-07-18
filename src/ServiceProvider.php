@@ -4,7 +4,6 @@ namespace StatamicRadPack\Mailchimp;
 
 use DrewM\MailChimp\MailChimp;
 use Edalzell\Forma\Forma;
-use Spatie\Newsletter\Facades\Newsletter;
 use Statamic\Events\SubmissionCreated;
 use Statamic\Events\UserRegistered;
 use Statamic\Providers\AddonServiceProvider;
@@ -12,6 +11,8 @@ use Statamic\Support\Arr;
 use StatamicRadPack\Mailchimp\Commands\GetGroups;
 use StatamicRadPack\Mailchimp\Commands\GetInterests;
 use StatamicRadPack\Mailchimp\Commands\Permissions;
+use StatamicRadPack\Mailchimp\Newsletter;
+use StatamicRadPack\Mailchimp\NewsletterListCollection;
 use StatamicRadPack\Mailchimp\Fieldtypes\FormFields;
 use StatamicRadPack\Mailchimp\Fieldtypes\MailchimpAudience;
 use StatamicRadPack\Mailchimp\Fieldtypes\MailchimpMergeFields;
@@ -60,17 +61,21 @@ class ServiceProvider extends AddonServiceProvider
 
         $this->app->booted(function () {
             $this->addFormsToNewsletterConfig();
-
-            config()->set('newsletter.driver', Driver::class);
-            config()->set('newsletter.driver_arguments', [
-                'api_key' => config('mailchimp.api_key'),
-            ]);
         });
     }
 
     public function register()
     {
-        $this->app->bind(MailChimp::class, fn ($app) => Newsletter::getApi());
+        $this->app->singleton('newsletter', function () {
+            $mailChimp = new Mailchimp(config('mailchimp.api_key'));
+            $mailChimp->verify_ssl = config('mailchimp.use_ssl', true);
+            
+            $configuredLists = NewsletterListCollection::createFromConfig(config('mailchimp'));
+
+            return new NewsletterDriver($mailChimp, $configuredLists);
+        });
+    
+        $this->app->bind(MailChimp::class, fn ($app) => Facades\Newsletter::getApi());
     }
 
     private function addFormsToNewsletterConfig()
@@ -95,6 +100,6 @@ class ServiceProvider extends AddonServiceProvider
 
         $lists['user'] = ['id' => config('mailchimp.users.audience_id')];
 
-        config(['newsletter.lists' => $lists]);
+        config(['mailchimp.lists' => $lists]);
     }
 }
