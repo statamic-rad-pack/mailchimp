@@ -17,7 +17,6 @@
         "edalzell/forma": "^2.0",
         "laravel/framework": "^9.0 || ^10.0",
         "pixelfear/composer-dist-plugin": "^0.1",
-        "spatie/laravel-newsletter": "^5.0",
         "statamic/cms": "^4.0"
     },
     "require-dev": {

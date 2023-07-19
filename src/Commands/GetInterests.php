@@ -3,7 +3,7 @@
 namespace StatamicRadPack\Mailchimp\Commands;
 
 use Illuminate\Console\Command;
-use Spatie\Newsletter\Facades\Newsletter;
+use StatamicRadPack\Mailchimp\Facades\Newsletter;
 
 class GetInterests extends Command
 {
