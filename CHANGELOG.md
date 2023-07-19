@@ -2,6 +2,16 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v4.1.0 - 2023-07-19
+
+### 🚀 New
+
+- Update config to use tabs [@ryanmitchell](https://github.com/ryanmitchell) (#106)
+
+### 🐛 Fixed
+
+- Remove Spatie\Newsletter dependency and fix marketing permissions [@ryanmitchell](https://github.com/ryanmitchell) (#107)
+
 ## v4.0.1 - 2023-07-13
 
 ### 🐛 Fixed
