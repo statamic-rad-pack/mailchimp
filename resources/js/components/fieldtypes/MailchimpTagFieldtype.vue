@@ -3,6 +3,7 @@
         <small class="help-block text-grey-60" v-if="!list">{{ __('Select audience') }}</small>
 
         <v-select
+            append-to-body
             v-if="showFieldtype && list"
             v-model="selected"
             :clearable="true"
