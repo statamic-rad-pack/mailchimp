@@ -2,6 +2,12 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v4.1.1 - 2023-07-26
+
+### 🐛 Fixed
+
+- Add append-to-body to custom fields [@ryanmitchell](https://github.com/ryanmitchell) (#109)
+
 ## v4.1.0 - 2023-07-19
 
 ### 🚀 New
