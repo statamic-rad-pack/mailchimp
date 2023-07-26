@@ -1,6 +1,7 @@
 <template>
     <div class="user-field-fieldtype-wrapper">
         <v-select
+            append-to-body
             v-model="selected"
             :clearable="true"
             :options="fields"

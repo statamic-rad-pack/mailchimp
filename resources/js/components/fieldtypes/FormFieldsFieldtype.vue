@@ -3,6 +3,7 @@
         <small class="help-block text-grey-60" v-if="!form">{{ __('Select form') }}</small>
 
         <v-select
+            append-to-body
             v-if="showFieldtype && form"
             v-model="selected"
             :clearable="true"
