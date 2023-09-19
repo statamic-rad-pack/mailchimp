@@ -78,7 +78,7 @@ To work with Mailchimp's [Marketing Permissions](https://mailchimp.com/help/coll
 1. Get your permissions and ids by running `php artisan mailchimp:permissions {form-handle}` for each of the forms that are in Mailchimp. For example, mine look like:
 
 ```
-❯ plz mailchimp:permissions contact_us
+❯ php please mailchimp:permissions contact_us
 +-------------------------------+------------+
 | Marketing Permission          | ID         |
 +-------------------------------+------------+
