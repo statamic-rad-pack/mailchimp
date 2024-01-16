@@ -30,7 +30,8 @@ Set your Mailchimp API Key in your `.env` file. You can get it from: https://us1
 MAILCHIMP_API_KEY=your-key-here
 ```
 
-Publish the config file to `config/mailchimp.php` run:
+**NOTE: This addon saves its settings to the file `config/mailchimp.php`**
+To initialize the *required* config file run:
 
 ```bash
 php artisan vendor:publish --tag="mailchimp-config"
