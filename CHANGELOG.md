@@ -2,6 +2,17 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v4.1.2 - 2024-03-11
+
+- Community Health Files [@duncanmcclean](https://github.com/duncanmcclean) (#114)
+- Clarify the vendor config publish step is required [@godismyjudge95](https://github.com/godismyjudge95) (#113)
+- Don't a use console alias in README [@robdekort](https://github.com/robdekort) (#110)
+
+### 🐛 Fixed
+
+- Remove the default form config [@ryanmitchell](https://github.com/ryanmitchell) (#112)
+- Auto-publish config [@edalzell](https://github.com/edalzell) (#116)
+
 ## v4.1.1 - 2023-07-26
 
 ### 🐛 Fixed
