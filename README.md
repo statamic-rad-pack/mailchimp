@@ -30,13 +30,6 @@ Set your Mailchimp API Key in your `.env` file. You can get it from: https://us1
 MAILCHIMP_API_KEY=your-key-here
 ```
 
-**NOTE: This addon saves its settings to the file `config/mailchimp.php`**
-To initialize the *required* config file run:
-
-```bash
-php artisan vendor:publish --tag="mailchimp-config"
-```
-
 Configure Mailchimp in the Control Panel
 ![control panel](https://raw.githubusercontent.com/statamic-rad-pack/mailchimp/main/images/config.png)
 ![merge fields](https://raw.githubusercontent.com/statamic-rad-pack/mailchimp/main/images/merge-fields.png)
@@ -252,7 +245,6 @@ return [
      * The listName to use when no listName has been specified in a method.
      */
     'defaultListName' => 'subscribers',
-
 ```
 
 ## Usage
