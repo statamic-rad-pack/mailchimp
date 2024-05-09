@@ -5,9 +5,6 @@
     <testsuite name="Unit">
       <directory suffix="Test.php">tests/Unit/</directory>
     </testsuite>
-    <testsuite name="Test Suite">
-      <directory suffix="Test.php">./tests</directory>
-    </testsuite>
   </testsuites>
   <php>
     <env name="APP_ENV" value="testing"/>

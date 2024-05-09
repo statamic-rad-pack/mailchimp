@@ -2,6 +2,7 @@
 
 namespace StatamicRadPack\Mailchimp\Tests\Unit;
 
+use PHPUnit\Framework\Attributes\Test;
 use Statamic\Facades\User;
 use StatamicRadPack\Mailchimp\Subscriber;
 use StatamicRadPack\Mailchimp\Tests\TestCase;
@@ -19,7 +20,7 @@ class SubscriberFromUserTest extends TestCase
             ->password('password');
     }
 
-    /** @test */
+    #[Test]
     public function can_create_subscriber_from_user()
     {
         $config = [[
@@ -31,7 +32,7 @@ class SubscriberFromUserTest extends TestCase
         $this->assertInstanceOf(Subscriber::class, $subscriber);
     }
 
-    /** @test */
+    #[Test]
     public function has_consent_by_default()
     {
         $subscriber = new Subscriber($this->userData(), []);
@@ -39,7 +40,7 @@ class SubscriberFromUserTest extends TestCase
         $this->assertTrue($subscriber->hasConsent());
     }
 
-    /** @test */
+    #[Test]
     public function no_consent_when_no_consent_field()
     {
         $config = [
@@ -51,7 +52,7 @@ class SubscriberFromUserTest extends TestCase
         $this->assertFalse($subscriber->hasConsent());
     }
 
-    // /** @test */
+    // #[Test]
     // public function no_consent_when_consent_field_is_false()
     // {
     //     $formConfig = [
@@ -70,7 +71,7 @@ class SubscriberFromUserTest extends TestCase
     //     $this->assertFalse($consent);
     // }
 
-    // /** @test */
+    // #[Test]
     // public function consent_when_default_consent_field_is_true()
     // {
     //     $formConfig = [
@@ -89,7 +90,7 @@ class SubscriberFromUserTest extends TestCase
     //     $this->assertTrue($consent);
     // }
 
-    // /** @test */
+    // #[Test]
     // public function consent_when_configured_consent_field_is_true()
     // {
     //     $formConfig =

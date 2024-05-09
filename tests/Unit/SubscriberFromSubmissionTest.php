@@ -2,6 +2,7 @@
 
 namespace StatamicRadPack\Mailchimp\Tests\Unit;
 
+use PHPUnit\Framework\Attributes\Test;
 use Statamic\Facades\Form as FormAPI;
 use Statamic\Forms\Form;
 use Statamic\Forms\Submission;
@@ -33,7 +34,7 @@ class SubscriberFromSubmissionTest extends TestCase
             ]);
     }
 
-    /** @test */
+    #[Test]
     public function can_create_subscriber_from_submission()
     {
         $formConfig = [[
@@ -46,7 +47,7 @@ class SubscriberFromSubmissionTest extends TestCase
         $this->assertInstanceOf(Subscriber::class, $subscriber);
     }
 
-    /** @test */
+    #[Test]
     public function has_consent_by_default()
     {
         $formConfig = [
@@ -60,7 +61,7 @@ class SubscriberFromSubmissionTest extends TestCase
         $this->assertTrue($consent);
     }
 
-    /** @test */
+    #[Test]
     public function no_consent_when_no_consent_field()
     {
         $formConfig = [
@@ -77,7 +78,7 @@ class SubscriberFromSubmissionTest extends TestCase
         $this->assertFalse($consent);
     }
 
-    /** @test */
+    #[Test]
     public function no_consent_when_consent_field_is_false()
     {
         $formConfig = [
@@ -96,7 +97,7 @@ class SubscriberFromSubmissionTest extends TestCase
         $this->assertFalse($consent);
     }
 
-    /** @test */
+    #[Test]
     public function consent_when_default_consent_field_is_true()
     {
         $formConfig = [
@@ -115,7 +116,7 @@ class SubscriberFromSubmissionTest extends TestCase
         $this->assertTrue($consent);
     }
 
-    /** @test */
+    #[Test]
     public function consent_when_configured_consent_field_is_true()
     {
         $formConfig =
@@ -136,7 +137,7 @@ class SubscriberFromSubmissionTest extends TestCase
         $this->assertTrue($consent);
     }
 
-    /** @test */
+    #[Test]
     public function uses_tag_config_when_present()
     {
         $formConfig =
@@ -154,7 +155,7 @@ class SubscriberFromSubmissionTest extends TestCase
         $this->assertEquals('foo', $subscriber->tag());
     }
 
-    /** @test */
+    #[Test]
     public function uses_tag_field_when_present()
     {
         $formConfig =
@@ -173,7 +174,7 @@ class SubscriberFromSubmissionTest extends TestCase
         $this->assertEquals('foo', $subscriber->tag());
     }
 
-    /** @test */
+    #[Test]
     public function skips_tag_field_when_not_present()
     {
         $formConfig =
