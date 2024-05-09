@@ -3,6 +3,7 @@
 namespace StatamicRadPack\Mailchimp\Tests\Unit;
 
 use Illuminate\Support\Facades\Event;
+use PHPUnit\Framework\Attributes\Test;
 use Statamic\Events\SubmissionCreated;
 use Statamic\Events\UserRegistered;
 use Statamic\Facades\Form as FormAPI;
@@ -35,7 +36,7 @@ class ListenersTest extends TestCase
             ->data(['foo' => 'bar']);
     }
 
-    /** @test */
+    #[Test]
     public function does_respond_to_submission_created_event()
     {
         $event = new SubmissionCreated($this->submission);
@@ -45,7 +46,7 @@ class ListenersTest extends TestCase
         Event::dispatch($event);
     }
 
-    /** @test */
+    #[Test]
     public function does_respond_to_user_registered_event()
     {
         $event = new UserRegistered([]);

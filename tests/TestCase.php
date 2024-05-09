@@ -3,69 +3,22 @@
 namespace StatamicRadPack\Mailchimp\Tests;
 
 use JMac\Testing\Traits\AdditionalAssertions;
-use Orchestra\Testbench\TestCase as OrchestraTestCase;
-use Statamic\Extend\Manifest;
 use Statamic\Facades\Blueprint as BlueprintFacade;
 use Statamic\Facades\YAML;
-use Statamic\Providers\StatamicServiceProvider;
 use Statamic\Statamic;
+use Statamic\Testing\AddonTestCase;
+use Statamic\Testing\Concerns\PreventsSavingStacheItemsToDisk;
 use StatamicRadPack\Mailchimp\ServiceProvider;
 
-class TestCase extends OrchestraTestCase
+class TestCase extends AddonTestCase
 {
-    use AdditionalAssertions, PreventSavingStacheItemsToDisk;
+    use AdditionalAssertions, PreventsSavingStacheItemsToDisk;
 
-    public function setup(): void
-    {
-        parent::setup();
-        $this->preventSavingStacheItemsToDisk();
-    }
-
-    public function tearDown(): void
-    {
-        $this->deleteFakeStacheDirectory();
-
-        parent::tearDown();
-    }
-
-    protected function getPackageProviders($app)
-    {
-        return [StatamicServiceProvider::class, ServiceProvider::class];
-    }
-
-    protected function getPackageAliases($app)
-    {
-        return [
-            'Statamic' => Statamic::class,
-        ];
-    }
-
-    protected function getEnvironmentSetUp($app)
-    {
-        parent::getEnvironmentSetUp($app);
-
-        $app->make(Manifest::class)->manifest = [
-            'statamic-rad-pack/mailchimp' => [
-                'id' => 'statamic-rad-pack/mailchimp',
-                'namespace' => 'StatamicRadPack\\Mailchimp',
-            ],
-        ];
-
-        config(['statamic.users.repository' => 'file']);
-    }
+    protected string $addonServiceProvider = ServiceProvider::class;
 
     protected function resolveApplicationConfiguration($app)
     {
         parent::resolveApplicationConfiguration($app);
-
-        $configs = ['assets', 'cp', 'forms', 'routes', 'static_caching', 'sites', 'stache', 'system', 'users'];
-
-        foreach ($configs as $config) {
-            $app['config']->set("statamic.$config", require __DIR__."/../vendor/statamic/cms/config/{$config}.php");
-        }
-
-        // Setting the user repository to the default flat file system
-        $app['config']->set('statamic.users.repository', 'file');
 
         // Assume the pro edition within tests
         $app['config']->set('statamic.editions.pro', true);
