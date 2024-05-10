@@ -5,12 +5,8 @@ This package provides an easy way to integrate MailChimp with Statamic forms and
 
 ## Requirements
 
-* PHP 8.1+
-* Statamic v4
-
-## Updating from < 2.2
-
-The package name changed, so to update please run `composer remove edalzell/mailchimp` then follow the instructions below.
+* PHP 8.2+
+* Statamic v5
 
 ## Installation
 
