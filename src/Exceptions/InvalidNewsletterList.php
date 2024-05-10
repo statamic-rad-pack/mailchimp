@@ -15,8 +15,7 @@ class InvalidNewsletterList extends Exception
     }
 
     /**
-     * @param string $name
-     *
+     * @param  string  $name
      * @return static
      */
     public static function noListWithName($name)
@@ -25,8 +24,6 @@ class InvalidNewsletterList extends Exception
     }
 
     /**
-     * @param $defaultListName
-     *
      * @return static
      */
     public static function defaultListDoesNotExist($defaultListName)

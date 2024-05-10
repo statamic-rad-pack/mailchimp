@@ -21,7 +21,6 @@ use StatamicRadPack\Mailchimp\Http\Controllers\ConfigController;
 use StatamicRadPack\Mailchimp\Listeners\AddFromSubmission;
 use StatamicRadPack\Mailchimp\Listeners\AddFromUser;
 
-
 class ServiceProvider extends AddonServiceProvider
 {
     protected $commands = [

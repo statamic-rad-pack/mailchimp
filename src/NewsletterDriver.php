@@ -4,11 +4,6 @@ namespace StatamicRadPack\Mailchimp;
 
 use DrewM\MailChimp\MailChimp;
 
-/**
- * Newsletter
- *
- * @package StatamicRadPack\Mailchimp
- */
 class NewsletterDriver
 {
     /** @var \DrewM\MailChimp\MailChimp */
@@ -17,12 +12,6 @@ class NewsletterDriver
     /** @var \StatamicRadPack\Mailchimp\NewsletterListCollection */
     protected $lists;
 
-    /**
-     * Creates a new newsletter instance
-     *
-     * @param MailChimp $mailChimp
-     * @param NewsletterListCollection $lists
-     */
     public function __construct(MailChimp $mailChimp, NewsletterListCollection $lists)
     {
         $this->mailChimp = $mailChimp;
@@ -31,13 +20,6 @@ class NewsletterDriver
     }
 
     /**
-     * Subscribe
-     *
-     * @param string $email
-     * @param array $mergeFields
-     * @param string $listName
-     * @param array $options
-     *
      * @return array|bool
      *
      * @throws Exceptions\InvalidNewsletterList
@@ -58,13 +40,6 @@ class NewsletterDriver
     }
 
     /**
-     * Subscribe pending
-     *
-     * @param string $email
-     * @param array $mergeFields
-     * @param string $listName
-     * @param array $options
-     *
      * @return array|bool
      *
      * @throws Exceptions\InvalidNewsletterList
@@ -77,13 +52,6 @@ class NewsletterDriver
     }
 
     /**
-     * Subscribe or update
-     *
-     * @param string $email
-     * @param array $mergeFields
-     * @param string $listName
-     * @param array $options
-     *
      * @return array|bool
      *
      * @throws Exceptions\InvalidNewsletterList
@@ -104,11 +72,6 @@ class NewsletterDriver
     }
 
     /**
-     * Get members
-     *
-     * @param string $listName
-     * @param array $parameters
-     *
      * @return array|bool
      *
      * @throws Exceptions\InvalidNewsletterList
@@ -121,11 +84,6 @@ class NewsletterDriver
     }
 
     /**
-     * Get a member
-     *
-     * @param string $email
-     * @param string $listName
-     *
      * @return array|bool
      *
      * @throws Exceptions\InvalidNewsletterList
@@ -138,11 +96,6 @@ class NewsletterDriver
     }
 
     /**
-     * Get activity for a member
-     *
-     * @param string $email
-     * @param string $listName
-     *
      * @return array|bool
      *
      * @throws Exceptions\InvalidNewsletterList
@@ -155,13 +108,6 @@ class NewsletterDriver
     }
 
     /**
-     * Determine is member exists
-     *
-     * @param string $email
-     * @param string $listName
-     *
-     * @return bool
-     *
      * @throws Exceptions\InvalidNewsletterList
      */
     public function hasMember(string $email, string $listName = ''): bool
@@ -180,13 +126,6 @@ class NewsletterDriver
     }
 
     /**
-     * Determine if email is subscribed
-     *
-     * @param string $email
-     * @param string $listName
-     *
-     * @return bool
-     *
      * @throws Exceptions\InvalidNewsletterList
      */
     public function isSubscribed(string $email, string $listName = ''): bool
@@ -205,11 +144,6 @@ class NewsletterDriver
     }
 
     /**
-     * Unsubscribe
-     *
-     * @param string $email
-     * @param string $listName
-     *
      * @return array|bool
      *
      * @throws Exceptions\InvalidNewsletterList
@@ -230,12 +164,6 @@ class NewsletterDriver
     }
 
     /**
-     * Change member's email address
-     *
-     * @param string $currentEmailAddress
-     * @param string $newEmailAddress
-     * @param string $listName
-     *
      * @return array|bool
      *
      * @throws Exceptions\InvalidNewsletterList
@@ -252,11 +180,6 @@ class NewsletterDriver
     }
 
     /**
-     * Remove an email
-     *
-     * @param string $email
-     * @param string $listName
-     *
      * @return array|bool
      *
      * @throws Exceptions\InvalidNewsletterList
@@ -271,11 +194,6 @@ class NewsletterDriver
     }
 
     /**
-     * Delete permanently
-     *
-     * @param string $email
-     * @param string $listName
-     *
      * @return array|bool
      *
      * @throws Exceptions\InvalidNewsletterList
@@ -290,11 +208,6 @@ class NewsletterDriver
     }
 
     /**
-     * Get tags
-     *
-     * @param string $email
-     * @param string $listName
-     *
      * @return array|bool
      *
      * @throws Exceptions\InvalidNewsletterList
@@ -307,12 +220,6 @@ class NewsletterDriver
     }
 
     /**
-     * Add one or more tags
-     *
-     * @param array $tags
-     * @param string $email
-     * @param string $listName
-     *
      * @return array|bool
      *
      * @throws Exceptions\InvalidNewsletterList
@@ -331,12 +238,6 @@ class NewsletterDriver
     }
 
     /**
-     * Remove tags
-     *
-     * @param array $tags
-     * @param string $email
-     * @param string $listName
-     *
      * @return array|bool
      *
      * @throws Exceptions\InvalidNewsletterList
@@ -355,17 +256,8 @@ class NewsletterDriver
     }
 
     /**
-     * Create a new campaign
-     *
-     * @param string $fromName
-     * @param string $replyTo
-     * @param string $subject
-     * @param string $html
-     * @param string $listName
-     * @param array $options
-     * @param array $contentOptions
-     *
      * @return array|bool
+     *
      * @throws Exceptions\InvalidNewsletterList
      */
     public function createCampaign(
@@ -411,12 +303,6 @@ class NewsletterDriver
     }
 
     /**
-     * Update content of a campaign
-     *
-     * @param string $campaignId
-     * @param string $html
-     * @param array $options
-     *
      * @return array|bool
      */
     public function updateContent(string $campaignId, string $html, array $options = [])
@@ -434,19 +320,12 @@ class NewsletterDriver
         return $response;
     }
 
-    /**
-     * Return the API driver
-     *
-     * @return MailChimp
-     */
     public function getApi(): MailChimp
     {
         return $this->mailChimp;
     }
 
     /**
-     * Returns the last error
-     *
      * @return string|false
      */
     public function getLastError()
@@ -454,37 +333,16 @@ class NewsletterDriver
         return $this->mailChimp->getLastError();
     }
 
-    /**
-     * Determine if last action succeeded
-     *
-     * @return bool
-     */
     public function lastActionSucceeded(): bool
     {
         return $this->mailChimp->success();
     }
 
-    /**
-     * Returns a subscribed email's hash
-     *
-     * @param string $email
-     *
-     * @return string
-     */
     protected function getSubscriberHash(string $email): string
     {
         return $this->mailChimp->subscriberHash($email);
     }
 
-    /**
-     * Return subscription options
-     *
-     * @param string $email
-     * @param array $mergeFields
-     * @param array $options
-     *
-     * @return array
-     */
     protected function getSubscriptionOptions(string $email, array $mergeFields, array $options): array
     {
         $defaultOptions = [
@@ -503,10 +361,6 @@ class NewsletterDriver
     }
 
     /**
-     * Returns the marketing permissions
-     *
-     * @param string $listName
-     *
      * @return array|false
      *
      * @throws Exceptions\InvalidNewsletterList
@@ -534,13 +388,6 @@ class NewsletterDriver
     }
 
     /**
-     * Set the marketing permissions for an email
-     *
-     * @param string $email
-     * @param string $permission
-     * @param bool $bool
-     * @param string $listName
-     *
      * @return array|bool
      *
      * @throws Exceptions\InvalidNewsletterList
@@ -552,10 +399,10 @@ class NewsletterDriver
         $id = $list->getMarketingPermission($permission);
 
         $permissions = [
-            "marketing_permissions" => [
+            'marketing_permissions' => [
                 [
-                    "marketing_permission_id" => $id,
-                    "enabled" => $bool,
+                    'marketing_permission_id' => $id,
+                    'enabled' => $bool,
                 ],
             ],
         ];
