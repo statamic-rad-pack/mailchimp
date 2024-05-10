@@ -6,7 +6,7 @@ use DrewM\MailChimp\MailChimp;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Newsletter Facade
+ * Newsletter Facade.
  *
  * @method static array|bool subscribe(string $email, array $mergeFields = [], string $listName = '', array $options = [])
  * @method static array|bool subscribeOrUpdate(string $email, array $mergeFields = [], string $listName = '', array $options = [])
