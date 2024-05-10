@@ -2,6 +2,12 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v5.0.1 - 2024-05-10
+
+### 🧰 Maintenance
+
+- Fix formatting [@edalzell](https://github.com/edalzell) (#119)
+
 ## v5.0.0 - 2024-05-10
 
 - Statamic 5 support [@ryanmitchell](https://github.com/ryanmitchell) (#118)
