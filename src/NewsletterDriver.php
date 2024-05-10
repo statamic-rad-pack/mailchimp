@@ -6,8 +6,6 @@ use DrewM\MailChimp\MailChimp;
 
 /**
  * Newsletter
- *
- * @package StatamicRadPack\Mailchimp
  */
 class NewsletterDriver
 {
@@ -19,9 +17,6 @@ class NewsletterDriver
 
     /**
      * Creates a new newsletter instance
-     *
-     * @param MailChimp $mailChimp
-     * @param NewsletterListCollection $lists
      */
     public function __construct(MailChimp $mailChimp, NewsletterListCollection $lists)
     {
@@ -33,10 +28,6 @@ class NewsletterDriver
     /**
      * Subscribe
      *
-     * @param string $email
-     * @param array $mergeFields
-     * @param string $listName
-     * @param array $options
      *
      * @return array|bool
      *
@@ -60,10 +51,6 @@ class NewsletterDriver
     /**
      * Subscribe pending
      *
-     * @param string $email
-     * @param array $mergeFields
-     * @param string $listName
-     * @param array $options
      *
      * @return array|bool
      *
@@ -79,10 +66,6 @@ class NewsletterDriver
     /**
      * Subscribe or update
      *
-     * @param string $email
-     * @param array $mergeFields
-     * @param string $listName
-     * @param array $options
      *
      * @return array|bool
      *
@@ -106,8 +89,6 @@ class NewsletterDriver
     /**
      * Get members
      *
-     * @param string $listName
-     * @param array $parameters
      *
      * @return array|bool
      *
@@ -123,8 +104,6 @@ class NewsletterDriver
     /**
      * Get a member
      *
-     * @param string $email
-     * @param string $listName
      *
      * @return array|bool
      *
@@ -140,8 +119,6 @@ class NewsletterDriver
     /**
      * Get activity for a member
      *
-     * @param string $email
-     * @param string $listName
      *
      * @return array|bool
      *
@@ -157,10 +134,7 @@ class NewsletterDriver
     /**
      * Determine is member exists
      *
-     * @param string $email
-     * @param string $listName
      *
-     * @return bool
      *
      * @throws Exceptions\InvalidNewsletterList
      */
@@ -182,10 +156,7 @@ class NewsletterDriver
     /**
      * Determine if email is subscribed
      *
-     * @param string $email
-     * @param string $listName
      *
-     * @return bool
      *
      * @throws Exceptions\InvalidNewsletterList
      */
@@ -207,8 +178,6 @@ class NewsletterDriver
     /**
      * Unsubscribe
      *
-     * @param string $email
-     * @param string $listName
      *
      * @return array|bool
      *
@@ -232,9 +201,6 @@ class NewsletterDriver
     /**
      * Change member's email address
      *
-     * @param string $currentEmailAddress
-     * @param string $newEmailAddress
-     * @param string $listName
      *
      * @return array|bool
      *
@@ -254,8 +220,6 @@ class NewsletterDriver
     /**
      * Remove an email
      *
-     * @param string $email
-     * @param string $listName
      *
      * @return array|bool
      *
@@ -273,8 +237,6 @@ class NewsletterDriver
     /**
      * Delete permanently
      *
-     * @param string $email
-     * @param string $listName
      *
      * @return array|bool
      *
@@ -292,8 +254,6 @@ class NewsletterDriver
     /**
      * Get tags
      *
-     * @param string $email
-     * @param string $listName
      *
      * @return array|bool
      *
@@ -309,9 +269,6 @@ class NewsletterDriver
     /**
      * Add one or more tags
      *
-     * @param array $tags
-     * @param string $email
-     * @param string $listName
      *
      * @return array|bool
      *
@@ -333,9 +290,6 @@ class NewsletterDriver
     /**
      * Remove tags
      *
-     * @param array $tags
-     * @param string $email
-     * @param string $listName
      *
      * @return array|bool
      *
@@ -357,15 +311,9 @@ class NewsletterDriver
     /**
      * Create a new campaign
      *
-     * @param string $fromName
-     * @param string $replyTo
-     * @param string $subject
-     * @param string $html
-     * @param string $listName
-     * @param array $options
-     * @param array $contentOptions
      *
      * @return array|bool
+     *
      * @throws Exceptions\InvalidNewsletterList
      */
     public function createCampaign(
@@ -413,9 +361,6 @@ class NewsletterDriver
     /**
      * Update content of a campaign
      *
-     * @param string $campaignId
-     * @param string $html
-     * @param array $options
      *
      * @return array|bool
      */
@@ -436,8 +381,6 @@ class NewsletterDriver
 
     /**
      * Return the API driver
-     *
-     * @return MailChimp
      */
     public function getApi(): MailChimp
     {
@@ -456,8 +399,6 @@ class NewsletterDriver
 
     /**
      * Determine if last action succeeded
-     *
-     * @return bool
      */
     public function lastActionSucceeded(): bool
     {
@@ -466,10 +407,6 @@ class NewsletterDriver
 
     /**
      * Returns a subscribed email's hash
-     *
-     * @param string $email
-     *
-     * @return string
      */
     protected function getSubscriberHash(string $email): string
     {
@@ -478,12 +415,6 @@ class NewsletterDriver
 
     /**
      * Return subscription options
-     *
-     * @param string $email
-     * @param array $mergeFields
-     * @param array $options
-     *
-     * @return array
      */
     protected function getSubscriptionOptions(string $email, array $mergeFields, array $options): array
     {
@@ -505,7 +436,6 @@ class NewsletterDriver
     /**
      * Returns the marketing permissions
      *
-     * @param string $listName
      *
      * @return array|false
      *
@@ -536,10 +466,6 @@ class NewsletterDriver
     /**
      * Set the marketing permissions for an email
      *
-     * @param string $email
-     * @param string $permission
-     * @param bool $bool
-     * @param string $listName
      *
      * @return array|bool
      *
@@ -552,10 +478,10 @@ class NewsletterDriver
         $id = $list->getMarketingPermission($permission);
 
         $permissions = [
-            "marketing_permissions" => [
+            'marketing_permissions' => [
                 [
-                    "marketing_permission_id" => $id,
-                    "enabled" => $bool,
+                    'marketing_permission_id' => $id,
+                    'enabled' => $bool,
                 ],
             ],
         ];

@@ -4,10 +4,10 @@ namespace StatamicRadPack\Mailchimp;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
-use StatamicRadPack\Mailchimp\Facades\Newsletter;
 use Statamic\Auth\User;
 use Statamic\Forms\Submission;
 use Statamic\Support\Arr;
+use StatamicRadPack\Mailchimp\Facades\Newsletter;
 
 class Subscriber
 {
@@ -37,7 +37,7 @@ class Subscriber
     /**
      * @param  array|Collection  $data
      */
-    public function __construct($data, array $config = null)
+    public function __construct($data, ?array $config = null)
     {
         $this->data = collect($data);
         $this->config = collect($config);

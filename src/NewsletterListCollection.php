@@ -2,8 +2,8 @@
 
 namespace StatamicRadPack\Mailchimp;
 
-use Exceptions\InvalidNewsletterList;
 use Illuminate\Support\Collection;
+use StatamicRadPack\Mailchimp\Exceptions\InvalidNewsletterList;
 
 class NewsletterListCollection extends Collection
 {
