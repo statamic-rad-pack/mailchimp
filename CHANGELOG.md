@@ -2,6 +2,10 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v5.0.0 - 2024-05-10
+
+- Statamic 5 support [@ryanmitchell](https://github.com/ryanmitchell) (#118)
+
 ## v4.1.2 - 2024-03-11
 
 - Community Health Files [@duncanmcclean](https://github.com/duncanmcclean) (#114)
