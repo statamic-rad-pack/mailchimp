@@ -20,7 +20,7 @@ The package will automatically register itself.
 
 ## Configuration
 
-Set your Mailchimp API Key in your `.env` file. You can get it from: https://us10.admin.mailchimp.com/account/api-key-popup/.
+Set your Mailchimp API Key in your `.env` file. You can get it from: [https://us10.admin.mailchimp.com/account/api-key-popup/](https://us14.admin.mailchimp.com/account/api/) and create a new key.
 
 ```yaml
 MAILCHIMP_API_KEY=your-key-here
