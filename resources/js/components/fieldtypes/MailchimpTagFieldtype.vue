@@ -42,8 +42,10 @@ export default {
 
     computed: {
         list() {
-            let key = this.namePrefix.replace('[', '.').replace(']', '.') + 'audience_id.0' ;
-            return data_get(this.$store.state.publish[this.storeName].values, key)
+            return data_get(
+                this.$store.state.publish[this.storeName].values,
+                'mailchimp.settings.audience_id.0'
+            )
         },
 
     },
