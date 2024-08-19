@@ -33,10 +33,7 @@ class Subscriber
             return null;
         }
 
-        return new self(
-            $submission->data(),
-            $config
-        );
+        return new self($submission->data(), $config);
     }
 
     public static function fromUser(User $user): self
