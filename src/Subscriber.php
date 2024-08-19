@@ -20,19 +20,19 @@ class Subscriber
         if (! $form = $submission->form()) {
             return null;
         }
-        
+
         if (! $config = $form->get('mailchimp', [])) {
             return null;
         }
-        
+
         if (! $config['enabled'] ?? false) {
             return null;
         }
-        
+
         if (! $config = Arr::get($config, 'settings', [])) {
             return null;
         }
-        
+
         return new self(
             $submission->data(),
             $config

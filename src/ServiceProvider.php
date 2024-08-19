@@ -65,13 +65,13 @@ class ServiceProvider extends AddonServiceProvider
                 '--tag' => 'mailchimp-config',
             ]);
         });
-        
+
         $this->addFormConfigFields();
 
         $this->app->booted(function () {
             $this->addFormsToNewsletterConfig();
         });
-        
+
         $this->migrateToFormConfig();
     }
 
@@ -82,7 +82,7 @@ class ServiceProvider extends AddonServiceProvider
             $mailChimp->verify_ssl = config('mailchimp.use_ssl', true);
 
             $configuredLists = NewsletterListCollection::createFromConfig(config('mailchimp'));
-            
+
             return new NewsletterDriver($mailChimp, $configuredLists);
         });
 
@@ -98,11 +98,11 @@ class ServiceProvider extends AddonServiceProvider
                 if (! $enabled = Arr::get($data, 'enabled')) {
                     return [];
                 }
-                
+
                 if (! $data = Arr::get($data, 'settings', [])) {
                     return [];
                 }
-                
+
                 return [
                     $form->handle() => Arr::removeNullValues([
                         'id' => Arr::get($data, 'audience_id'),
@@ -120,7 +120,7 @@ class ServiceProvider extends AddonServiceProvider
 
         config(['mailchimp.lists' => $lists]);
     }
-    
+
     private function addFormConfigFields()
     {
 
@@ -139,8 +139,8 @@ class ServiceProvider extends AddonServiceProvider
                             'display' => __('Enabled'),
                             'width' => 100,
                         ],
-                    ],   
-                    
+                    ],
+
                     [
                         'handle' => 'settings',
                         'field' => [
@@ -150,7 +150,7 @@ class ServiceProvider extends AddonServiceProvider
                             'fullscreen' => false,
                             'show_when' => ['enabled' => true],
                             'fields' => [
-                    
+
                                 [
                                     'handle' => 'primary_email_field',
                                     'field' => [
@@ -160,8 +160,8 @@ class ServiceProvider extends AddonServiceProvider
                                         'display' => __('Email Field'),
                                         'width' => 33,
                                     ],
-                                ], 
-                                
+                                ],
+
                                 [
                                     'handle' => 'interests_field',
                                     'field' => [
@@ -170,8 +170,8 @@ class ServiceProvider extends AddonServiceProvider
                                         'display' => __('Interests Field'),
                                         'width' => 33,
                                     ],
-                                ],  
-                                
+                                ],
+
                                 [
                                     'handle' => 'audience_id',
                                     'field' => [
@@ -181,8 +181,8 @@ class ServiceProvider extends AddonServiceProvider
                                         'display' => __('Audience ID'),
                                         'width' => 33,
                                     ],
-                                ], 
-                                
+                                ],
+
                                 [
                                     'handle' => 'tag',
                                     'field' => [
@@ -191,8 +191,8 @@ class ServiceProvider extends AddonServiceProvider
                                         'display' => __('Tag'),
                                         'width' => 33,
                                     ],
-                                ], 
-                                
+                                ],
+
                                 [
                                     'handle' => 'tag_field',
                                     'field' => [
@@ -201,8 +201,8 @@ class ServiceProvider extends AddonServiceProvider
                                         'display' => __('Tag Field'),
                                         'width' => 33,
                                     ],
-                                ], 
-                                
+                                ],
+
                                 [
                                     'handle' => 'disable_opt_in',
                                     'field' => [
@@ -211,8 +211,8 @@ class ServiceProvider extends AddonServiceProvider
                                         'width' => 33,
                                         'default' => false,
                                     ],
-                                ], 
-                                
+                                ],
+
                                 [
                                     'handle' => 'check_consent',
                                     'field' => [
@@ -221,8 +221,8 @@ class ServiceProvider extends AddonServiceProvider
                                         'width' => 33,
                                         'default' => false,
                                     ],
-                                ], 
-                                
+                                ],
+
                                 [
                                     'handle' => 'consent_field',
                                     'field' => [
@@ -230,10 +230,10 @@ class ServiceProvider extends AddonServiceProvider
                                         'max_items' => 1,
                                         'display' => __('Consent Field'),
                                         'width' => 33,
-                                        'if' => ['check_consent' => true]
+                                        'if' => ['check_consent' => true],
                                     ],
-                                ], 
-                                
+                                ],
+
                                 [
                                     'handle' => 'marketing_permissions_field',
                                     'field' => [
@@ -241,8 +241,8 @@ class ServiceProvider extends AddonServiceProvider
                                         'max_items' => 1,
                                         'display' => __('Marketing Permissions Field'),
                                     ],
-                                ], 
-                                
+                                ],
+
                                 [
                                     'handle' => 'marketing_permissions_field_ids',
                                     'field' => [
@@ -254,7 +254,7 @@ class ServiceProvider extends AddonServiceProvider
                                         'width' => 100,
                                         'add_row' => __('Add Permission Field'),
                                         'fields' => [
-                                          
+
                                             [
                                                 'handle' => 'field_name',
                                                 'field' => [
@@ -262,8 +262,8 @@ class ServiceProvider extends AddonServiceProvider
                                                     'display' => __('Form Field'),
                                                     'width' => 33,
                                                 ],
-                                            ], 
-                                            
+                                            ],
+
                                             [
                                                 'handle' => 'id',
                                                 'field' => [
@@ -271,12 +271,12 @@ class ServiceProvider extends AddonServiceProvider
                                                     'display' => __('ID'),
                                                     'width' => 33,
                                                 ],
-                                            ],    
-                                            
+                                            ],
+
                                         ],
                                     ],
-                                ], 
-                                
+                                ],
+
                                 [
                                     'handle' => 'merge_fields',
                                     'field' => [
@@ -288,7 +288,7 @@ class ServiceProvider extends AddonServiceProvider
                                         'width' => 100,
                                         'add_row' => __('Add Merge Field'),
                                         'fields' => [
-                                          
+
                                             [
                                                 'handle' => 'field_name',
                                                 'field' => [
@@ -296,8 +296,8 @@ class ServiceProvider extends AddonServiceProvider
                                                     'display' => __('Form Field'),
                                                     'width' => 33,
                                                 ],
-                                            ], 
-                                            
+                                            ],
+
                                             [
                                                 'handle' => 'tag',
                                                 'field' => [
@@ -306,43 +306,43 @@ class ServiceProvider extends AddonServiceProvider
                                                     'max_items' => 1,
                                                     'width' => 33,
                                                 ],
-                                            ],    
-                                            
+                                            ],
+
                                         ],
                                     ],
-                                ], 
-                                
+                                ],
+
                             ],
-                    
+
                         ],
-                    
+
                     ],
-                                
+
                 ],
             ],
         ]);
     }
-        
+
     private function migrateToFormConfig()
     {
         if (! $forms = config('mailchimp.forms')) {
             return;
         }
-        
+
         foreach ($forms as $handle => $config) {
             if (! $form = Form::find($handle)) {
                 continue;
             }
-            
+
             $form->merge([
                 'mailchimp' => [
                     'enabled' => true,
                     'settings' => $config,
-                ]
+                ],
             ])->save();
 
         }
-        
+
         ConfigWriter::edit('mailchimp')->remove('forms')->save();
     }
 }
