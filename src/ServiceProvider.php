@@ -123,7 +123,7 @@ class ServiceProvider extends AddonServiceProvider
 
     private function addFormConfigFields()
     {
-        Form::appendConfigFields('*', __('Mailchimp'), [
+        Form::appendConfigFields('*', __('Mailchimp Integration'), [
             'mailchimp' => [
                 'handle' => 'mailchimp',
                 'type' => 'group',
