@@ -330,20 +330,7 @@ class ServiceProvider extends AddonServiceProvider
         }
 
         foreach ($forms as $config) {
-            if (! $handle = $config['form'] ?? '') {
-                continue;
-            }
-
-            if (! $form = Form::find($handle)) {
-                continue;
-            }
-
-            $form->merge([
-                'mailchimp' => [
-                    'enabled' => true,
-                    'settings' => Arr::except($config, ['form']),
-                ],
-            ])->save();
+            (new Migrators\ConfigToFormData)->handle($config);
         }
 
         ConfigWriter::edit('mailchimp')->remove('forms')->save();
