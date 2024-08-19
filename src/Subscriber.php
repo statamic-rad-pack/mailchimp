@@ -56,7 +56,12 @@ class Subscriber
         $this->config = collect($config);
     }
 
-    private function email(): string
+    public function config(): array
+    {
+        return $this->config->all();
+    }
+
+    public function email(): string
     {
         return $this->get($this->config->get('primary_email_field', 'email'));
     }

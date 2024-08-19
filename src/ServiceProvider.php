@@ -70,7 +70,7 @@ class ServiceProvider extends AddonServiceProvider
 
         $this->app->booted(function () {
             $this->migrateToFormConfig();
-            
+
             $this->addFormsToNewsletterConfig();
         });
     }
