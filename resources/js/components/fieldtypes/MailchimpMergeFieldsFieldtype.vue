@@ -41,8 +41,13 @@ export default {
     },
 
     computed: {
-        key() {
+        key() {            
             let matches = this.namePrefix.match(/([a-z]*?)\[(.*?)\]/);
+            
+            if (matches[1] == 'mailchimp') { // form page
+                return 'mailchimp.settings.audience_id.0';                
+            }
+            
             return matches[0].replace('[', '.').replace(']', '.') + 'audience_id.0';
         },
 
