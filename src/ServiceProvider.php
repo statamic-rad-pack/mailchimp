@@ -21,6 +21,7 @@ use StatamicRadPack\Mailchimp\Fieldtypes\UserFields;
 use StatamicRadPack\Mailchimp\Http\Controllers\ConfigController;
 use StatamicRadPack\Mailchimp\Listeners\AddFromSubmission;
 use StatamicRadPack\Mailchimp\Listeners\AddFromUser;
+use Stillat\Proteus\Support\Facades\ConfigWriter;
 
 class ServiceProvider extends AddonServiceProvider
 {
@@ -70,6 +71,8 @@ class ServiceProvider extends AddonServiceProvider
         $this->app->booted(function () {
             $this->addFormsToNewsletterConfig();
         });
+        
+        $this->migrateToFormConfig();
     }
 
     public function register()
@@ -318,5 +321,28 @@ class ServiceProvider extends AddonServiceProvider
                 ],
             ],
         ]);
+    }
+        
+    private function migrateToFormConfig()
+    {
+        if (! $forms = config('mailchimp.forms')) {
+            return;
+        }
+        
+        foreach ($forms as $handle => $config) {
+            if (! $form = Form::find($handle)) {
+                continue;
+            }
+            
+            $form->merge([
+                'mailchimp' => [
+                    'enabled' => true,
+                    'settings' => $config,
+                ]
+            ])->save();
+
+        }
+        
+        ConfigWriter::edit('mailchimp')->remove('forms')->save();
     }
 }
