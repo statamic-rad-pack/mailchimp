@@ -36,9 +36,9 @@ class MigratorTest extends TestCase
             ]);
 
         $data = Form::find('test')->data()->all();
-        
+
         $this->assertArrayHasKey('mailchimp', $data);
-        
+
         $this->assertSame($data['mailchimp'], [
             'enabled' => true,
             'settings' => [
