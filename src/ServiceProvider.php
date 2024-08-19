@@ -69,10 +69,10 @@ class ServiceProvider extends AddonServiceProvider
         $this->addFormConfigFields();
 
         $this->app->booted(function () {
+            $this->migrateToFormConfig();
+            
             $this->addFormsToNewsletterConfig();
         });
-
-        $this->migrateToFormConfig();
     }
 
     public function register()
