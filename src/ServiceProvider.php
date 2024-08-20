@@ -70,6 +70,7 @@ class ServiceProvider extends AddonServiceProvider
 
         $this->app->booted(function () {
             $this->migrateToFormConfig();
+            $this->migrateUserToYaml();
 
             $this->addFormsToNewsletterConfig();
         });
@@ -333,5 +334,18 @@ class ServiceProvider extends AddonServiceProvider
         }
 
         ConfigWriter::edit('mailchimp')->remove('forms')->save();
+    }
+    
+    private function migrateUserToYaml()
+    {
+        if (! $user = config('mailchimp.users')) {
+            config(['mailchimp.users' => UserConfig::load()->config()]);
+
+            return;
+        }
+                
+        UserConfig::load(Arr::except($user, ['id']))->save();
+            
+        ConfigWriter::edit('mailchimp')->remove('users')->save();
     }
 }

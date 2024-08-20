@@ -4,16 +4,20 @@ namespace StatamicRadPack\Mailchimp\Http\Controllers;
 
 use Edalzell\Forma\ConfigController as BaseController;
 use Illuminate\Support\Arr;
+use StatamicRadpack\Mailchimp\UserConfig;
 
 class ConfigController extends BaseController
 {
     protected function postProcess(array $values): array
     {
         $userConfig = Arr::get($values, 'users');
+        
+        UserConfig::load($userConfig[0])->save();
+            
+        unset($values['users']);
 
         return array_merge(
             $values,
-            ['users' => $userConfig[0]]
         );
     }
 
