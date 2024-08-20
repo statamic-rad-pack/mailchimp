@@ -335,7 +335,7 @@ class ServiceProvider extends AddonServiceProvider
 
         ConfigWriter::edit('mailchimp')->remove('forms')->save();
     }
-    
+
     private function migrateUserToYaml()
     {
         if (! $user = config('mailchimp.users')) {
@@ -343,9 +343,9 @@ class ServiceProvider extends AddonServiceProvider
 
             return;
         }
-                
+
         UserConfig::load(Arr::except($user, ['id']))->save();
-            
+
         ConfigWriter::edit('mailchimp')->remove('users')->save();
     }
 }

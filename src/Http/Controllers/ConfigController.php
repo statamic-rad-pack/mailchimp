@@ -11,9 +11,9 @@ class ConfigController extends BaseController
     protected function postProcess(array $values): array
     {
         $userConfig = Arr::get($values, 'users');
-        
+
         UserConfig::load($userConfig[0])->save();
-            
+
         unset($values['users']);
 
         return array_merge(

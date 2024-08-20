@@ -5,6 +5,7 @@ namespace StatamicRadPack\Mailchimp\Tests;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Statamic\Facades\Blueprint as BlueprintFacade;
 use Statamic\Facades\YAML;
+use Statamic\Providers\StatamicServiceProvider;
 use Statamic\Statamic;
 use Statamic\Testing\AddonTestCase;
 use Statamic\Testing\Concerns\PreventsSavingStacheItemsToDisk;
@@ -15,6 +16,11 @@ class TestCase extends AddonTestCase
     use AdditionalAssertions, PreventsSavingStacheItemsToDisk;
 
     protected string $addonServiceProvider = ServiceProvider::class;
+
+    protected function getPackageProviders($app)
+    {
+        return array_merge(parent::getPackageProviders($app), [\Stillat\Proteus\WriterServiceProvider::class]);
+    }
 
     protected function resolveApplicationConfiguration($app)
     {
