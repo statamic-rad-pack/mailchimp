@@ -41,10 +41,20 @@ export default {
     },
 
     computed: {
+        key() {            
+            let matches = this.namePrefix.match(/([a-z]*?)\[(.*?)\]/);
+            
+            if (matches[1] == 'mailchimp') { // form page
+                return 'mailchimp.settings.audience_id.0';                
+            }
+            
+            return matches[0].replace('[', '.').replace(']', '.') + 'audience_id.0';
+        },
+        
         list() {
             return data_get(
                 this.$store.state.publish[this.storeName].values,
-                'mailchimp.settings.audience_id.0'
+                this.key
             )
         },
 
@@ -60,8 +70,9 @@ export default {
             this.$axios
                 .get(cp_url(`/mailchimp/tags/${this.list}`))
                 .then(response => {
-                    this.tags = response.data;
-                });
+                    this.tags = response.data ?? [];
+                })
+                .catch(() => { this.tags = []; });
         }
     }
 };
