@@ -67,7 +67,8 @@ export default {
                 .get(cp_url(`/mailchimp/merge-fields/${this.list}`))
                 .then(response => {
                     this.fields = response.data;
-                });
+                })
+                .catch(() => { this.fields = []; });
         }
     }
 };

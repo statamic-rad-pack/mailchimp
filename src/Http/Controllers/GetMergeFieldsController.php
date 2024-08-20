@@ -12,6 +12,7 @@ class GetMergeFieldsController extends Controller
     {
         return collect(Arr::get($mailchimp->get("lists/$list/merge-fields"), 'merge_fields', []))
             ->map(fn ($mergeField) => ['id' => $mergeField['tag'], 'label' => $mergeField['name']])
+            ->values()
             ->all();
     }
 }

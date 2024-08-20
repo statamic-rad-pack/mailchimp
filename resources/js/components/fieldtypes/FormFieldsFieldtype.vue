@@ -58,7 +58,8 @@ export default {
                 .get(cp_url(`/mailchimp/form-fields/${this.form}`))
                 .then(response => {
                     this.fields = response.data;
-                });
+                })
+                .catch(() => { this.fields = []; });                
         }
     }
 };
