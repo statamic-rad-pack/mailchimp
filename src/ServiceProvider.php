@@ -361,7 +361,7 @@ class ServiceProvider extends AddonServiceProvider
 
         UserConfig::load([
             'add_new_users' => config('mailchimp.add_new_users'),
-            'users' => Arr::except($user, ['id']),
+            'users' => Arr::except(config('mailchimp.users'), ['id']),
         ])->save();
 
         ConfigWriter::edit('mailchimp')
