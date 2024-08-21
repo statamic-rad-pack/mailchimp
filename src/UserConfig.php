@@ -47,11 +47,19 @@ class UserConfig extends Collection
     }
 
     /**
+     * Does it exist yet?
+     */
+    public function exists()
+    {
+        return File::exists($this->path());
+    }
+
+    /**
      * Save user config to yaml.
      */
     public function save()
     {
-        File::put($this->path(), YAML::dump(['users' => $this->config]));
+        File::put($this->path(), YAML::dump($this->config));
     }
 
     /**
@@ -63,7 +71,7 @@ class UserConfig extends Collection
     {
         return Blink::once('statamic-mailchimp::user-config', function () {
             return collect(YAML::file($this->path())->parse())
-                ->all()['users'] ?? [];
+                ->all() ?? [];
         });
     }
 

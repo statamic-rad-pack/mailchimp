@@ -1,14 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use StatamicRadPack\Mailchimp\Http\Controllers\GetFormFieldsController;
-use StatamicRadPack\Mailchimp\Http\Controllers\GetMergeFieldsController;
-use StatamicRadPack\Mailchimp\Http\Controllers\GetTagsController;
-use StatamicRadPack\Mailchimp\Http\Controllers\GetUserFieldsController;
+use StatamicRadPack\Mailchimp\Http\Controllers;
 
 Route::name('mailchimp.')->prefix('mailchimp')->group(function () {
-    Route::get('form-fields/{form}', [GetFormFieldsController::class, '__invoke'])->name('form-fields');
-    Route::get('merge-fields/{list}', [GetMergeFieldsController::class, '__invoke'])->name('merge-fields');
-    Route::get('tags/{list}', [GetTagsController::class, '__invoke'])->name('tags');
-    Route::get('user-fields', [GetUserFieldsController::class, '__invoke'])->name('user-fields');
+    Route::get('config', [Controllers\ConfigController::class, 'edit'])->name('config.edit');
+    Route::post('config', [Controllers\ConfigController::class, 'update'])->name('config.update');
+
+    Route::get('form-fields/{form}', [Controllers\GetFormFieldsController::class, '__invoke'])->name('form-fields');
+    Route::get('merge-fields/{list}', [Controllers\GetMergeFieldsController::class, '__invoke'])->name('merge-fields');
+    Route::get('tags/{list}', [Controllers\GetTagsController::class, '__invoke'])->name('tags');
+    Route::get('user-fields', [Controllers\GetUserFieldsController::class, '__invoke'])->name('user-fields');
 });

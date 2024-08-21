@@ -5,7 +5,6 @@ namespace StatamicRadPack\Mailchimp\Tests;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Statamic\Facades\Blueprint as BlueprintFacade;
 use Statamic\Facades\YAML;
-use Statamic\Providers\StatamicServiceProvider;
 use Statamic\Statamic;
 use Statamic\Testing\AddonTestCase;
 use Statamic\Testing\Concerns\PreventsSavingStacheItemsToDisk;
