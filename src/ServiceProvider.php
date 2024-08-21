@@ -98,7 +98,7 @@ class ServiceProvider extends AddonServiceProvider
             return new NewsletterDriver($mailChimp, $configuredLists);
         });
 
-        $this->app->bind(MailChimp::class, fn ($app) => Fieldtypes\Facades\Newsletter::getApi());
+        $this->app->bind(MailChimp::class, fn ($app) => Facades\Newsletter::getApi());
     }
 
     private function addFormsToNewsletterConfig()
