@@ -99,6 +99,7 @@ tabs:
               max_rows: 1
               min_rows: 1
               reorderable: false
+              fullscreen: false
               if:
                 add_new_users: 'equals true'
   credentials:
