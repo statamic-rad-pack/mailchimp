@@ -42,16 +42,8 @@ export default {
 
     computed: {
         form() {
-            let key = 'forms.' + this.row + '.form.0' ;
-
-            return data_get(this.$store.state.publish[this.storeName].values, key)
+            return StatamicConfig.urlPath.split('/')[1] ?? '';
         },
-
-        row() {
-            let matches = this.namePrefix.match(/\[(.*?)\]/);
-
-            return matches[1];
-        }
     },
 
     mounted() {
@@ -66,7 +58,8 @@ export default {
                 .get(cp_url(`/mailchimp/form-fields/${this.form}`))
                 .then(response => {
                     this.fields = response.data;
-                });
+                })
+                .catch(() => { this.fields = []; });                
         }
     }
 };

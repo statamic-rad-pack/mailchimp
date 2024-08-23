@@ -37,7 +37,8 @@ export default {
                 .get(cp_url(`/mailchimp/user-fields`))
                 .then(response => {
                     this.fields = response.data;
-                });
+                })
+                .catch(() => { this.fields = []; });
         }
     }
 };

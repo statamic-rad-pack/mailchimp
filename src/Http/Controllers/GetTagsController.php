@@ -13,6 +13,7 @@ class GetTagsController extends Controller
         return collect(Arr::get($mailchimp->get("lists/$list/segments", ['count' => 100]), 'segments', []))
             ->filter(fn ($segment) => $segment['type'] === 'static')
             ->map(fn ($segment) => ['id' => $segment['name'], 'label' => $segment['name']])
+            ->values()
             ->all();
     }
 }

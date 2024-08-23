@@ -15,15 +15,25 @@ class Subscriber
 
     private Collection $config;
 
-    public static function fromSubmission(Submission $submission): self
+    public static function fromSubmission(Submission $submission): ?self
     {
-        return new self(
-            $submission->data(),
-            Arr::first(
-                config('mailchimp.forms', []),
-                fn (array $formConfig) => $formConfig['form'] == $submission->form()->handle()
-            )
-        );
+        if (! $form = $submission->form()) {
+            return null;
+        }
+
+        if (! $config = $form->get('mailchimp', [])) {
+            return null;
+        }
+
+        if (! $config['enabled'] ?? false) {
+            return null;
+        }
+
+        if (! $config = Arr::get($config, 'settings', [])) {
+            return null;
+        }
+
+        return new self($submission->data(), $config);
     }
 
     public static function fromUser(User $user): self
@@ -43,7 +53,12 @@ class Subscriber
         $this->config = collect($config);
     }
 
-    private function email(): string
+    public function config(): array
+    {
+        return $this->config->all();
+    }
+
+    public function email(): string
     {
         return $this->get($this->config->get('primary_email_field', 'email'));
     }

@@ -190,4 +190,35 @@ class SubscriberFromSubmissionTest extends TestCase
 
         $this->assertNull($subscriber->tag());
     }
+
+    #[Test]
+    public function it_gets_config_from_form()
+    {
+        $settings = [
+            'check_consent' => true,
+            'consent_field' => 'consent',
+            'disable_opt_in' => false,
+            'interests_field' => 'interests',
+            'marketing_permissions_field' => 'gdpr',
+            'marketing_permissions_field_ids' => [],
+            'merge_fields' => [
+                [
+                    'id' => 'KFC3e5jw',
+                ],
+            ],
+            'primary_email_field' => 'email',
+        ];
+
+        $this->form->merge([
+            'mailchimp' => [
+                'enabled' => true,
+                'settings' => $settings,
+            ],
+        ])->save();
+
+        $subscriber = Subscriber::fromSubmission($this->submission);
+
+        $this->assertSame($settings, $subscriber->config());
+        $this->assertSame($subscriber->email(), 'foo@bar.com');
+    }
 }
