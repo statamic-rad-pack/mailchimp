@@ -2,6 +2,12 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v5.1.1 - 2024-08-23
+
+### 🐛 Fixed
+
+- Fix migration error [@ryanmitchell](https://github.com/ryanmitchell) (#125)
+
 ## v5.1.0 - 2024-08-23
 
 ### 🚀 New
