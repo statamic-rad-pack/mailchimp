@@ -2,6 +2,12 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v5.1.0 - 2024-08-23
+
+### 🚀 New
+
+- Move form settings to form editing view, don't store in config [@ryanmitchell](https://github.com/ryanmitchell) (#124)
+
 ## v5.0.1 - 2024-05-10
 
 ### 🧰 Maintenance
