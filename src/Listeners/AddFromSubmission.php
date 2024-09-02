@@ -9,6 +9,6 @@ class AddFromSubmission
 {
     public function handle(SubmissionCreated $event)
     {
-        Subscriber::fromSubmission($event->submission)->subscribe();
+        Subscriber::fromSubmission($event->submission)?->subscribe();
     }
 }
