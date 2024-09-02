@@ -2,6 +2,12 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v5.1.2 - 2024-09-02
+
+### 🐛 Fixed
+
+- Handle fromSubmission potentially returning null [@ryanmitchell](https://github.com/ryanmitchell) (#127)
+
 ## v5.1.1 - 2024-08-23
 
 ### 🐛 Fixed
