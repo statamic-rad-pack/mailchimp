@@ -33,6 +33,8 @@ class Subscriber
             return null;
         }
 
+        $config['form'] = $form->handle();
+
         return new self($submission->data(), $config);
     }
 

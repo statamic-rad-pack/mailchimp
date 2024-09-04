@@ -207,6 +207,7 @@ class SubscriberFromSubmissionTest extends TestCase
                 ],
             ],
             'primary_email_field' => 'email',
+            'form' => 'contact_us',
         ];
 
         $this->form->merge([
