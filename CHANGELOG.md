@@ -2,6 +2,12 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v5.1.3 - 2024-09-04
+
+### 🐛 Fixed
+
+- Pass form handle to subscribe function [@ryanmitchell](https://github.com/ryanmitchell) (#129)
+
 ## v5.1.2 - 2024-09-02
 
 ### 🐛 Fixed
