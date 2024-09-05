@@ -2,6 +2,12 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v5.2 - 2024-09-05
+
+### 🚀 New
+
+- Support dark mode [@robdekort ](https://github.com/robdekort) (#130)
+
 ## v5.1.3 - 2024-09-04
 
 ### 🐛 Fixed
