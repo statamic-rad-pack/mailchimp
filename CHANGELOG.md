@@ -2,6 +2,12 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v5.2.1 - 2024-09-20
+
+### 🐛 Fixed
+
+- Handle mailchimp audience not returning a list id [@ryanmitchell](https://github.com/ryanmitchell) (#133)
+
 ## v5.2 - 2024-09-05
 
 ### 🚀 New
