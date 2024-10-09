@@ -16,7 +16,7 @@
         "drewm/mailchimp-api": "^2.5",
         "laravel/framework": "^10.0 || ^11.0",
         "pixelfear/composer-dist-plugin": "^0.1",
-        "statamic/cms": "^5.18",
+        "statamic/cms": "^5.28",
         "stillat/proteus": "^4.0"
     },
     "require-dev": {

@@ -11,34 +11,12 @@ use Statamic\Facades\Permission;
 use Statamic\Providers\AddonServiceProvider;
 use Statamic\Statamic;
 use Statamic\Support\Arr;
-use StatamicRadPack\Mailchimp\Commands\GetGroups;
-use StatamicRadPack\Mailchimp\Commands\GetInterests;
-use StatamicRadPack\Mailchimp\Commands\Permissions;
-use StatamicRadPack\Mailchimp\Fieldtypes\FormFields;
-use StatamicRadPack\Mailchimp\Fieldtypes\MailchimpAudience;
-use StatamicRadPack\Mailchimp\Fieldtypes\MailchimpMergeFields;
-use StatamicRadPack\Mailchimp\Fieldtypes\MailchimpTag;
-use StatamicRadPack\Mailchimp\Fieldtypes\UserFields;
 use StatamicRadPack\Mailchimp\Listeners\AddFromSubmission;
 use StatamicRadPack\Mailchimp\Listeners\AddFromUser;
 use Stillat\Proteus\Support\Facades\ConfigWriter;
 
 class ServiceProvider extends AddonServiceProvider
 {
-    protected $commands = [
-        GetGroups::class,
-        GetInterests::class,
-        Permissions::class,
-    ];
-
-    protected $fieldtypes = [
-        FormFields::class,
-        MailchimpAudience::class,
-        MailchimpTag::class,
-        MailchimpMergeFields::class,
-        UserFields::class,
-    ];
-
     protected $listen = [
         UserRegistered::class => [AddFromUser::class],
         SubmissionCreated::class => [AddFromSubmission::class],
@@ -54,10 +32,8 @@ class ServiceProvider extends AddonServiceProvider
         'hotFile' => __DIR__.'/../dist/hot',
     ];
 
-    public function boot()
+    public function bootAddon()
     {
-        parent::boot();
-
         Permission::extend(function () {
             Permission::register('manage mailchimp settings')
                 ->label(__('Manage Mailchimp Settings'));
@@ -79,12 +55,10 @@ class ServiceProvider extends AddonServiceProvider
 
         $this->addFormConfigFields();
 
-        $this->app->booted(function () {
-            $this->migrateToFormConfig();
-            $this->migrateUserToYaml();
+        $this->migrateToFormConfig();
+        $this->migrateUserToYaml();
 
-            $this->addFormsToNewsletterConfig();
-        });
+        $this->addFormsToNewsletterConfig();
     }
 
     public function register()
