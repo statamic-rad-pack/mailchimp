@@ -2,6 +2,13 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v5.2.2 - 2024-10-09
+
+### 🚀 Fix
+
+- Simplify service provider, rely on autoloading [@ryanmitchell](https://github.com/ryanmitchell) (#135)
+- Fix translation loading (https://github.com/statamic-rad-pack/mailchimp/issues/134)
+
 ## v5.2.1 - 2024-09-20
 
 ### 🐛 Fixed
