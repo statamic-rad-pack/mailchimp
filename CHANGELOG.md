@@ -2,6 +2,18 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v5.3.0 - 2025-04-02
+
+### 🚀 New
+
+- Laravel 12 [@robdekort](https://github.com/robdekort) (#139)
+
+### 🧰 Maintenance
+
+- Lint [@edalzell](https://github.com/edalzell) (#142)
+- Fix GH action permissions [@edalzell](https://github.com/edalzell) (#141)
+- Update GitHub actions [@edalzell](https://github.com/edalzell) (#140)
+
 ## v5.2.2 - 2024-10-09
 
 ### 🚀 Fix
