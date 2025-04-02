@@ -63,7 +63,7 @@ class UserConfig extends Collection
     }
 
     /**
-     * Get user config from yaml
+     * Get user config from yaml.
      *
      * @return array
      */

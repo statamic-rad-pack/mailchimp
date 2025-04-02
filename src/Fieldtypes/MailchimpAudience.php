@@ -21,11 +21,11 @@ class MailchimpAudience extends MailchimpField
         if (! $list = $this->callApi("lists/{$id}")) {
             return [];
         }
-        
+
         if (! $id = Arr::get($list, 'id')) {
             return [];
         }
-    
+
         return [
             'id' => $id,
             'title' => Arr::get($list, 'name'),
