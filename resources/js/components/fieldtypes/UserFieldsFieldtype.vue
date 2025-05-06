@@ -6,6 +6,7 @@
             :clearable="true"
             :options="fields"
             :reduce="(option) => option.id"
+            :placeholder="__('Choose...')"
             :searchable="true"
             @input="$emit('input', $event)"
         />
