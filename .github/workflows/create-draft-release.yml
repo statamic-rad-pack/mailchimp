@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [closed]
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   update_release_draft:
