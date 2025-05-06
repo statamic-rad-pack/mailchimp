@@ -2,6 +2,16 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v5.3.1 - 2025-05-06
+
+### 🐛 Fixed
+
+- Add placeholders to v-select in custom fieldtypes [@lwekuiper](https://github.com/lwekuiper) (#143)
+
+### 🧰 Maintenance
+
+- Fix action permissions [@edalzell](https://github.com/edalzell) (#144)
+
 ## v5.3.0 - 2025-04-02
 
 ### 🚀 New
