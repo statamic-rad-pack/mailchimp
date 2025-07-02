@@ -25,7 +25,7 @@ class Subscriber
             return null;
         }
 
-        if (! $config['enabled'] ?? false) {
+        if (! ($config['enabled'] ?? false)) {
             return null;
         }
 
