@@ -2,6 +2,12 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v5.3.2 - 2025-07-02
+
+### 🐛 Fixed
+
+- Fix bad array reference [@edalzell](https://github.com/edalzell) (#146)
+
 ## v5.3.1 - 2025-05-06
 
 ### 🐛 Fixed
