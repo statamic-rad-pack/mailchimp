@@ -324,7 +324,7 @@ class ServiceProvider extends AddonServiceProvider
 
             $settings = Addon::get('statamic-rad-pack/mailchimp')->settings();
             $settings->set('add_new_users', $config['add_new_users']);
-            $settings->set('users', $config['users']);
+            $settings->set('users', [$config['users']]);
             $settings->save();
 
             File::delete(resource_path('mailchimp.yaml'));
