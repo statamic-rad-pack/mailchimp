@@ -4,9 +4,6 @@ use Illuminate\Support\Facades\Route;
 use StatamicRadPack\Mailchimp\Http\Controllers;
 
 Route::name('mailchimp.')->prefix('mailchimp')->group(function () {
-    Route::get('config', [Controllers\ConfigController::class, 'edit'])->name('config.edit');
-    Route::post('config', [Controllers\ConfigController::class, 'update'])->name('config.update');
-
     Route::get('form-fields/{form}', [Controllers\GetFormFieldsController::class, '__invoke'])->name('form-fields');
     Route::get('merge-fields/{list}', [Controllers\GetMergeFieldsController::class, '__invoke'])->name('merge-fields');
     Route::get('tags/{list}', [Controllers\GetTagsController::class, '__invoke'])->name('tags');

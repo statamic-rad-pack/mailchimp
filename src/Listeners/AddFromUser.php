@@ -3,13 +3,14 @@
 namespace StatamicRadPack\Mailchimp\Listeners;
 
 use Statamic\Events\UserRegistered;
+use Statamic\Facades\Addon;
 use StatamicRadPack\Mailchimp\Subscriber;
 
 class AddFromUser
 {
     public function handle(UserRegistered $event)
     {
-        if (! config('mailchimp.add_new_users')) {
+        if (! Addon::get('statamic-rad-pack/mailchimp')->settings()->get('add_new_users')) {
             return;
         }
 

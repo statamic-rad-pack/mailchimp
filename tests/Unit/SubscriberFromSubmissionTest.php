@@ -15,7 +15,7 @@ class SubscriberFromSubmissionTest extends TestCase
 
     private Submission $submission;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -69,8 +69,6 @@ class SubscriberFromSubmissionTest extends TestCase
             'check_consent' => true,
         ];
 
-        config(['mailchimp.forms' => $formConfig]);
-
         $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
         $consent = $subscriber->hasConsent();
@@ -88,8 +86,6 @@ class SubscriberFromSubmissionTest extends TestCase
 
         $this->submission->set('consent_field', false);
 
-        config(['mailchimp.forms' => $formConfig]);
-
         $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
         $consent = $subscriber->hasConsent();
@@ -106,8 +102,6 @@ class SubscriberFromSubmissionTest extends TestCase
         ];
 
         $this->submission->set('consent', true);
-
-        config(['mailchimp.forms' => $formConfig]);
 
         $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
@@ -128,8 +122,6 @@ class SubscriberFromSubmissionTest extends TestCase
 
         $this->submission->set('the-consent', true);
 
-        config(['mailchimp.forms' => $formConfig]);
-
         $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
         $consent = $subscriber->hasConsent();
@@ -148,8 +140,6 @@ class SubscriberFromSubmissionTest extends TestCase
 
         $this->submission->set('tag', 'foo');
 
-        config(['mailchimp.forms' => $formConfig]);
-
         $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
         $this->assertEquals('foo', $subscriber->tag());
@@ -167,8 +157,6 @@ class SubscriberFromSubmissionTest extends TestCase
 
         $this->submission->set('tag', 'foo');
 
-        config(['mailchimp.forms' => $formConfig]);
-
         $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
         $this->assertEquals('foo', $subscriber->tag());
@@ -183,8 +171,6 @@ class SubscriberFromSubmissionTest extends TestCase
             ];
 
         $this->submission->set('tag', 'foo');
-
-        config(['mailchimp.forms' => $formConfig]);
 
         $subscriber = new Subscriber($this->submission->data(), $formConfig);
 
