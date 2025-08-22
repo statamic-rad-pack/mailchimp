@@ -5,6 +5,10 @@
     "type": "statamic-addon",
     "authors": [
         {
+            "name": "Statamic Rad Pack",
+            "homepage": "https://statamic.com/creators/rad-pack"
+        },
+        {
             "name": "Erin Dalzell",
             "email": "erin@silentz.co",
             "homepage": "https://silentz.co",
