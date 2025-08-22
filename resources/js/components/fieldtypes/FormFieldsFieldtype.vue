@@ -12,7 +12,6 @@
             optionValue="id"
             searchable="true"
         />
-
     </div>
 </template>
 
@@ -55,6 +54,11 @@ export default {
 
     methods: {
         refreshFields() {
+            if (! this.form) {
+                this.fields = [];
+                return;
+            }
+
             this.$axios
                 .get(cp_url(`/mailchimp/form-fields/${this.form}`))
                 .then(response => {
