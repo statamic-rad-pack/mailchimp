@@ -3,6 +3,7 @@
 namespace StatamicRadPack\Mailchimp;
 
 use Illuminate\Support\Collection;
+use Statamic\Addons\Settings;
 use StatamicRadPack\Mailchimp\Exceptions\InvalidNewsletterList;
 
 class NewsletterListCollection extends Collection
@@ -10,15 +11,16 @@ class NewsletterListCollection extends Collection
     /** @var string */
     public $defaultListName = '';
 
-    public static function createFromConfig(array $config): self
+    public static function createFromSettings(Settings $settings): self
     {
         $collection = new static;
 
-        foreach ($config['lists'] as $name => $listProperties) {
-            $collection->push(new NewsletterList($name, $listProperties));
-        }
+        $lists = collect($settings->get('lists', []))
+            ->map(fn ($listProperties, $name) => new NewsletterList($name, $listProperties))
+            ->all();
 
-        $collection->defaultListName = $config['defaultListName'];
+        $collection->collect($lists);
+        $collection->defaultListName = $settings->get('default_list_name', 'subscribers');
 
         return $collection;
     }

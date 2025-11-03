@@ -57,10 +57,9 @@ class ServiceProvider extends AddonServiceProvider
             $mailChimp = new Mailchimp(config('mailchimp.api_key'));
             $mailChimp->verify_ssl = config('mailchimp.use_ssl', true);
 
-            $config = Addon::get('statamic-rad-pack/mailchimp')->settings()->all();
-            $config['defaultListName'] = config('mailchimp.default_list_name');
+            $settings = Addon::get('statamic-rad-pack/mailchimp')->settings();
 
-            $configuredLists = NewsletterListCollection::createFromConfig($config);
+            $configuredLists = NewsletterListCollection::createFromSettings($settings);
 
             return new NewsletterDriver($mailChimp, $configuredLists);
         });
@@ -110,6 +109,7 @@ class ServiceProvider extends AddonServiceProvider
                 'display' => ' ',
                 'fullscreen' => false,
                 'border' => false,
+                'full_width_setting' => true,
                 'fields' => [
                     [
                         'handle' => 'enabled',
@@ -117,9 +117,9 @@ class ServiceProvider extends AddonServiceProvider
                             'type' => 'toggle',
                             'display' => __('Enabled'),
                             'width' => 100,
+                            'full_width_setting' => true,
                         ],
                     ],
-
                     [
                         'handle' => 'settings',
                         'field' => [
@@ -127,9 +127,9 @@ class ServiceProvider extends AddonServiceProvider
                             'display' => ' ',
                             'width' => 100,
                             'fullscreen' => false,
+                            'full_width_setting' => true,
                             'show_when' => ['enabled' => true],
                             'fields' => [
-
                                 [
                                     'handle' => 'primary_email_field',
                                     'field' => [
@@ -140,7 +140,6 @@ class ServiceProvider extends AddonServiceProvider
                                         'width' => 33,
                                     ],
                                 ],
-
                                 [
                                     'handle' => 'interests_field',
                                     'field' => [
@@ -150,7 +149,6 @@ class ServiceProvider extends AddonServiceProvider
                                         'width' => 33,
                                     ],
                                 ],
-
                                 [
                                     'handle' => 'audience_id',
                                     'field' => [
@@ -161,7 +159,6 @@ class ServiceProvider extends AddonServiceProvider
                                         'width' => 33,
                                     ],
                                 ],
-
                                 [
                                     'handle' => 'tag',
                                     'field' => [
@@ -171,7 +168,6 @@ class ServiceProvider extends AddonServiceProvider
                                         'width' => 33,
                                     ],
                                 ],
-
                                 [
                                     'handle' => 'tag_field',
                                     'field' => [
@@ -181,7 +177,6 @@ class ServiceProvider extends AddonServiceProvider
                                         'width' => 33,
                                     ],
                                 ],
-
                                 [
                                     'handle' => 'disable_opt_in',
                                     'field' => [
@@ -191,7 +186,6 @@ class ServiceProvider extends AddonServiceProvider
                                         'default' => false,
                                     ],
                                 ],
-
                                 [
                                     'handle' => 'check_consent',
                                     'field' => [
@@ -201,7 +195,6 @@ class ServiceProvider extends AddonServiceProvider
                                         'default' => false,
                                     ],
                                 ],
-
                                 [
                                     'handle' => 'consent_field',
                                     'field' => [
@@ -212,7 +205,6 @@ class ServiceProvider extends AddonServiceProvider
                                         'if' => ['check_consent' => true],
                                     ],
                                 ],
-
                                 [
                                     'handle' => 'marketing_permissions_field',
                                     'field' => [
@@ -221,7 +213,6 @@ class ServiceProvider extends AddonServiceProvider
                                         'display' => __('Marketing Permissions Field'),
                                     ],
                                 ],
-
                                 [
                                     'handle' => 'marketing_permissions_field_ids',
                                     'field' => [
@@ -251,11 +242,9 @@ class ServiceProvider extends AddonServiceProvider
                                                     'width' => 33,
                                                 ],
                                             ],
-
                                         ],
                                     ],
                                 ],
-
                                 [
                                     'handle' => 'merge_fields',
                                     'field' => [
@@ -267,7 +256,6 @@ class ServiceProvider extends AddonServiceProvider
                                         'width' => 100,
                                         'add_row' => __('Add Merge Field'),
                                         'fields' => [
-
                                             [
                                                 'handle' => 'field_name',
                                                 'field' => [
@@ -276,7 +264,6 @@ class ServiceProvider extends AddonServiceProvider
                                                     'width' => 33,
                                                 ],
                                             ],
-
                                             [
                                                 'handle' => 'tag',
                                                 'field' => [
@@ -286,17 +273,12 @@ class ServiceProvider extends AddonServiceProvider
                                                     'width' => 33,
                                                 ],
                                             ],
-
                                         ],
                                     ],
                                 ],
-
                             ],
-
                         ],
-
                     ],
-
                 ],
             ],
         ]);
