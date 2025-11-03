@@ -19,7 +19,8 @@
         "php": "^8.2",
         "drewm/mailchimp-api": "^2.5",
         "pixelfear/composer-dist-plugin": "^0.1",
-        "statamic/cms": "^6.0-alpha.14"
+        "statamic/cms": "^6.0-alpha.15",
+        "stillat/proteus": "^4.0"
     },
     "require-dev": {
         "jasonmccreary/laravel-test-assertions": "^2.0",
