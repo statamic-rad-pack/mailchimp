@@ -6,7 +6,7 @@ This package provides an easy way to integrate MailChimp with Statamic forms and
 ## Requirements
 
 * PHP 8.2+
-* Statamic v5
+* Statamic v6
 
 ## Installation
 
@@ -101,7 +101,7 @@ Don't forget to add the `gdpr` field to your form's blueprint.
 
 ### Data storage
 
-Any user related settings are stored by default in `resources/mailchimp.yaml`. 
+Any user related settings are stored by default in `resources/mailchimp.yaml`.
 
 If you want to change this or use a different data store, you can bind `\StatamicRadPack\Mailchimp\UserConfig::class` in your app service provider. You should modify the `getSavedSettings`, `save`, and `exists` methods according to your requirements.
 
