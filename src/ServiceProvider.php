@@ -4,25 +4,15 @@ namespace StatamicRadPack\Mailchimp;
 
 use DrewM\MailChimp\MailChimp;
 use Illuminate\Support\Facades\File;
-use Statamic\Events\SubmissionCreated;
-use Statamic\Events\UserRegistered;
 use Statamic\Facades\Addon;
 use Statamic\Facades\Form;
 use Statamic\Facades\YAML;
 use Statamic\Providers\AddonServiceProvider;
-use Statamic\Statamic;
 use Statamic\Support\Arr;
-use StatamicRadPack\Mailchimp\Listeners\AddFromSubmission;
-use StatamicRadPack\Mailchimp\Listeners\AddFromUser;
 use Stillat\Proteus\Support\Facades\ConfigWriter;
 
 class ServiceProvider extends AddonServiceProvider
 {
-    protected $listen = [
-        UserRegistered::class => [AddFromUser::class],
-        SubmissionCreated::class => [AddFromSubmission::class],
-    ];
-
     protected $routes = [
         'cp' => __DIR__.'/../routes/cp.php',
     ];
@@ -35,12 +25,6 @@ class ServiceProvider extends AddonServiceProvider
 
     public function bootAddon()
     {
-        Statamic::afterInstalled(function ($command) {
-            $command->call('vendor:publish', [
-                '--tag' => 'mailchimp-config',
-            ]);
-        });
-
         $this->registerSettingsBlueprint(YAML::file(__DIR__.'/../resources/blueprints/config.yaml')->parse());
 
         $this->addFormConfigFields();
@@ -55,13 +39,14 @@ class ServiceProvider extends AddonServiceProvider
     {
         $this->app->singleton('newsletter', function () {
             $mailChimp = new Mailchimp(config('mailchimp.api_key'));
-            $mailChimp->verify_ssl = config('mailchimp.use_ssl', true);
+            $mailChimp->verify_ssl = true;
 
             $settings = Addon::get('statamic-rad-pack/mailchimp')->settings();
 
-            $configuredLists = NewsletterListCollection::createFromSettings($settings);
-
-            return new NewsletterDriver($mailChimp, $configuredLists);
+            return new NewsletterDriver(
+                $mailChimp,
+                NewsletterListCollection::createFromSettings($settings)
+            );
         });
 
         $this->app->bind(MailChimp::class, fn ($app) => Facades\Newsletter::getApi());
