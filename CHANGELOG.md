@@ -2,6 +2,12 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v6.0.3 - 2026-01-29
+
+### 🐛 Fixed
+
+- Fix asset build in release [@edalzell](https://github.com/edalzell) (#151)
+
 ## v6.0.2 - 2026-01-29
 
 ### 🐛 Fixed
