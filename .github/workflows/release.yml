@@ -21,7 +21,6 @@ jobs:
           latest: true
 
   upload_assets:
-    if: ${{ inputs.upload_assets }}
     needs: get_draft_release
     runs-on: ubuntu-latest
     steps:
