@@ -2,11 +2,6 @@ name: Release
 
 on:
   workflow_dispatch:
-    inputs:
-      upload_assets:
-        default: false
-        description: 'Upload assets to release'
-        type: boolean
 jobs:
   get_draft_release:
     runs-on: ubuntu-latest
