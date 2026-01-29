@@ -1,27 +1,31 @@
 <template>
     <div class="mailchimp-tag-fieldtype-wrapper">
-        <small class="help-block text-grey-60" v-if="!list">{{ __('Select audience') }}</small>
+        <ui-description v-if="!list">{{ __('Select audience') }}</ui-description>
 
-        <v-select
-            append-to-body
+        <ui-combobox
             v-if="showFieldtype && list"
+            class="w-full"
+            clearable="true"
+            :label="__('Choose')"
             v-model="selected"
-            :clearable="true"
             :options="tags"
-            :reduce="(option) => option.id"
-            :placeholder="__('Choose...')"
-            :searchable="true"
-            @input="$emit('input', $event)"
+            optionValue="id"
+            searchable="true"
         />
     </div>
 </template>
 
 <script>
+import { FieldtypeMixin as Fieldtype } from '@statamic/cms';
+import { publishContextKey } from '@statamic/cms/ui';
+
 export default {
 
     mixins: [Fieldtype],
 
-    inject: ['storeName'],
+    inject: {
+        publishContext: { from: publishContextKey },
+    },
 
     data() {
         return {
@@ -42,21 +46,12 @@ export default {
     },
 
     computed: {
-        key() {            
-            let matches = this.namePrefix.match(/([a-z]*?)\[(.*?)\]/);
-            
-            if (matches[1] == 'mailchimp') { // form page
-                return 'mailchimp.settings.audience_id.0';                
-            }
-            
-            return matches[0].replace('[', '.').replace(']', '.') + 'audience_id.0';
+        key() {
+            return 'mailchimp.settings.audience_id.0';
         },
         
         list() {
-            return data_get(
-                this.$store.state.publish[this.storeName].values,
-                this.key
-            )
+            return this.publishContext.values.value[this.key] ?? '';
         },
 
     },
@@ -68,6 +63,11 @@ export default {
 
     methods: {
         refreshTags() {
+            if (! this.list) {
+                this.tags = [];
+                return;
+            }
+
             this.$axios
                 .get(cp_url(`/mailchimp/tags/${this.list}`))
                 .then(response => {
@@ -75,6 +75,12 @@ export default {
                 })
                 .catch(() => { this.tags = []; });
         }
+    },
+
+    watch: {
+      selected(selected) {
+        this.update(selected);
+      }
     }
 };
 </script>

@@ -1,24 +1,23 @@
 <template>
     <div class="user-field-fieldtype-wrapper">
-        <v-select
-            append-to-body
+        <ui-combobox
+            class="w-full"
+            clearable="true"
+            :label="__('Choose')"
             v-model="selected"
-            :clearable="true"
             :options="fields"
-            :reduce="(option) => option.id"
-            :placeholder="__('Choose...')"
-            :searchable="true"
-            @input="$emit('input', $event)"
+            optionValue="id"
+            searchable="true"
         />
     </div>
 </template>
 
 <script>
+import { FieldtypeMixin as Fieldtype } from '@statamic/cms';
+
 export default {
 
     mixins: [Fieldtype],
-
-    inject: ['storeName'],
 
     data() {
         return {
@@ -41,6 +40,12 @@ export default {
                 })
                 .catch(() => { this.fields = []; });
         }
+    },
+
+    watch: {
+      selected(selected) {
+        this.update(selected);
+      }
     }
 };
 </script>

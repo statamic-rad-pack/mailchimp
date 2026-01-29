@@ -3,6 +3,7 @@
 namespace StatamicRadPack\Mailchimp\Commands;
 
 use Illuminate\Console\Command;
+use Statamic\Facades\Form;
 use StatamicRadPack\Mailchimp\Facades\Newsletter;
 
 class GetInterests extends Command
@@ -15,7 +16,11 @@ class GetInterests extends Command
     {
         $mailchimp = Newsletter::getApi();
 
-        $config = collect(config('mailchimp.forms', []))->firstWhere('form', $this->argument('form'));
+        if (! $config = Form::find($this->argument('form'))?->get('mailchimp.settings', [])) {
+            $this->error('Form not found');
+
+            return;
+        }
 
         $response = $mailchimp->get("lists/{$config['audience_id']}/interest-categories/{$this->argument('group')}/interests");
 

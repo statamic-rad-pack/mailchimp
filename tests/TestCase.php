@@ -16,11 +16,6 @@ class TestCase extends AddonTestCase
 
     protected string $addonServiceProvider = ServiceProvider::class;
 
-    protected function getPackageProviders($app)
-    {
-        return array_merge(parent::getPackageProviders($app), [\Stillat\Proteus\WriterServiceProvider::class]);
-    }
-
     protected function resolveApplicationConfiguration($app)
     {
         parent::resolveApplicationConfiguration($app);

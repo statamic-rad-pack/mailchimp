@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Event;
 use PHPUnit\Framework\Attributes\Test;
 use Statamic\Events\SubmissionCreated;
 use Statamic\Events\UserRegistered;
-use Statamic\Facades\Form as FormAPI;
+use Statamic\Facades\Form as FormFacade;
 use Statamic\Forms\Form;
 use Statamic\Forms\Submission;
 use StatamicRadPack\Mailchimp\Listeners\AddFromSubmission;
@@ -19,21 +19,20 @@ class ListenersTest extends TestCase
 
     private Submission $submission;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
-        FormAPI::all()->each->delete();
+        FormFacade::all()->each->delete();
 
-        $this->form = FormAPI::make('contact_us')
+        $this->form = FormFacade::make('contact_us')
             ->title('Contact Us')
             ->honeypot('winnie');
 
         $this->form->save();
 
         $this->submission = $this->form->makeSubmission();
-        $this->submission
-            ->data(['foo' => 'bar']);
+        $this->submission->data(['foo' => 'bar']);
     }
 
     #[Test]

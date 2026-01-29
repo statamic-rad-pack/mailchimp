@@ -1,27 +1,26 @@
 <template>
     <div class="form-field-fieldtype-wrapper">
-        <small class="help-block text-grey-60" v-if="!form">{{ __('Select form') }}</small>
+        <ui-description v-if="!form">{{ __('Select form') }}</ui-description>
 
-        <v-select
-            append-to-body
+        <ui-combobox
             v-if="showFieldtype && form"
+            class="w-full"
+            clearable="true"
+            :label="__('Choose')"
             v-model="selected"
-            :clearable="true"
             :options="fields"
-            :reduce="(option) => option.id"
-            :placeholder="__('Choose...')"
-            :searchable="true"
-            @input="$emit('input', $event)"
+            optionValue="id"
+            searchable="true"
         />
     </div>
 </template>
 
 <script>
+import { FieldtypeMixin as Fieldtype } from '@statamic/cms';
+
 export default {
 
     mixins: [Fieldtype],
-
-    inject: ['storeName'],
 
     data() {
         return {
@@ -55,6 +54,11 @@ export default {
 
     methods: {
         refreshFields() {
+            if (! this.form) {
+                this.fields = [];
+                return;
+            }
+
             this.$axios
                 .get(cp_url(`/mailchimp/form-fields/${this.form}`))
                 .then(response => {
@@ -62,6 +66,12 @@ export default {
                 })
                 .catch(() => { this.fields = []; });                
         }
+    },
+
+    watch: {
+      selected(selected) {
+        this.update(selected);
+      }
     }
 };
 </script>

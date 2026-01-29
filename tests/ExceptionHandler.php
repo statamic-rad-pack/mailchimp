@@ -2,10 +2,10 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Foundation\Exceptions\Handler;
 use Throwable;
 
-class ExceptionHandler extends ExceptionHandler
+class ExceptionHandler extends Handler
 {
     protected $dontReport = [
     ];

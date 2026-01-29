@@ -1,12 +1,21 @@
 tabs:
+  main:
+    display: main
+    sections:
+      -
+        fields:
+          -
+            handle: default_list_name
+            field:
+              type: text
   users:
     display: 'Users'
-    sections: 
+    sections:
       -
         fields:
           -
             handle: add_new_users
-            field: 
+            field:
               display: 'Add new users to a mailing list as they are created?'
               type: toggle
               default: false
@@ -102,14 +111,3 @@ tabs:
               fullscreen: false
               if:
                 add_new_users: 'equals true'
-  credentials:
-    display: 'Credentials'
-    sections:
-      -
-        fields:
-          -
-            handle: api_key
-            field:
-              display: 'API Key'
-              type: text
-              read_only: true
