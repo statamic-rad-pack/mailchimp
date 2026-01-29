@@ -2,6 +2,13 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v6.0 - 2026-01-29
+
+### 🚀 New
+
+- Statamic 6 support [@ryanmitchell](https://github.com/ryanmitchell) (#147)
+- Drops support for Statamic 5
+
 ## v5.3.2 - 2025-07-02
 
 ### 🐛 Fixed
