@@ -2,6 +2,13 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v6.0.1 - 2026-01-29
+
+### 🐛 Fixed
+
+- Always upload assets to release [@edalzell](https://github.com/edalzell) (#148)
+- Update dependences for only Laravel 12 support [@edalzell](https://github.com/edalzell) (#149)
+
 ## v6.0 - 2026-01-29
 
 ### 🚀 New
