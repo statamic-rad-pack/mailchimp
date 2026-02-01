@@ -12,7 +12,7 @@ jobs:
       release_upload_url: ${{ steps.latest_draft_release.outputs.upload_url }}
     steps:
       - name: Get Draft Release
-        uses: cardinalby/git-get-release-action@v1
+        uses: cardinalby/git-get-release-action@1.2.4
         id: latest_draft_release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -25,10 +25,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6.0.2
 
       - name: Install dependencies
-        uses: php-actions/composer@v6
+        uses: php-actions/composer@v6.1.2
         with:
             php_version: "8.4"
 
@@ -42,7 +42,7 @@ jobs:
         run: tar -czvf dist.tar.gz dist
 
       - name: Upload zip to release
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -56,20 +56,20 @@ jobs:
     needs: get_draft_release
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6.0.2
       - name: Update Changelog
         id: update_changelog
-        uses: stefanzweifel/changelog-updater-action@v1
+        uses: stefanzweifel/changelog-updater-action@v1.12.0
         with:
           latest-version: ${{ needs.get_draft_release.outputs.release_tag }}
           release-notes: ${{ needs.get_draft_release.outputs.release_body }}
       - name: Commit updated CHANGELOG
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v7.1.0
         with:
           branch: main
           commit_message: Update CHANGELOG
           file_pattern: CHANGELOG.md
-      - uses: eregon/publish-release@v1
+      - uses: eregon/publish-release@v1.0.6
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
