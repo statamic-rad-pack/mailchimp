@@ -122,7 +122,7 @@ class ServiceProvider extends AddonServiceProvider
                                         'max_items' => 1,
                                         'default' => 'email',
                                         'display' => __('Email Field'),
-                                        'width' => 33,
+                                        'width' => 50,
                                     ],
                                 ],
                                 [
@@ -131,7 +131,7 @@ class ServiceProvider extends AddonServiceProvider
                                         'type' => 'form_fields',
                                         'max_items' => 1,
                                         'display' => __('Interests Field'),
-                                        'width' => 33,
+                                        'width' => 50,
                                     ],
                                 ],
                                 [
@@ -141,7 +141,7 @@ class ServiceProvider extends AddonServiceProvider
                                         'mode' => 'select',
                                         'max_items' => 1,
                                         'display' => __('Audience ID'),
-                                        'width' => 33,
+                                        'width' => 50,
                                     ],
                                 ],
                                 [
@@ -150,7 +150,7 @@ class ServiceProvider extends AddonServiceProvider
                                         'type' => 'mailchimp_tag',
                                         'max_items' => 1,
                                         'display' => __('Tag'),
-                                        'width' => 33,
+                                        'width' => 50,
                                     ],
                                 ],
                                 [
@@ -159,7 +159,7 @@ class ServiceProvider extends AddonServiceProvider
                                         'type' => 'form_fields',
                                         'max_items' => 1,
                                         'display' => __('Tag Field'),
-                                        'width' => 33,
+                                        'width' => 50,
                                     ],
                                 ],
                                 [
@@ -167,7 +167,7 @@ class ServiceProvider extends AddonServiceProvider
                                     'field' => [
                                         'type' => 'toggle',
                                         'display' => __('Disable Opt In?'),
-                                        'width' => 33,
+                                        'width' => 50,
                                         'default' => false,
                                     ],
                                 ],
@@ -176,7 +176,7 @@ class ServiceProvider extends AddonServiceProvider
                                     'field' => [
                                         'type' => 'toggle',
                                         'display' => __('Check Consent?'),
-                                        'width' => 33,
+                                        'width' => 50,
                                         'default' => false,
                                     ],
                                 ],
@@ -186,7 +186,7 @@ class ServiceProvider extends AddonServiceProvider
                                         'type' => 'form_fields',
                                         'max_items' => 1,
                                         'display' => __('Consent Field'),
-                                        'width' => 33,
+                                        'width' => 50,
                                         'if' => ['check_consent' => true],
                                     ],
                                 ],
@@ -196,6 +196,7 @@ class ServiceProvider extends AddonServiceProvider
                                         'type' => 'form_fields',
                                         'max_items' => 1,
                                         'display' => __('Marketing Permissions Field'),
+                                        'width' => 50,
                                     ],
                                 ],
                                 [
