@@ -2,6 +2,20 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v6.1.0 - 2026-02-06
+
+### 🚀 New
+
+- Update field widths [@ryanmitchell](https://github.com/ryanmitchell) (#155)
+
+### 🐛 Fixed
+
+- Handle fallback when GDPR field is missing [@ryanmitchell](https://github.com/ryanmitchell) (#156)
+
+### 🧰 Maintenance
+
+- Update GitHub Action Versions [@edalzell](https://github.com/edalzell) (#153)
+
 ## v6.0.3 - 2026-01-29
 
 ### 🐛 Fixed
