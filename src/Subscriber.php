@@ -150,7 +150,7 @@ class Subscriber
     {
         $gdprField = $this->config->get('marketing_permissions_field', 'gdpr');
 
-        collect($this->data->get($gdprField))->each(function ($permission, $field) {
+        collect($this->data->get($gdprField, []))->each(function ($permission, $field) {
             $field = Arr::first($this->config->get('marketing_permissions_field_ids'), fn ($fieldId) => $fieldId['field_name'] == $field);
 
             Newsletter::setMarketingPermission(
