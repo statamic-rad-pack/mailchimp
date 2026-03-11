@@ -1,6 +1,6 @@
 tabs:
   main:
-    display: main
+    display: Main
     sections:
       -
         fields:
@@ -9,7 +9,7 @@ tabs:
             field:
               type: text
   users:
-    display: 'Users'
+    display: Users
     sections:
       -
         fields:
@@ -30,27 +30,27 @@ tabs:
                     type: mailchimp_audience
                     mode: select
                     max_items: 1
-                    width: 25
+                    width: 50
                 -
                   handle: tag
                   field:
                     display: 'Tag'
                     type: mailchimp_tag
                     max_items: 1
-                    width: 25
+                    width: 50
                 -
                   handle: tag_field
                   field:
                     display: 'Tag Field'
                     type: form_fields
                     max_items: 1
-                    width: 25
+                    width: 50
                 -
                   handle: interests_field
                   field:
                     display: 'Interests Field'
                     type: user_fields
-                    width: 25
+                    width: 50
                 -
                   handle: disable_opt_in
                   field:
@@ -85,6 +85,7 @@ tabs:
                           type: user_fields
                           icon: text
                           listable: hidden
+                          width: 50
                       -
                         handle: tag
                         field:
@@ -94,6 +95,7 @@ tabs:
                           max_items: 1
                           icon: text
                           listable: hidden
+                          width: 50
                     mode: table
                     reorderable: true
                     display: 'Merge Fields'
@@ -101,12 +103,15 @@ tabs:
                     icon: grid
                     add_row: 'Add Merge Field'
                     listable: hidden
+                    full_width_setting: true
+                    fullscreen: false
               display: ' '
               instructions: 'Add the forms you want to process Mailchimp submissions for.'
               type: grid
               mode: stacked
               max_rows: 1
               min_rows: 1
+              full_width_setting: true
               reorderable: false
               fullscreen: false
               if:
