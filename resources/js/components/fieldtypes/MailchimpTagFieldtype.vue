@@ -5,12 +5,12 @@
         <ui-combobox
             v-if="showFieldtype && list"
             class="w-full"
-            clearable="true"
+            :clearable="true"
             :label="__('Choose')"
             v-model="selected"
             :options="tags"
             optionValue="id"
-            searchable="true"
+            :searchable="true"
         />
     </div>
 </template>
