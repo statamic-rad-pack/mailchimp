@@ -41,11 +41,9 @@ class ServiceProvider extends AddonServiceProvider
             $mailChimp = new Mailchimp(config('mailchimp.api_key'));
             $mailChimp->verify_ssl = true;
 
-            $settings = Addon::get('statamic-rad-pack/mailchimp')->settings();
-
             return new NewsletterDriver(
                 $mailChimp,
-                NewsletterListCollection::createFromSettings($settings)
+                NewsletterListCollection::createFromSettings($this->addFormsToNewsletterConfig())
             );
         });
 
@@ -83,6 +81,8 @@ class ServiceProvider extends AddonServiceProvider
         $lists['user'] = ['id' => $settings->get('users.audience_id')];
 
         $settings->set('lists', $lists);
+
+        return $settings;
     }
 
     private function addFormConfigFields()
