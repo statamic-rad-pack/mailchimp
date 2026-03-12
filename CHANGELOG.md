@@ -2,6 +2,12 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v6.1.1 - 2026-03-12
+
+### 🐛 Fixed
+
+- Fix newsletter configuration [@edalzell](https://github.com/edalzell) (#158)
+
 ## v6.1.0 - 2026-02-06
 
 ### 🚀 New
