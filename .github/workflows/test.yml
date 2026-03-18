@@ -13,10 +13,6 @@ jobs:
         php: [8.3, 8.4, 8.5]
         laravel: [12.*, 13.*]
         dependency-version: [prefer-lowest, prefer-stable]
-        include:
-          - laravel: 13.*
-            framework: ^13.0
-            testbench: 11.*
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ubuntu-latest
     steps:
@@ -38,8 +34,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-             composer require "laravel/framework:${{ matrix.framework }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
-             composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --dev
+          composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
+          composer install --no-interaction
 
       - name: Execute tests
         run: vendor/bin/phpunit -c phpunit.xml
