@@ -2,6 +2,12 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v6.2.0 - 2026-03-19
+
+### 🚀 New
+
+- Supports Laravel 13 [@duncanmcclean](https://github.com/duncanmcclean) (#159)
+
 ## v6.1.1 - 2026-03-12
 
 ### 🐛 Fixed
