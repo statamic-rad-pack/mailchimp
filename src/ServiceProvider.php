@@ -209,6 +209,7 @@ class ServiceProvider extends AddonServiceProvider
                                         'display' => __('Marketing Permissions'),
                                         'width' => 100,
                                         'add_row' => __('Add Permission Field'),
+                                        'full_width_setting' => true,
                                         'fields' => [
 
                                             [
@@ -241,6 +242,7 @@ class ServiceProvider extends AddonServiceProvider
                                         'display' => __('Merge Fields'),
                                         'width' => 100,
                                         'add_row' => __('Add Merge Field'),
+                                        'full_width_setting' => true,
                                         'fields' => [
                                             [
                                                 'handle' => 'field_name',

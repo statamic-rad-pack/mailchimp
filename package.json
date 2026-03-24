@@ -5,8 +5,9 @@
         "production": "vite build"
     },
     "dependencies": {
-        "striptags": "^3.2.0",
-        "@statamic/cms": "file:./vendor/statamic/cms/resources/dist-package"
+        "@statamic/cms": "file:./vendor/statamic/cms/resources/dist-package",
+        "lodash-es": "^4.17.23",
+        "striptags": "^3.2.0"
     },
     "devDependencies": {
         "laravel-vite-plugin": "^1.2.0",
