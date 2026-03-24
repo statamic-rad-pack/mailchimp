@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { get } from 'lodash-es';
 import { FieldtypeMixin as Fieldtype } from '@statamic/cms';
 import { publishContextKey } from '@statamic/cms/ui';
 export default {
@@ -51,7 +52,7 @@ export default {
         },
 
         list() {
-            return this.publishContext.values.value[this.key] ?? '';
+            return get(this.publishContext.values.value, this.key, '');
         },
     },
 
