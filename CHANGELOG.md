@@ -2,6 +2,12 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v6.2.1 - 2026-03-24
+
+### 🐛 Fixed
+
+- Issue getting Mailchimp audience data in the CP [@ryanmitchell](https://github.com/ryanmitchell) (#162)
+
 ## v6.2.0 - 2026-03-19
 
 ### 🚀 New
