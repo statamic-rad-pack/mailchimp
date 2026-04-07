@@ -2,6 +2,16 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v6.2.2 - 2026-04-07
+
+### 🐛 Fixed
+
+- Fix "Call to a member function getName() on array" [@ryanmitchell](https://github.com/ryanmitchell) (#164)
+
+### 🧰 Maintenance
+
+- Update GitHub Action Versions [@edalzell](https://github.com/edalzell) (#163)
+
 ## v6.2.1 - 2026-03-24
 
 ### 🐛 Fixed
