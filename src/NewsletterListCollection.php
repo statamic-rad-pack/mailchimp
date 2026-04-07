@@ -19,7 +19,7 @@ class NewsletterListCollection extends Collection
             ->map(fn ($listProperties, $name) => new NewsletterList($name, $listProperties))
             ->all();
 
-        $collection->push($lists);
+        $collection->push(...array_values($lists));
         $collection->defaultListName = $settings->get('default_list_name', 'subscribers');
 
         return $collection;
