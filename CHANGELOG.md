@@ -2,6 +2,12 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v6.2.3 - 2026-04-14
+
+### 🐛 Fixed
+
+- Fix `mailchimp_audience` fieldtype issue [@ryanmitchell](https://github.com/ryanmitchell) (#166)
+
 ## v6.2.2 - 2026-04-07
 
 ### 🐛 Fixed
