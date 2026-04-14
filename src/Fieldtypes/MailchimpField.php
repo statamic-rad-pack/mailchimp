@@ -15,7 +15,9 @@ abstract class MailchimpField extends Relationship
             return [];
         }
 
-        $this->mailchimp = app(MailChimp::class);
+        if (! $this->mailchimp) {
+            $this->mailchimp = app(MailChimp::class);
+        }
 
         return optional($this->mailchimp)->get($endpoint, $data);
     }
