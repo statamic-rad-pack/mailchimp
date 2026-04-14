@@ -9,15 +9,14 @@ abstract class MailchimpField extends Relationship
 {
     private ?MailChimp $mailchimp = null;
 
-    public function __construct()
-    {
-        if (config('mailchimp.api_key')) {
-            $this->mailchimp = app(MailChimp::class);
-        }
-    }
-
     protected function callApi(string $endpoint, array $data = []): ?array
     {
+        if (! config('mailchimp.api_key')) {
+            return [];
+        }
+
+        $this->mailchimp = app(MailChimp::class);
+
         return optional($this->mailchimp)->get($endpoint, $data);
     }
 }
