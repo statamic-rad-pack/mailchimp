@@ -2,6 +2,18 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v6.2.4 - 2026-05-24
+
+### 🐛 Fixed
+
+- Fix fieldtype rendering on configure form screen [@mikemartin](https://github.com/mikemartin) (#169)
+
+### 🧰 Maintenance
+
+- Update GitHub Action Versions [@edalzell](https://github.com/edalzell) (#167)
+- Fix GH release drafter [@edalzell](https://github.com/edalzell) (#170)
+- Bump shivammathur/setup-php from 2.37.0 to 2.37.1 in /.github/workflows [@[dependabot[bot]](https://github.com/apps/dependabot)](https://github.com/[dependabot[bot]](https://github.com/apps/dependabot)) (#168)
+
 ## v6.2.3 - 2026-04-14
 
 ### 🐛 Fixed
