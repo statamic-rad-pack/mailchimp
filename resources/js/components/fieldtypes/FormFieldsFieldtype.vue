@@ -37,6 +37,9 @@ export default {
             this.refreshFields();
 
             this.$nextTick(() => this.showFieldtype = true);
+        },
+        selected(selected) {
+            this.update(selected);
         }
     },
 
@@ -68,10 +71,5 @@ export default {
         }
     },
 
-    watch: {
-      selected(selected) {
-        this.update(selected);
-      }
-    }
 };
 </script>
