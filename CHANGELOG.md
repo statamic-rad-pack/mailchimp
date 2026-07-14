@@ -2,6 +2,14 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v6.2.5 - 2026-07-14
+
+- Update audience pull to max 500 [@ryanmitchell](https://github.com/ryanmitchell) (#174)
+
+### 🧰 Maintenance
+
+- Update GitHub Action Versions [@edalzell](https://github.com/edalzell) (#171)
+
 ## v6.2.4 - 2026-05-24
 
 ### 🐛 Fixed
