@@ -2,6 +2,21 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v6.3.0 - 2026-11-21
+
+### 🚀 New
+
+- Support PHP 8.6 [@edalzell](https://github.com/edalzell) (#179)
+
+### 🐛 Fixed
+
+- Don't log the Mailchimp API key on failed subscriptions [@FlorianMoser](https://github.com/FlorianMoser) (#178)
+
+### 🧰 Maintenance
+
+- Bump changelog-updater-action to v1.13.3 [@edalzell](https://github.com/edalzell) (#180)
+- Update GitHub Action Versions [@edalzell](https://github.com/edalzell) (#176)
+
 ## v6.2.5 - 2026-07-14
 
 - Update audience pull to max 500 [@ryanmitchell](https://github.com/ryanmitchell) (#174)
