@@ -132,13 +132,11 @@ class Subscriber
         $this->setMarketingPermissions();
 
         if (! Newsletter::subscribeOrUpdate($this->email(), $mergeData, $this->config->get('form'), $options)) {
-            // Don't log the raw response: its curl info contains the request headers, including the API key.
-            $response = Newsletter::getApi()->getLastResponse();
-
-            Log::error(Newsletter::getLastError(), [
-                'status' => $response['headers']['http_code'] ?? null,
-                'body' => $response['body'] ?? null,
-            ]);
+            // Only log the body: the response's curl info contains the request headers, including the API key.
+            Log::error(
+                Newsletter::getLastError(),
+                ['body' => Newsletter::getApi()->getLastResponse()['body'] ?? null],
+            );
         }
     }
 

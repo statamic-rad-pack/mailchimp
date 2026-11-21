@@ -39,7 +39,7 @@ class SubscriberLoggingTest extends TestCase
         Log::shouldHaveReceived('error')
             ->once()
             ->withArgs(fn ($message, $context) => $message === '400: Forgotten Email Not Subscribed'
-                && $context === ['status' => 400, 'body' => $body]
+                && $context === ['body' => $body]
                 && ! str_contains(json_encode($context), 'secret-api-key'));
     }
 }
