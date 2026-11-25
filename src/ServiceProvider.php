@@ -118,7 +118,7 @@ class ServiceProvider extends AddonServiceProvider
                                 [
                                     'handle' => 'primary_email_field',
                                     'field' => [
-                                        'type' => 'form_fields',
+                                        'type' => 'mailchimp_form_fields',
                                         'max_items' => 1,
                                         'default' => 'email',
                                         'display' => __('Email Field'),
@@ -128,7 +128,7 @@ class ServiceProvider extends AddonServiceProvider
                                 [
                                     'handle' => 'interests_field',
                                     'field' => [
-                                        'type' => 'form_fields',
+                                        'type' => 'mailchimp_form_fields',
                                         'max_items' => 1,
                                         'display' => __('Interests Field'),
                                         'width' => 50,
@@ -156,7 +156,7 @@ class ServiceProvider extends AddonServiceProvider
                                 [
                                     'handle' => 'tag_field',
                                     'field' => [
-                                        'type' => 'form_fields',
+                                        'type' => 'mailchimp_form_fields',
                                         'max_items' => 1,
                                         'display' => __('Tag Field'),
                                         'width' => 50,
@@ -183,7 +183,7 @@ class ServiceProvider extends AddonServiceProvider
                                 [
                                     'handle' => 'consent_field',
                                     'field' => [
-                                        'type' => 'form_fields',
+                                        'type' => 'mailchimp_form_fields',
                                         'max_items' => 1,
                                         'display' => __('Consent Field'),
                                         'width' => 50,
@@ -193,7 +193,7 @@ class ServiceProvider extends AddonServiceProvider
                                 [
                                     'handle' => 'marketing_permissions_field',
                                     'field' => [
-                                        'type' => 'form_fields',
+                                        'type' => 'mailchimp_form_fields',
                                         'max_items' => 1,
                                         'display' => __('Marketing Permissions Field'),
                                         'width' => 50,
@@ -247,7 +247,7 @@ class ServiceProvider extends AddonServiceProvider
                                             [
                                                 'handle' => 'field_name',
                                                 'field' => [
-                                                    'type' => 'form_fields',
+                                                    'type' => 'mailchimp_form_fields',
                                                     'display' => __('Form Field'),
                                                     'width' => 33,
                                                 ],
