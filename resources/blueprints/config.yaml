@@ -42,7 +42,7 @@ tabs:
                   handle: tag_field
                   field:
                     display: 'Tag Field'
-                    type: form_fields
+                    type: mailchimp_form_fields
                     max_items: 1
                     width: 50
                 -

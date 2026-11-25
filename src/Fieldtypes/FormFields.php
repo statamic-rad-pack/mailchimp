@@ -6,5 +6,7 @@ use Statamic\Fields\Fieldtype;
 
 class FormFields extends Fieldtype
 {
-    protected $component = 'form_fields';
+    protected static $handle = 'mailchimp_form_fields';
+
+    protected $component = 'mailchimp_form_fields';
 }
