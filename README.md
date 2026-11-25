@@ -2,7 +2,7 @@
 
 This package provides an easy way to integrate MailChimp with Statamic forms and user registrations.
 
-> While this addon is kept up-to-date with new Statamic versions and changes to the Mailchimp API, you may wish to consider using [Forms Pro](https://statamic.com/addons/statamic/forms-pro) (first-party, paid) instead for a slightly richer experience. It's built into Statamic's new form connections feature and supports attaching conditional logic to subscriptions.
+> While this addon is kept up-to-date with new Statamic versions and changes to the Mailchimp API, you may wish to consider using [Forms Pro](https://statamic.com/addons/statamic/forms-pro) (first-party, paid) instead for a richer experience. It's built into Statamic's new form connections feature and supports attaching conditional logic to subscriptions.
 
 ## Requirements
 
