@@ -2,6 +2,11 @@
 
 All notable changes to `statamic-mailchimp` will be documented in this file.
 
+## v6.3.2 - 2026-11-25
+
+- Update Release Workflow [@duncanmcclean](https://github.com/duncanmcclean) (#184)
+- Update README [@duncanmcclean](https://github.com/duncanmcclean) (#183)
+
 ## v6.3.1 - 2026-11-25
 
 - Avoid conflicting with core's `form_fields` fieldtype [@duncanmcclean](https://github.com/duncanmcclean) (#182)
