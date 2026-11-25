@@ -1,76 +1,99 @@
 name: Release
 
-on:
+on: # zizmor: ignore[concurrency-limits]
   workflow_dispatch:
+
+permissions: {}
+
 jobs:
-  get_draft_release:
-    runs-on: ubuntu-latest
-    outputs:
-      release_body: ${{ steps.latest_draft_release.outputs.body }}
-      release_id: ${{ steps.latest_draft_release.outputs.id }}
-      release_tag: ${{ steps.latest_draft_release.outputs.tag_name }}
-      release_upload_url: ${{ steps.latest_draft_release.outputs.upload_url }}
-    steps:
-      - name: Get Draft Release
-        uses: cardinalby/git-get-release-action@1.2.4
-        id: latest_draft_release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          draft: true
-          latest: true
-
-  upload_assets:
-    needs: get_draft_release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v7.0.1
-
-      - name: Install dependencies
-        uses: php-actions/composer@v6.1.2
-        with:
-            php_version: "8.4"
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Compile assets
-        run: npm run production
-
-      - name: Create zip
-        run: tar -czvf dist.tar.gz dist
-
-      - name: Upload zip to release
-        uses: actions/upload-release-asset@v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ needs.get_draft_release.outputs.release_upload_url }}
-          asset_path: ./dist.tar.gz
-          asset_name: dist.tar.gz
-          asset_content_type: application/tar+gz
-
   release:
+    name: Release
     runs-on: ubuntu-latest
-    needs: get_draft_release
+    permissions:
+      contents: write # Push the changelog and tag, and publish the release
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v7.0.1
+      - name: Get draft release
+        id: draft
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          release="$(gh api "repos/$REPOSITORY/releases" --jq '[.[] | select(.draft)][0]')"
+
+          if [ -z "$release" ]; then
+            echo "::error::There is no draft release to publish."
+            exit 1
+          fi
+
+          echo "TAG=$(jq -r .tag_name <<< "$release")" >> "$GITHUB_ENV"
+          {
+            echo "body<<EOF"
+            jq -r .body <<< "$release"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: true # zizmor: ignore[artipacked] Token is needed to push the changelog and tag
+
+      - name: Assert tag does not already exist
+        run: |
+          existing="$(git ls-remote --tags origin "$TAG")"
+          [ -z "$existing" ] || { echo "::error::Tag $TAG already exists on remote. Aborting."; exit 1; }
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
       - name: Update Changelog
-        id: update_changelog
         uses: stefanzweifel/changelog-updater-action@v1.13.3
         with:
-          latest-version: ${{ needs.get_draft_release.outputs.release_tag }}
-          release-notes: ${{ needs.get_draft_release.outputs.release_body }}
-      - name: Commit updated CHANGELOG
-        uses: stefanzweifel/git-auto-commit-action@v7.2.0
-        with:
-          branch: main
-          commit_message: Update CHANGELOG
-          file_pattern: CHANGELOG.md
-      - uses: eregon/publish-release@v1.0.6
+          latest-version: ${{ env.TAG }}
+          release-notes: ${{ steps.draft.outputs.body }}
+
+      - name: Commit and push the updated Changelog
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          git add CHANGELOG.md
+          git commit -m "Update CHANGELOG"
+          git push origin "HEAD:$BRANCH"
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
-          release_id: ${{ needs.get_draft_release.outputs.release_id }}
+          php-version: 8.4
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
+          tools: composer:v2
+
+      - name: Use Node.js 20.19.0
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 20.19.0
+          package-manager-cache: false
+
+      - name: Install Composer dependencies
+        run: composer install
+
+      - name: Install NPM dependencies
+        run: npm install
+
+      - name: Build release assets
+        run: npm run build
+
+      - name: Create the build commit
+        run: |
+          git add --force dist
+          git commit -m "Build assets for $TAG"
+
+      - name: Tag and push the build commit
+        run: |
+          git tag "$TAG"
+          git push origin "$TAG"
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release edit "$TAG" --draft=false --latest
